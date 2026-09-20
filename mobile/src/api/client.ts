@@ -7,6 +7,16 @@ export const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost
 
 const ACCESS_TOKEN_KEY = 'mh_access_token';
 const REFRESH_TOKEN_KEY = 'mh_refresh_token';
+const ONBOARDING_KEY = 'mh_onboarding_complete';
+
+export const onboardingStore = {
+  async hasSeen(): Promise<boolean> {
+    return (await SecureStore.getItemAsync(ONBOARDING_KEY)) === '1';
+  },
+  async markSeen() {
+    await SecureStore.setItemAsync(ONBOARDING_KEY, '1');
+  },
+};
 
 export const tokenStore = {
   async getAccess() {
