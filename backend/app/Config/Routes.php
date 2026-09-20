@@ -83,9 +83,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static functio
         $routes->get('people/students', 'PeopleController::students');
         $routes->post('people/students', 'PeopleController::storeStudent');
         $routes->post('people/students/(:num)/delete', 'PeopleController::deleteStudent/$1');
+        $routes->post('people/students/(:num)/create-login', 'PeopleController::createStudentLogin/$1');
         $routes->get('people/guardians', 'PeopleController::guardians');
         $routes->post('people/guardians', 'PeopleController::storeGuardian');
         $routes->post('people/guardians/(:num)/delete', 'PeopleController::deleteGuardian/$1');
+        $routes->post('people/guardians/(:num)/create-login', 'PeopleController::createGuardianLogin/$1');
         $routes->get('people/staff', 'PeopleController::staff');
         $routes->post('people/staff', 'PeopleController::storeStaff');
         $routes->post('people/staff/(:num)/delete', 'PeopleController::deleteStaff/$1');

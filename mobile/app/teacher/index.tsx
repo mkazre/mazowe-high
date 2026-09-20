@@ -15,7 +15,7 @@ export default function TeacherHome() {
   return (
     <Screen>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Header kicker={`Welcome, ${user?.name ?? 'Teacher'}`} title="Mazowe Heights" />
+        <Header kicker="Teacher portal" title={`Welcome, ${user?.name ?? 'Teacher'}`} />
         <Button label="Log out" variant="outline" onPress={logout} />
       </View>
 

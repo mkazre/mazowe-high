@@ -18,7 +18,7 @@ export default function ParentHome() {
   return (
     <Screen>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Header kicker={`Welcome, ${user?.name ?? 'Parent'}`} title="Mazowe Heights" />
+        <Header kicker="Parent portal" title={`Welcome, ${user?.name ?? 'Parent'}`} />
         <Button label="Log out" variant="outline" onPress={logout} />
       </View>
 

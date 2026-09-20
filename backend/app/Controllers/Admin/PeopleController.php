@@ -51,6 +51,39 @@ class PeopleController extends BaseController
         return redirect()->to('/admin/people/students');
     }
 
+    /** Students don't sign themselves up — there is no public registration. The school
+     *  creates the pupil record, then issues a portal login here once, sharing the
+     *  one-time password directly with the family (email delivery isn't wired up on
+     *  every environment, so this is shown on screen rather than assumed sent). */
+    public function createStudentLogin(int $id)
+    {
+        $student = $this->db->table('students')->where('id', $id)->get()->getRowArray();
+        if (! $student) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        if ($student['user_id']) {
+            session()->setFlashdata('error', 'This pupil already has a portal login.');
+
+            return redirect()->to('/admin/people/students');
+        }
+
+        $email = trim((string) $this->request->getPost('login_email'));
+        if (! $email) {
+            session()->setFlashdata('error', 'Enter an email address to create a login for this pupil.');
+
+            return redirect()->to('/admin/people/students');
+        }
+
+        [$userId, $isNew, $password] = $this->findOrCreateUser($email, $student['first_name'] . ' ' . $student['last_name'], 'student');
+        $this->db->table('students')->where('id', $id)->update(['user_id' => $userId]);
+
+        session()->setFlashdata('success', $isNew
+            ? "Login created for {$email}. Temporary password: {$password} — share this with the family directly; it's shown only this once."
+            : "Linked to the existing account for {$email} (no password change).");
+
+        return redirect()->to('/admin/people/students');
+    }
+
     public function guardians()
     {
         $rows = $this->db->table('guardians')->get()->getResultArray();
@@ -97,6 +130,58 @@ class PeopleController extends BaseController
         return redirect()->to('/admin/people/guardians');
     }
 
+    /** Same model as createStudentLogin — parents don't self-register; the school issues
+     *  the login once the guardian record exists and is linked to their child/children. */
+    public function createGuardianLogin(int $id)
+    {
+        $guardian = $this->db->table('guardians')->where('id', $id)->get()->getRowArray();
+        if (! $guardian) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        if ($guardian['user_id']) {
+            session()->setFlashdata('error', 'This guardian already has a portal login.');
+
+            return redirect()->to('/admin/people/guardians');
+        }
+
+        $email = trim((string) ($guardian['email'] ?: $this->request->getPost('login_email')));
+        if (! $email) {
+            session()->setFlashdata('error', 'This guardian has no email on file — add one before creating a login.');
+
+            return redirect()->to('/admin/people/guardians');
+        }
+
+        [$userId, $isNew, $password] = $this->findOrCreateUser($email, $guardian['name'], 'parent');
+        $this->db->table('guardians')->where('id', $id)->update(['user_id' => $userId]);
+
+        session()->setFlashdata('success', $isNew
+            ? "Login created for {$email}. Temporary password: {$password} — share this with them directly; it's shown only this once."
+            : "Linked to the existing account for {$email} (no password change).");
+
+        return redirect()->to('/admin/people/guardians');
+    }
+
+    /** Shared by student/guardian/staff login creation: reuse an existing account for this
+     *  email if one exists, otherwise create a fresh one with a one-time random password. */
+    private function findOrCreateUser(string $email, string $name, string $roleSlug): array
+    {
+        $existing = $this->db->table('users')->where('email', $email)->get()->getRowArray();
+        if ($existing) {
+            return [(int) $existing['id'], false, null];
+        }
+
+        $password = strtoupper(bin2hex(random_bytes(3))) . '-' . random_int(1000, 9999);
+        $role = $this->db->table('roles')->where('slug', $roleSlug)->get()->getRowArray();
+        $this->db->table('users')->insert([
+            'name' => $name, 'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'role_id' => $role['id'] ?? null, 'status' => 'active',
+            'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        return [(int) $this->db->insertID(), true, $password];
+    }
+
     public function staff()
     {
         $rows = $this->db->table('staff st')
@@ -109,20 +194,8 @@ class PeopleController extends BaseController
 
     public function storeStaff()
     {
-        $email = $this->request->getPost('email');
-        $existing = $this->db->table('users')->where('email', $email)->get()->getRowArray();
-        if ($existing) {
-            $userId = (int) $existing['id'];
-        } else {
-            $teacherRole = $this->db->table('roles')->where('slug', 'teacher')->get()->getRowArray();
-            $this->db->table('users')->insert([
-                'name' => $this->request->getPost('name'), 'email' => $email,
-                'password' => password_hash(bin2hex(random_bytes(6)), PASSWORD_DEFAULT),
-                'role_id' => $teacherRole['id'] ?? null, 'status' => 'active',
-                'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'),
-            ]);
-            $userId = (int) $this->db->insertID();
-        }
+        $email = (string) $this->request->getPost('email');
+        [$userId, $isNew, $password] = $this->findOrCreateUser($email, (string) $this->request->getPost('name'), 'teacher');
 
         $this->db->table('staff')->insert([
             'user_id' => $userId,
@@ -130,7 +203,10 @@ class PeopleController extends BaseController
             'department' => $this->request->getPost('department'),
             'position' => $this->request->getPost('position'),
         ]);
-        session()->setFlashdata('success', 'Staff member added. A user account was created if one did not already exist for this email.');
+
+        session()->setFlashdata('success', $isNew
+            ? "Staff member added. Temporary password for {$email}: {$password} — share this with them directly; it's shown only this once."
+            : "Staff member added and linked to the existing account for {$email}.");
 
         return redirect()->to('/admin/people/staff');
     }

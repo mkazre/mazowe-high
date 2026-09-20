@@ -37,7 +37,7 @@
 
 <div class="admin-table-wrap">
   <table class="admin-table">
-    <thead><tr><th>Admission #</th><th>Name</th><th>Class</th><th>House</th><th>Boarding</th><th></th></tr></thead>
+    <thead><tr><th>Admission #</th><th>Name</th><th>Class</th><th>House</th><th>Boarding</th><th>Portal login</th><th></th></tr></thead>
     <tbody>
       <?php foreach ($rows as $s): ?>
         <tr>
@@ -46,6 +46,17 @@
           <td><?= esc($s['class_name'] ?? '—') ?></td>
           <td><?= esc($s['house_name'] ?? '—') ?></td>
           <td><?= esc($s['day_or_boarding']) ?></td>
+          <td>
+            <?php if ($s['user_id']): ?>
+              <span class="pill pill-published">Has login</span>
+            <?php else: ?>
+              <form method="post" action="/admin/people/students/<?= (int) $s['id'] ?>/create-login" style="display:flex;gap:6px">
+                <?= csrf_field() ?>
+                <input type="email" name="login_email" placeholder="parent or pupil email" required style="width:170px">
+                <button type="submit" class="btn btn-secondary" style="white-space:nowrap">Create login</button>
+              </form>
+            <?php endif; ?>
+          </td>
           <td class="row-actions">
             <form method="post" action="/admin/people/students/<?= (int) $s['id'] ?>/delete" data-confirm="Delete this student?">
               <?= csrf_field() ?>
@@ -54,7 +65,7 @@
           </td>
         </tr>
       <?php endforeach; ?>
-      <?php if (empty($rows)): ?><tr><td colspan="6">No students yet.</td></tr><?php endif; ?>
+      <?php if (empty($rows)): ?><tr><td colspan="7">No students yet.</td></tr><?php endif; ?>
     </tbody>
   </table>
 </div>

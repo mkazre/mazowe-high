@@ -21,7 +21,7 @@
 
 <div class="admin-table-wrap">
   <table class="admin-table">
-    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Children</th><th></th></tr></thead>
+    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Children</th><th>Portal login</th><th></th></tr></thead>
     <tbody>
       <?php foreach ($rows as $g): ?>
         <tr>
@@ -29,6 +29,18 @@
           <td><?= esc($g['email']) ?></td>
           <td><?= esc($g['phone']) ?></td>
           <td><?= esc(implode(', ', array_map(fn ($c) => $c['first_name'] . ' ' . $c['last_name'] . ' (' . $c['relationship'] . ')', $g['children']))) ?></td>
+          <td>
+            <?php if ($g['user_id']): ?>
+              <span class="pill pill-published">Has login</span>
+            <?php elseif ($g['email']): ?>
+              <form method="post" action="/admin/people/guardians/<?= (int) $g['id'] ?>/create-login">
+                <?= csrf_field() ?>
+                <button type="submit" class="btn btn-secondary">Create login</button>
+              </form>
+            <?php else: ?>
+              <span class="form-note">Add an email first</span>
+            <?php endif; ?>
+          </td>
           <td class="row-actions">
             <form method="post" action="/admin/people/guardians/<?= (int) $g['id'] ?>/delete" data-confirm="Delete this guardian?">
               <?= csrf_field() ?>
@@ -37,7 +49,7 @@
           </td>
         </tr>
       <?php endforeach; ?>
-      <?php if (empty($rows)): ?><tr><td colspan="5">No guardians yet.</td></tr><?php endif; ?>
+      <?php if (empty($rows)): ?><tr><td colspan="6">No guardians yet.</td></tr><?php endif; ?>
     </tbody>
   </table>
 </div>

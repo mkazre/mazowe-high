@@ -15,7 +15,7 @@ export default function StudentHome() {
   return (
     <Screen>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Header kicker={`Welcome, ${user?.name ?? 'Student'}`} title="Mazowe Heights" />
+        <Header kicker="Student portal" title={`Welcome, ${user?.name ?? 'Student'}`} />
         <Button label="Log out" variant="outline" onPress={logout} />
       </View>
 
