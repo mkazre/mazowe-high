@@ -1,16 +1,18 @@
 {
   "expo": {
     "name": "Mazowe Heights",
-    "slug": "mazowe-heights",
+    "slug": "mazowe",
     "scheme": "mazoweheights",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mazoweheights.app"
     },
     "android": {
+      "package": "com.mazoweheights.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -26,6 +28,13 @@
       "expo-router",
       "expo-status-bar",
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e087fa4d-6279-45f4-af78-30d02a5571de"
+      }
+    },
+    "owner": "mkazre"
   }
 }
