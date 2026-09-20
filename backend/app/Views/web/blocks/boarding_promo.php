@@ -12,6 +12,8 @@
         </div>
       <?php endif; ?>
     </div>
-    <div class="boarding-media" aria-hidden="true"></div>
+    <?php if (! empty($data['image'])): ?>
+      <div class="boarding-media"><img src="<?= esc($data['image']) ?>" alt="<?= esc($data['image_alt'] ?? '') ?>"></div>
+    <?php endif; ?>
   </div>
 </section>

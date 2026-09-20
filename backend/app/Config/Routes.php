@@ -23,6 +23,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], static functio
         $routes->get('pages/(:num)/edit', 'PageController::edit/$1');
         $routes->post('pages/(:num)/edit', 'PageController::update/$1');
         $routes->post('pages/(:num)/blocks/(:num)', 'PageController::updateBlock/$1/$2');
+        $routes->post('pages/(:num)/blocks/(:num)/image', 'PageController::updateBlockImage/$1/$2');
         $routes->post('pages/(:num)/blocks/(:num)/delete', 'PageController::deleteBlock/$1/$2');
         $routes->post('pages/(:num)/blocks/add', 'PageController::addBlock/$1');
         $routes->post('pages/(:num)/blocks/reorder', 'PageController::reorderBlocks/$1');

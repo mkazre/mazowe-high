@@ -43,9 +43,27 @@
         </div>
       </div>
       <div class="block-card-body">
+        <?php $hasImageField = in_array($block['type'], ['hero', 'boarding_promo', 'image'], true) || array_key_exists('image', $block['data']); ?>
+        <?php if ($hasImageField): ?>
+        <div class="image-field">
+          <?php if (! empty($block['data']['image'])): ?>
+            <img src="<?= esc($block['data']['image']) ?>" alt="" class="image-field-preview">
+          <?php endif; ?>
+          <form method="post" action="/admin/pages/<?= (int) $page['id'] ?>/blocks/<?= (int) $block['id'] ?>/image" enctype="multipart/form-data" class="image-field-form">
+            <?= csrf_field() ?>
+            <label>Photo<input type="file" name="image_file" accept="image/*"></label>
+            <label>Alt text<input type="text" name="image_alt" value="<?= esc($block['data']['image_alt'] ?? '') ?>" placeholder="Describe the photo for accessibility"></label>
+            <?php if (array_key_exists('caption', $block['data'])): ?>
+              <label>Caption<input type="text" name="caption" value="<?= esc($block['data']['caption'] ?? '') ?>"></label>
+            <?php endif; ?>
+            <button class="btn btn-secondary" type="submit">Upload photo</button>
+          </form>
+        </div>
+        <?php endif; ?>
         <form method="post" action="/admin/pages/<?= (int) $page['id'] ?>/blocks/<?= (int) $block['id'] ?>">
           <?= csrf_field() ?>
           <?php foreach ($block['data'] as $key => $value): ?>
+            <?php if (in_array($key, ['image', 'image_alt', 'caption'], true)) continue; ?>
             <?php if (is_array($value)): ?>
               <label><?= esc($key) ?> <em>(JSON)</em>
                 <textarea name="json_field[<?= esc($key) ?>]"><?= esc(json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)) ?></textarea>
@@ -77,6 +95,7 @@
     <label style="min-width:220px">Block type
       <select name="type">
         <option value="richtext">Rich text</option>
+        <option value="image">Image</option>
         <option value="cards">Cards</option>
         <option value="stats">Stats</option>
         <option value="steps">Steps</option>

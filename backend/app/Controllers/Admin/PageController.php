@@ -100,15 +100,57 @@ class PageController extends BaseController
         $maxPos = $this->db->table('page_blocks')->selectMax('position')->where('page_id', $pageId)->get()->getRow();
         $nextPos = ($maxPos->position ?? -1) + 1;
 
+        $defaults = [
+            'image'          => ['image' => '', 'image_alt' => '', 'caption' => ''],
+            'hero'           => ['kicker' => '', 'title' => '', 'lead' => '', 'image' => '', 'image_alt' => '', 'buttons' => []],
+            'boarding_promo' => ['kicker' => '', 'title' => '', 'body' => '', 'image' => '', 'image_alt' => '', 'buttons' => []],
+            'richtext'       => ['html' => ''],
+        ];
+        $data = $defaults[$type] ?? ['title' => '', 'items' => []];
+
         $blockModel = new PageBlockModel();
         $blockModel->insert([
             'page_id'  => $pageId,
             'type'     => $type,
             'position' => $nextPos,
-            'data'     => json_encode(['title' => '', 'items' => []]),
+            'data'     => json_encode($data),
         ]);
 
         session()->setFlashdata('success', 'Block added — edit its content below.');
+
+        return redirect()->to('/admin/pages/' . $pageId . '/edit');
+    }
+
+    /** Dedicated image-upload handler for any block — decoupled from the generic scalar-field
+     *  form so it works whether or not the block's JSON already has an "image" key. */
+    public function updateBlockImage(int $pageId, int $blockId)
+    {
+        $blockModel = new PageBlockModel();
+        $block      = $blockModel->find($blockId);
+        if (! $block || (int) $block['page_id'] !== $pageId) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $existing = json_decode($block['data'], true) ?? [];
+
+        $file = $this->request->getFile('image_file');
+        if ($file && $file->isValid() && ! $file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move(FCPATH . 'uploads', $newName);
+            $existing['image'] = '/uploads/' . $newName;
+        }
+
+        $alt = $this->request->getPost('image_alt');
+        if ($alt !== null) {
+            $existing['image_alt'] = $alt;
+        }
+        $caption = $this->request->getPost('caption');
+        if ($caption !== null && array_key_exists('caption', $existing)) {
+            $existing['caption'] = $caption;
+        }
+
+        $blockModel->update($blockId, ['data' => json_encode($existing, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)]);
+        session()->setFlashdata('success', 'Image updated.');
 
         return redirect()->to('/admin/pages/' . $pageId . '/edit');
     }

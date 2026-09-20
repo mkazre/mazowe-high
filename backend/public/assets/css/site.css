@@ -88,12 +88,12 @@ p{line-height:1.6;margin:0 0 12px}
 .hero-inner{display:grid;grid-template-columns:1fr;gap:0;padding:0}
 .hero-copy{padding:56px 0 56px}
 .hero h1{font-size:clamp(32px,6vw,64px);line-height:.99;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
-.hero-media{display:none}
+.hero-media{position:relative;min-height:220px}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)}
 @media (min-width:860px){
   .hero-inner{grid-template-columns:1.1fr .9fr;align-items:stretch}
   .hero-copy{padding:76px 48px 76px 0}
-  .hero-media{display:block;min-height:380px;border-left:2px solid #fff;background:
-    linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
+  .hero-media{min-height:380px;border-left:2px solid #fff}
 }
 
 /* ---------------- Sections ---------------- */
@@ -144,9 +144,10 @@ p{line-height:1.6;margin:0 0 12px}
 
 /* Boarding promo */
 .boarding-promo-inner{display:grid;grid-template-columns:1fr;gap:24px}
-.boarding-media{display:none}
+.boarding-media{position:relative;min-height:220px;border:2px solid var(--ink)}
+.boarding-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)}
 @media (min-width:860px){ .boarding-promo-inner{grid-template-columns:1fr 1fr}
-  .boarding-media{display:block;min-height:280px;background:var(--ground);border:2px solid var(--ink)} }
+  .boarding-media{min-height:280px} }
 
 /* Timeline / numbered list / steps */
 .timeline{display:flex;flex-direction:column;gap:18px}
@@ -237,6 +238,7 @@ form legend{font-weight:800;padding:0 8px;font-size:13px;text-transform:uppercas
   padding:12px 16px;font-family:var(--font);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .ask-panel{position:fixed;right:16px;bottom:72px;left:16px;z-index:120;background:#fff;border:2px solid var(--ink);
   display:flex;flex-direction:column;max-height:70vh}
+.ask-panel[hidden]{display:none}
 .ask-head{background:var(--blue);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
 .ask-head button{margin-left:auto;background:none;border:0;color:#fff;font-size:20px;cursor:pointer;min-width:32px;min-height:32px}
 .ask-body{padding:14px;overflow:auto}
@@ -246,3 +248,8 @@ form legend{font-weight:800;padding:0 8px;font-size:13px;text-transform:uppercas
 @media (min-width:640px){ .ask-panel{left:auto;width:360px} }
 
 .richtext :is(p,ul,ol){margin-bottom:14px}
+
+/* Standalone content image block */
+.content-image{margin:0}
+.content-image img{width:100%;height:auto;display:block;border:2px solid var(--ink);filter:grayscale(1)}
+.content-image figcaption{font-size:13px;color:#4a4744;margin-top:8px}

@@ -85,3 +85,8 @@
 .block-card-head strong{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
 .block-card-body{padding:16px}
 .block-card-body textarea{min-height:140px;font-family:ui-monospace,monospace;font-size:13px}
+
+.image-field{border:1px dashed var(--divider);padding:14px;margin-bottom:16px;background:var(--ground)}
+.image-field-preview{display:block;width:100%;max-width:280px;height:160px;object-fit:cover;border:2px solid var(--ink);margin-bottom:12px;filter:grayscale(1)}
+.image-field-form{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.image-field-form label{min-width:160px;margin-bottom:0}
