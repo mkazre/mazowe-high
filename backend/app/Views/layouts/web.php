@@ -47,7 +47,7 @@
           <button class="nav-group-toggle" type="button"><?= esc($group['label']) ?></button>
           <div class="nav-dropdown">
             <?php foreach ($group['items'] as $item): ?>
-              <a href="/<?= esc($key) ?>/<?= esc(explode('/', $item['slug'])[1] ?? $item['slug']) ?>"
+              <a href="/<?= esc($item['slug']) ?>"
                  class="<?= $active === $item['slug'] ? 'is-active' : '' ?>">
                 <?= esc($item['title']) ?>
               </a>
