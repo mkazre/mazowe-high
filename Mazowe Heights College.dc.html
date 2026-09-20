@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-4eb47bc6-b92f-45a0-b484-41802f8a5b0c/styles.css">
+<script src="_ds/modernist-4eb47bc6-b92f-45a0-b484-41802f8a5b0c/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+:root{--blue:#0b3d6b;--blue-700:#08294a;--blue-100:#e7eef5;--paper:#ffffff}
+body{margin:0;background:#fff}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--color-accent)}
+@keyframes mhrise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div style="font-family:var(--font-body);color:var(--color-text);background:#fff;min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:60;background:#fff;border-bottom:2px solid var(--color-text)">
+  <div style="background:var(--blue);color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:22px;min-height:34px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;flex-wrap:wrap">
+      <span>Mazowe Valley · Zimbabwe</span>
+      <span style="color:#ff9783">{{ bannerText }}</span>
+      <div style="margin-left:auto;display:flex;gap:18px">
+        <sc-for list="{{ utility }}" as="u" hint-placeholder-count="3">
+          <a href="#" onClick="{{ u.go }}" style="color:#fff">{{ u.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:20px;min-height:78px;flex-wrap:nowrap">
+    <a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;color:inherit;flex-shrink:0">
+      <span style="display:block;width:38px;height:44px;background:linear-gradient(135deg,var(--blue) 0 50%,var(--color-accent) 50% 100%);color:#fff;font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center">MH</span>
+      <span style="display:block;line-height:1.05">
+        <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:-.02em">Mazowe Heights</span>
+        <span style="display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue)">College · Surgite</span>
+      </span>
+    </a>
+    <nav style="flex:1 1 auto;min-width:0;display:flex;align-items:stretch;justify-content:flex-end;gap:2px;flex-wrap:nowrap;overflow-x:auto;overflow-y:visible">
+      <sc-for list="{{ nav }}" as="g" hint-placeholder-count="7">
+        <div style="position:relative;flex-shrink:0" onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}">
+          <button onClick="{{ g.enter }}" class="btn" style="font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:10px 12px;white-space:nowrap;background:{{ g.bg }};color:{{ g.fg }}">{{ g.label }}</button>
+        </div>
+      </sc-for>
+    </nav>
+    <button class="btn btn-primary" onClick="{{ goApply }}" style="letter-spacing:.06em;text-transform:uppercase;padding:12px 18px;flex-shrink:0">Apply now</button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div onMouseEnter="{{ holdMenu }}" onMouseLeave="{{ closeMenu }}" style="border-top:2px solid var(--color-text);background:#fff;animation:mhrise .14s ease-out">
+      <div style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;flex-wrap:wrap;gap:10px 34px;align-items:center">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);width:100%">{{ menuLabel }}</span>
+        <sc-for list="{{ menuItems }}" as="i" hint-placeholder-count="6">
+          <a href="#" onClick="{{ i.go }}" style="font-size:14.5px;color:var(--color-text);border-left:3px solid {{ i.mark }};padding-left:9px">{{ i.label }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<sc-if value="{{ p_home }}" hint-placeholder-val="{{ true }}">
+<div>
+  <section style="border-bottom:2px solid var(--color-text);background:var(--blue);color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:0;align-items:stretch">
+      <div style="padding:76px 48px 76px 0">
+        <p style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:#ff9783;margin-bottom:22px">Founding intake · January 2027</p>
+        <h1 style="font-size:clamp(44px,5.4vw,74px);line-height:.98;letter-spacing:-.03em;margin:0 0 24px;color:#fff">A school built for the Zimbabwe that is coming.</h1>
+        <p style="font-size:19px;line-height:1.5;max-width:52ch;color:#dbe6f0;margin-bottom:34px">Mazowe Heights College opens in January 2027 as a co-educational boarding and day school for Form 1 to A Level, teaching both the Cambridge and ZIMSEC curricula on one campus in the Mazowe Valley.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary" onClick="{{ goApply }}" style="padding:15px 24px;text-transform:uppercase;letter-spacing:.08em">Start an application</button>
+          <button class="btn" onClick="{{ goTour }}" style="padding:15px 24px;border:2px solid #fff;color:#fff;text-transform:uppercase;letter-spacing:.08em">Take the virtual tour</button>
+        </div>
+      </div>
+      <div style="position:relative;min-height:440px;border-left:2px solid #fff">
+        <image-slot id="mh-hero" shape="rect" placeholder="Drop the campus hero photograph"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="padding:34px 28px 34px 0;border-right:2px solid var(--color-divider)">
+          <p style="font-family:var(--font-heading);font-weight:800;font-size:40px;line-height:1;letter-spacing:-.03em;color:var(--color-accent);margin:0 0 8px">{{ s.n }}</p>
+          <p style="font-size:13px;line-height:1.4;margin:0;color:var(--color-neutral-800)">{{ s.l }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text)">
+    <div style="max-width:1240px;margin:0 auto;padding:68px 28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:56px">
+        <div>
+          <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--blue);margin-bottom:14px">Two curricula, one standard</p>
+          <div style="height:2px;background:var(--color-accent);width:64px"></div>
+        </div>
+        <div>
+          <h2 style="font-size:clamp(28px,3vw,42px);line-height:1.05;margin:0 0 20px">Cambridge and ZIMSEC, taught side by side — and equally well.</h2>
+          <p style="font-size:17px;line-height:1.6;color:var(--color-neutral-800);max-width:62ch">Families should not have to choose between a local curriculum and an international one to get an excellent education. From Form 1 our pupils sit in the same laboratories, the same libraries and the same houses; from Form 3 they choose the examination pathway that serves their university plans, and we resource both without preference.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;margin-top:52px;background:var(--color-divider)">
+        <sc-for list="{{ pillars }}" as="c" hint-placeholder-count="3">
+          <div style="background:#fff;padding:32px 28px">
+            <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin-bottom:12px">{{ c.k }}</p>
+            <h3 style="font-size:22px;margin:0 0 10px">{{ c.t }}</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 16px">{{ c.b }}</p>
+            <a href="#" onClick="{{ c.go }}" style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent)">{{ c.cta }} →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text);background:var(--color-bg)">
+    <div style="max-width:1240px;margin:0 auto;padding:60px 28px">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:28px">
+        <h2 style="font-size:30px;margin:0">What's on</h2>
+        <a href="#" onClick="{{ goEvents }}" style="margin-left:auto;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent)">Full calendar →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+        <sc-for list="{{ homeEvents }}" as="e" hint-placeholder-count="4">
+          <div style="background:#fff;padding:24px 22px;display:flex;flex-direction:column;gap:10px">
+            <p style="font-family:var(--font-heading);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0">{{ e.date }}</p>
+            <h4 style="font-size:19px;margin:0">{{ e.title }}</h4>
+            <p style="font-size:13.5px;color:var(--color-neutral-700);margin:0">{{ e.where }}</p>
+            <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);margin:auto 0 0">{{ e.tag }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div style="padding:66px 48px 66px 0;border-right:2px solid var(--color-divider)">
+        <p style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--blue);margin-bottom:16px">Boarding</p>
+        <h2 style="font-size:34px;margin:0 0 16px">Four houses. One valley. A full life after the last bell.</h2>
+        <p style="font-size:16px;line-height:1.6;color:var(--color-neutral-800);margin-bottom:22px">Nyanga, Zambezi, Matopo and Chimanimani house 480 boarders in small dormitory bays with resident house parents, a matron on site and a tutor for every twelve pupils. Prep is structured, weekends are not wasted, and the kitchen publishes its menu a week ahead.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-secondary" onClick="{{ goBoarding }}" style="text-transform:uppercase;letter-spacing:.06em">Boarding life</button>
+          <button class="btn btn-secondary" onClick="{{ goDining }}" style="text-transform:uppercase;letter-spacing:.06em">This week's menu</button>
+        </div>
+      </div>
+      <div style="position:relative;min-height:380px">
+        <image-slot id="mh-boarding" shape="rect" placeholder="Drop a boarding house photograph"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text);background:var(--color-accent);color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center">
+      <div>
+        <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;margin-bottom:16px;color:#ffd7cf">Fees &amp; payments</p>
+        <h2 style="font-size:clamp(30px,3.4vw,46px);line-height:1.04;margin:0 0 14px;color:#fff">Pay in EcoCash, ZIPIT, InnBucks, card or USD — and see the receipt instantly.</h2>
+        <p style="font-size:17px;line-height:1.55;color:#ffe4de;max-width:56ch;margin:0">Termly invoices, sibling discounts, instalment plans and a live statement for every family. Diaspora parents can settle in USD through PayPal.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button class="btn" onClick="{{ goPay }}" style="background:#fff;color:var(--color-accent);padding:16px 20px;justify-content:flex-start;text-transform:uppercase;letter-spacing:.08em">Pay school fees</button>
+        <button class="btn" onClick="{{ goFees }}" style="border:2px solid #fff;color:#fff;padding:16px 20px;justify-content:flex-start;text-transform:uppercase;letter-spacing:.08em">Fee schedule 2027</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:2px solid var(--color-text)">
+    <div style="max-width:1240px;margin:0 auto;padding:60px 28px">
+      <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:28px">
+        <h2 style="font-size:30px;margin:0">From the blog</h2>
+        <a href="#" onClick="{{ goBlog }}" style="margin-left:auto;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent)">All writing →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px">
+        <sc-for list="{{ homePosts }}" as="b" hint-placeholder-count="3">
+          <article style="display:flex;flex-direction:column;gap:12px">
+            <div style="position:relative;height:172px;border:2px solid var(--color-text)">
+              <image-slot id="{{ b.slot }}" shape="rect" placeholder="Drop an image"></image-slot>
+            </div>
+            <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0">{{ b.cat }} · {{ b.date }}</p>
+            <h3 style="font-size:21px;margin:0;line-height:1.15">{{ b.title }}</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ b.dek }}</p>
+            <a href="#" onClick="{{ b.go }}" style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--color-accent)">Read →</a>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ showHero }}" hint-placeholder-val="{{ false }}">
+  <section style="border-bottom:2px solid var(--color-text);background:var(--blue);color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:54px 28px 52px">
+      <p style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:#ff9783;margin:0 0 16px">{{ heroKicker }}</p>
+      <h1 style="font-size:clamp(34px,4.4vw,58px);line-height:1;letter-spacing:-.025em;margin:0 0 18px;color:#fff;max-width:20ch">{{ heroTitle }}</h1>
+      <p style="font-size:18px;line-height:1.55;color:#dbe6f0;max-width:64ch;margin:0">{{ heroLead }}</p>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ p_story }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px">
+    <div>
+      <h2 style="font-size:32px;margin:0 0 18px">Begun as an argument about what Zimbabwean children are owed</h2>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">Mazowe Heights was founded in 2023 by a group of eleven Zimbabwean educators, parents and alumni of the country's older schools who were tired of a single trade-off: send your child abroad for an international curriculum, or keep them home and accept fewer laboratories, fewer books and larger classes.</p>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">The land was acquired in 2024 — 140 hectares of the Mazowe Valley, an hour from Harare, with water rights and room to grow. Construction began in September 2025. The first classrooms were handed over in July 2026, the science block follows in October, and the fourth boarding house completes in November.</p>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">We open in January 2027 with 420 pupils and 46 teaching staff, and we will grow to 900 by 2032. We are deliberately starting smaller than we could. A founding cohort sets the culture of a school for a generation, and that is not something to rush.</p>
+    </div>
+    <div style="border-left:2px solid var(--color-divider);padding-left:32px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 18px">Milestones</p>
+      <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="6">
+        <div style="display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)">
+          <span style="font-family:var(--font-heading);font-weight:800;font-size:14px;color:var(--color-accent);min-width:52px">{{ m.y }}</span>
+          <span style="font-size:14px;line-height:1.5">{{ m.t }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="position:relative;height:340px;border:2px solid var(--color-text);margin-top:52px">
+    <image-slot id="mh-story" shape="rect" placeholder="Drop an aerial or construction photograph of the site"></image-slot>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_head }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:56px">
+  <div>
+    <div style="position:relative;height:380px;border:2px solid var(--color-text)">
+      <image-slot id="mh-head" shape="rect" placeholder="Drop the Head's portrait"></image-slot>
+    </div>
+    <p style="font-family:var(--font-heading);font-weight:800;font-size:19px;margin:16px 0 4px">Dr. Tendai Mukombachoto</p>
+    <p style="font-size:13px;color:var(--color-neutral-700);margin:0">Founding Head of College<br>BSc (UZ), MEd (Wits), DPhil (Oxon)</p>
+  </div>
+  <div>
+    <p style="font-size:21px;line-height:1.55;margin:0 0 20px">A new school asks something unusual of the families who join it first: trust, before there is any record to trust.</p>
+    <p style="font-size:16.5px;line-height:1.7;color:var(--color-neutral-800)">I have spent twenty-two years in Zimbabwean and South African classrooms, and I have watched brilliant children be limited by things that had nothing to do with them — a laboratory with no reagents, a class of fifty-two, a curriculum chosen for them by circumstance. Mazowe Heights exists to remove those particular limits.</p>
+    <p style="font-size:16.5px;line-height:1.7;color:var(--color-neutral-800)">What we promise is specific. Classes capped at twenty-four. Every science practical actually performed. Two examination pathways resourced identically. A tutor who knows your child by name and reports to you in person three times a year. Published fees with no surprise levies. And a school that tells you when it gets something wrong.</p>
+    <p style="font-size:16.5px;line-height:1.7;color:var(--color-neutral-800)">What we ask in return is that you treat this as a partnership. Come to the parent evenings. Read the reports. Tell us when your child is struggling before we notice. The founding cohort will set the tone of this place for the next thirty years, and their parents will set it with them.</p>
+    <p style="font-size:16.5px;line-height:1.7;color:var(--color-neutral-800)">I look forward to meeting you at the gate in January.</p>
+    <div style="margin-top:28px;border-top:2px solid var(--color-text);padding-top:18px">
+      <button class="btn btn-primary" onClick="{{ goApply }}" style="text-transform:uppercase;letter-spacing:.07em;padding:14px 20px">Begin an application</button>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_values }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <div style="background:var(--blue);color:#fff;padding:36px 30px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#ff9783;margin:0 0 12px">Vision</p>
+      <p style="font-size:22px;line-height:1.35;font-family:var(--font-heading);font-weight:800;margin:0">A Zimbabwean school that no family needs to leave the country to better.</p>
+    </div>
+    <div style="background:#fff;padding:36px 30px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Mission</p>
+      <p style="font-size:17px;line-height:1.6;margin:0;color:var(--color-neutral-800)">To teach Cambridge and ZIMSEC curricula to the same high standard, in small classes, with full boarding care, at a fee that Zimbabwean professional families can actually plan for.</p>
+    </div>
+  </div>
+  <h2 style="font-size:30px;margin:52px 0 22px">Five commitments</h2>
+  <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+    <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:28px;padding:26px 0;border-top:2px solid var(--color-divider)">
+      <span style="font-family:var(--font-heading);font-weight:800;font-size:34px;color:var(--color-accent);line-height:1">{{ v.n }}</span>
+      <div>
+        <h3 style="font-size:22px;margin:0 0 8px">{{ v.t }}</h3>
+        <p style="font-size:16px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ v.b }}</p>
+      </div>
+    </div>
+  </sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_leadership }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <h2 style="font-size:30px;margin:0 0 24px">Senior leadership</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px">
+    <sc-for list="{{ leaders }}" as="l" hint-placeholder-count="6">
+      <div>
+        <div style="position:relative;height:230px;border:2px solid var(--color-text)">
+          <image-slot id="{{ l.slot }}" shape="rect" placeholder="Portrait"></image-slot>
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin:14px 0 3px">{{ l.name }}</p>
+        <p style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent);margin:0 0 8px;font-weight:800">{{ l.role }}</p>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-700);margin:0">{{ l.bio }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="font-size:30px;margin:56px 0 18px">Governance</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px">
+    <div>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">The College is owned by the Mazowe Heights Educational Trust, a not-for-profit trust registered in Zimbabwe. No individual draws a dividend; surplus is reinvested in bursaries and facilities.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">The Board of Trustees has nine members, including two elected parent representatives from the founding cohort, and meets quarterly. Audited accounts are published annually to all fee-paying families.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:26px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">Published documents</p>
+      <sc-for list="{{ docs }}" as="d" hint-placeholder-count="5">
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+          <span>{{ d.n }}</span>
+          <span style="margin-left:auto;color:var(--color-accent);font-weight:800;font-size:12px">{{ d.f }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_campus }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="position:relative;height:400px;border:2px solid var(--color-text);margin-bottom:48px">
+    <image-slot id="mh-campus" shape="rect" placeholder="Drop a wide campus photograph"></image-slot>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ facilities }}" as="f" hint-placeholder-count="8">
+      <div style="background:#fff;padding:26px 24px">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:30px;color:var(--color-accent);margin:0 0 6px;line-height:1">{{ f.n }}</p>
+        <h4 style="font-size:17px;margin:0 0 8px">{{ f.t }}</h4>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-700);margin:0">{{ f.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:44px;background:var(--color-bg);border:2px solid var(--color-text);padding:32px">
+    <h3 style="font-size:24px;margin:0 0 10px">Built for load-shedding and for drought</h3>
+    <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800);max-width:76ch;margin:0">A 480 kW solar array with battery storage carries the campus through grid outages without generators. Two boreholes and a 1.2 million litre reservoir supply the school, the kitchens and the fields; grey water irrigates the gardens and the school farm. These are not sustainability slogans — they are the reason lessons and prep do not stop.</p>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_tour }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0;border:2px solid var(--color-text)">
+    <div style="border-right:2px solid var(--color-text);max-height:560px;overflow:auto">
+      <sc-for list="{{ stops }}" as="s" hint-placeholder-count="12">
+        <button onClick="{{ s.go }}" style="display:block;width:100%;text-align:left;padding:14px 18px;border:0;border-bottom:1px solid var(--color-divider);background:{{ s.bg }};color:{{ s.fg }};cursor:pointer;font-family:var(--font-body);font-size:14px">
+          <span style="font-weight:800;font-size:11px;letter-spacing:.12em;display:block;opacity:.75">STOP {{ s.n }}</span>
+          {{ s.t }}
+        </button>
+      </sc-for>
+    </div>
+    <div>
+      <div style="position:relative;height:420px;border-bottom:2px solid var(--color-text)">
+        <image-slot id="{{ stopSlot }}" shape="rect" placeholder="Drop the 360° view for this stop"></image-slot>
+      </div>
+      <div style="padding:26px 30px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 8px">Stop {{ stopN }} of 12</p>
+        <h3 style="font-size:26px;margin:0 0 10px">{{ stopTitle }}</h3>
+        <p style="font-size:16px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 18px">{{ stopBody }}</p>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-secondary" onClick="{{ stopPrev }}">← Previous</button>
+          <button class="btn btn-primary" onClick="{{ stopNext }}">Next stop →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--color-neutral-700);margin-top:20px">Prefer to walk it yourself? <a href="#" onClick="{{ goContactLink }}">Book a campus visit</a> — Tuesdays and Saturdays, by appointment.</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_academics }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:52px">
+    <div style="background:#fff;padding:34px 30px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 10px">Forms 1 – 2</p>
+      <h3 style="font-size:22px;margin:0 0 10px">Common curriculum</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Fourteen subjects for everyone: English, Shona or Ndebele, Mathematics, the three sciences, History, Geography, Computer Science, Business Studies, Art, Music, PE and Agriculture.</p>
+    </div>
+    <div style="background:#fff;padding:34px 30px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 10px">Forms 3 – 4</p>
+      <h3 style="font-size:22px;margin:0 0 10px">Pathway and options</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Pupils choose Cambridge IGCSE or ZIMSEC O Level, then eight or nine subjects from four option blocks. The core of English, Mathematics and a science is compulsory on both.</p>
+    </div>
+    <div style="background:#fff;padding:34px 30px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 10px">Lower &amp; Upper Sixth</p>
+      <h3 style="font-size:22px;margin:0 0 10px">AS and A Level</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Three or four subjects from sixteen, Cambridge International or ZIMSEC, plus compulsory general paper, community service and a university guidance programme.</p>
+    </div>
+  </div>
+  <h2 style="font-size:30px;margin:0 0 20px">How a week is built</h2>
+  <div style="overflow-x:auto"><table class="table" style="width:100%;min-width:560px;font-size:14.5px">
+    <thead><tr><th style="text-align:left">Block</th><th style="text-align:left">Forms 1–2</th><th style="text-align:left">Forms 3–4</th><th style="text-align:left">Sixth Form</th></tr></thead>
+    <tbody>
+      <tr><td>Taught periods / week</td><td>38</td><td>38</td><td>28</td></tr>
+      <tr><td>Supervised prep / week</td><td>7.5 hrs</td><td>10 hrs</td><td>12.5 hrs (private study)</td></tr>
+      <tr><td>Compulsory sport</td><td>4 sessions</td><td>3 sessions</td><td>2 sessions</td></tr>
+      <tr><td>Society or service</td><td>2 sessions</td><td>2 sessions</td><td>3 sessions</td></tr>
+      <tr><td>Tutor contact</td><td>Daily</td><td>Daily</td><td>Daily + weekly 1:1</td></tr>
+    </tbody>
+  </table></div>
+  <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap">
+    <button class="btn btn-primary" onClick="{{ goCambridge }}" style="text-transform:uppercase;letter-spacing:.06em">Cambridge pathway</button>
+    <button class="btn btn-secondary" onClick="{{ goZimsec }}" style="text-transform:uppercase;letter-spacing:.06em">ZIMSEC pathway</button>
+    <button class="btn btn-secondary" onClick="{{ goDepts }}" style="text-transform:uppercase;letter-spacing:.06em">Departments</button>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_cambridge }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px">
+  <div>
+    <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">Mazowe Heights is a registered Cambridge International School (centre approval granted 2026). Pupils sit Cambridge IGCSE at the end of Form 4 and Cambridge International AS and A Level in the Sixth Form, with examinations in the June and November series.</p>
+    <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">The pathway suits families planning university outside Zimbabwe, or who want the coursework and practical assessment components that IGCSE carries. It is not a premium tier — it costs the same as ZIMSEC, except for the external entry fees, which are set by Cambridge and passed on at cost.</p>
+    <h3 style="font-size:24px;margin:34px 0 14px">IGCSE subjects offered</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ igcse }}" as="s" hint-placeholder-count="18">
+        <span class="tag" style="border:1px solid var(--color-divider);padding:6px 11px;font-size:13px">{{ s }}</span>
+      </sc-for>
+    </div>
+    <h3 style="font-size:24px;margin:34px 0 14px">Assessment and reporting</h3>
+    <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Two internal examination series a year, continuous assessment recorded weekly, and a full written report each term with a predicted grade from Form 4. Everything appears in the parent portal within 48 hours of marking.</p>
+  </div>
+  <aside style="border:2px solid var(--color-text);padding:28px;align-self:start">
+    <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">2027 entry fees (at cost)</p>
+    <sc-for list="{{ camFees }}" as="f" hint-placeholder-count="4">
+      <div style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+        <span>{{ f.l }}</span><span style="margin-left:auto;font-weight:800">{{ f.v }}</span>
+      </div>
+    </sc-for>
+    <p style="font-size:13px;color:var(--color-neutral-700);line-height:1.55;margin:16px 0 0">Entry fees are invoiced in the term before the series and are not included in tuition. Late entries attract a Cambridge surcharge.</p>
+  </aside>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_zimsec }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px">
+  <div>
+    <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">The ZIMSEC pathway leads to Ordinary Level at the end of Form 4 and Advanced Level in the Upper Sixth. It remains the direct route to the University of Zimbabwe, NUST, MSU and the country's polytechnics, and it is the right choice for the majority of our pupils.</p>
+    <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">We teach it with the same staff, the same laboratories and the same class caps as the Cambridge set. Where the syllabuses diverge — practical chemistry, literature set texts, the Heritage Studies component — we timetable separately rather than compromise either.</p>
+    <h3 style="font-size:24px;margin:34px 0 14px">O Level subjects offered</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ olevel }}" as="s" hint-placeholder-count="18">
+        <span class="tag" style="border:1px solid var(--color-divider);padding:6px 11px;font-size:13px">{{ s }}</span>
+      </sc-for>
+    </div>
+    <h3 style="font-size:24px;margin:34px 0 14px">Our commitment on results</h3>
+    <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">As a new school we have no results to show you, and we will not borrow anyone else's. From November 2030, when our founding cohort first sits O Level, we will publish full subject-by-subject results — pass rates, grade distributions and value added — in the same place, every year, unedited.</p>
+  </div>
+  <aside style="border:2px solid var(--color-text);padding:28px;align-self:start;background:var(--color-bg)">
+    <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">Choosing between pathways</p>
+    <sc-for list="{{ choose }}" as="c" hint-placeholder-count="4">
+      <div style="padding:12px 0;border-bottom:1px solid var(--color-divider)">
+        <p style="font-size:14px;font-weight:800;margin:0 0 4px">{{ c.q }}</p>
+        <p style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin:0">{{ c.a }}</p>
+      </div>
+    </sc-for>
+  </aside>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_lower }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px;margin-bottom:48px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Forms 1 and 2 — everyone does everything</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">For two years there are no options. Every pupil takes fourteen subjects, including both a science practical rotation and a full arts rotation, so that the choice made at the end of Form 2 is informed rather than inherited. Setting happens in Mathematics and languages only, and it is reviewed each term.</p>
+    </div>
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Forms 3 and 4 — four option blocks</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Pupils carry English, Mathematics, Combined or separate Sciences and one language, then choose four more from the blocks below. Both examination boards run through the same blocks, so a pathway change does not cost a subject.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4">
+      <div style="background:#fff;padding:26px 22px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 12px">{{ b.t }}</p>
+        <sc-for list="{{ b.subjects }}" as="s" hint-placeholder-count="5">
+          <p style="font-size:14.5px;margin:0 0 7px;padding-bottom:7px;border-bottom:1px solid var(--color-divider)">{{ s }}</p>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:44px;border:2px solid var(--color-text);padding:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px">
+    <div><h4 style="font-size:18px;margin:0 0 8px">Homework and prep</h4><p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Ninety minutes a night in Form 1 rising to two hours in Form 4, supervised in house for boarders and logged in the portal for day families.</p></div>
+    <div><h4 style="font-size:18px;margin:0 0 8px">Support and extension</h4><p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">A learning support teacher in every year group, plus Saturday clinics in Mathematics and English that are free and open to anyone.</p></div>
+    <div><h4 style="font-size:18px;margin:0 0 8px">Reporting</h4><p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Effort grades every three weeks, an attainment report each half term and a face-to-face parent evening once a term.</p></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_sixth }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px">
+    <div>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">The Sixth Form is a distinct part of the school with its own centre, its own dress code and its own rules. Pupils take three or four subjects at AS and A Level on either board, and they are treated as young adults from the first week — which means more freedom and considerably more accountability.</p>
+      <h3 style="font-size:24px;margin:30px 0 14px">Subjects at A Level</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+        <sc-for list="{{ alevel }}" as="s" hint-placeholder-count="16">
+          <div style="background:#fff;padding:13px 16px;font-size:14.5px">{{ s }}</div>
+        </sc-for>
+      </div>
+      <h3 style="font-size:24px;margin:34px 0 14px">Beyond the three subjects</h3>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Every sixth former takes a general paper, completes 40 hours of community service in the Mazowe district, leads a junior society or team, and sits a weekly university guidance seminar. Those who want it can add an Extended Project or a Cambridge Global Perspectives qualification.</p>
+    </div>
+    <aside>
+      <div style="position:relative;height:300px;border:2px solid var(--color-text);margin-bottom:24px">
+        <image-slot id="mh-sixth" shape="rect" placeholder="Drop a sixth form centre photograph"></image-slot>
+      </div>
+      <div style="border:2px solid var(--color-text);padding:26px;background:var(--blue);color:#fff">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#ff9783;margin:0 0 14px">Sixth Form entry</p>
+        <p style="font-size:15px;line-height:1.6;color:#dbe6f0;margin:0 0 14px">Five O Level or IGCSE passes at C or better, including English and Mathematics, with a B or better in each intended A Level subject. External applicants sit a subject interview.</p>
+        <button class="btn" onClick="{{ goApply }}" style="background:#fff;color:var(--blue);width:100%;justify-content:flex-start;text-transform:uppercase;letter-spacing:.07em;padding:13px 16px">Apply to the Sixth Form</button>
+      </div>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_departments }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ depts }}" as="d" hint-placeholder-count="12">
+      <div style="background:#fff;padding:28px 26px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px">
+          <h3 style="font-size:20px;margin:0">{{ d.t }}</h3>
+          <span style="margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent)">{{ d.staff }} staff</span>
+        </div>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 10px">{{ d.b }}</p>
+        <p style="font-size:12.5px;color:var(--color-neutral-700);margin:0"><strong>Head of department:</strong> {{ d.hod }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_guidance }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px;margin-bottom:48px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Planning starts in Form 3, not Upper Sixth</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Subject choices close doors quietly. From Form 3 every pupil has a career conversation each year with their tutor and the guidance office, recorded in the portal so that parents can see the reasoning behind a choice before it is made.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">We prepare applications for Zimbabwean universities, South African institutions, UK UCAS, and — for a small number each year — the United States. We also prepare pupils for apprenticeships, polytechnics and family businesses, without treating those as lesser outcomes.</p>
+    </div>
+    <div style="border:2px solid var(--color-text)">
+      <sc-for list="{{ guidance }}" as="g" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:16px 22px;border-bottom:1px solid var(--color-divider)">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)">{{ g.when }}</span>
+          <span style="font-size:14.5px;line-height:1.55">{{ g.what }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="background:var(--color-bg);border:2px solid var(--color-text);padding:32px">
+    <h3 style="font-size:24px;margin:0 0 16px">Destinations we prepare for</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px">
+      <div><p style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:0 0 8px">Zimbabwe</p><p style="font-size:14px;line-height:1.6;margin:0;color:var(--color-neutral-800)">UZ, NUST, MSU, CUT, Africa University, Harare Polytechnic</p></div>
+      <div><p style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:0 0 8px">South Africa</p><p style="font-size:14px;line-height:1.6;margin:0;color:var(--color-neutral-800)">Wits, UCT, Stellenbosch, Pretoria, Rhodes</p></div>
+      <div><p style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:0 0 8px">United Kingdom</p><p style="font-size:14px;line-height:1.6;margin:0;color:var(--color-neutral-800)">Full UCAS support, personal statements, admissions tests and interview practice</p></div>
+      <div><p style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:0 0 8px">Work and trades</p><p style="font-size:14px;line-height:1.6;margin:0;color:var(--color-neutral-800)">Apprenticeship placement, CV and interview clinics, entrepreneurship mentoring</p></div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_admissions }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:48px">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <div style="background:#fff;padding:26px 22px">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:30px;color:var(--color-accent);line-height:1;margin:0 0 10px">{{ s.n }}</p>
+        <h4 style="font-size:17px;margin:0 0 8px">{{ s.t }}</h4>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-700);margin:0">{{ s.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Entry points and requirements</h2>
+      <div style="overflow-x:auto"><table class="table" style="width:100%;min-width:560px;font-size:14.5px">
+        <thead><tr><th style="text-align:left">Entry</th><th style="text-align:left">Age at January 2027</th><th style="text-align:left">Requirement</th></tr></thead>
+        <tbody>
+          <tr><td>Form 1</td><td>12–13</td><td>Grade 7 results or school report, plus entrance assessment</td></tr>
+          <tr><td>Form 2</td><td>13–14</td><td>Current school report and assessment; limited places</td></tr>
+          <tr><td>Form 3</td><td>14–15</td><td>Report, assessment and pathway interview</td></tr>
+          <tr><td>Lower Sixth</td><td>16–17</td><td>Five O Level / IGCSE passes at C+, including English and Mathematics</td></tr>
+        </tbody>
+      </table></div>
+      <h2 style="font-size:28px;margin:40px 0 14px">The entrance assessment</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Two and a half hours on a Saturday morning: English comprehension and writing, Mathematics, and a short non-verbal reasoning paper. It is not a test of prior coaching — we are looking for potential and for gaps we can close. Candidates travelling from outside Harare may sit it remotely under invigilation.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Decisions are released within fourteen days. Offers hold for twenty-one days against a deposit of one third of the first term's fee.</p>
+    </div>
+    <aside style="align-self:start">
+      <div style="border:2px solid var(--color-text);padding:28px;margin-bottom:22px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">Key dates · 2027 entry</p>
+        <sc-for list="{{ admitDates }}" as="d" hint-placeholder-count="5">
+          <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+            <span style="font-weight:800;min-width:96px;color:var(--color-accent)">{{ d.d }}</span><span>{{ d.t }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <button class="btn btn-primary btn-block" onClick="{{ goApply }}" style="padding:16px 20px;text-transform:uppercase;letter-spacing:.07em">Start the online application</button>
+      <button class="btn btn-secondary btn-block" onClick="{{ goTracker }}" style="padding:16px 20px;text-transform:uppercase;letter-spacing:.07em">Track an existing application</button>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_apply }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1000px;margin:0 auto;padding:64px 28px">
+  <div style="display:flex;gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:34px">
+    <sc-for list="{{ applySteps }}" as="a" hint-placeholder-count="5">
+      <div style="flex:1;background:{{ a.bg }};color:{{ a.fg }};padding:14px 12px">
+        <p style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0 0 4px;opacity:.8">Step {{ a.n }}</p>
+        <p style="font-size:13.5px;font-weight:800;margin:0;font-family:var(--font-heading)">{{ a.t }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);padding:36px">
+    <h2 style="font-size:26px;margin:0 0 6px">{{ applyTitle }}</h2>
+    <p style="font-size:15px;color:var(--color-neutral-700);margin:0 0 28px">{{ applyNote }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+      <sc-for list="{{ applyFields }}" as="f" hint-placeholder-count="6">
+        <div class="field" style="grid-column:span {{ f.span }}">
+          <label>{{ f.l }}</label>
+          <input class="input" placeholder="{{ f.p }}" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px">
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:32px;border-top:2px solid var(--color-divider);padding-top:24px">
+      <button class="btn btn-secondary" onClick="{{ applyBack }}">← Back</button>
+      <button class="btn btn-secondary" style="margin-left:auto">Save and finish later</button>
+      <button class="btn btn-primary" onClick="{{ applyNext }}" style="text-transform:uppercase;letter-spacing:.07em">{{ applyCta }}</button>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--color-neutral-700);margin-top:20px">Applications are saved against your email address. There is no application fee. Supporting documents may be uploaded as photographs — you do not need a scanner.</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_tracker }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1000px;margin:0 auto;padding:64px 28px">
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;border:2px solid var(--color-text);padding:24px;margin-bottom:36px">
+    <div class="field" style="flex:1;min-width:220px">
+      <label>Application reference</label>
+      <input class="input" value="{{ trackRef }}" onChange="{{ setRef }}" placeholder="MH-2027-04918" style="width:100%;padding:12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:15px">
+    </div>
+    <button class="btn btn-primary" onClick="{{ doTrack }}" style="padding:13px 22px;text-transform:uppercase;letter-spacing:.07em">Track</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:40px">
+    <div>
+      <sc-for list="{{ trackStages }}" as="s" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:30px minmax(0,1fr);gap:20px;padding-bottom:26px;position:relative">
+          <div>
+            <span style="display:block;width:20px;height:20px;background:{{ s.dot }};border:2px solid var(--color-text)"></span>
+            <span style="display:block;width:2px;height:100%;background:var(--color-divider);margin:6px 0 0 9px;position:absolute;top:26px;bottom:0"></span>
+          </div>
+          <div>
+            <p style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin:0 0 4px">{{ s.t }}</p>
+            <p style="font-size:13.5px;color:var(--color-neutral-700);margin:0 0 4px">{{ s.when }}</p>
+            <p style="font-size:14px;line-height:1.55;color:var(--color-neutral-800);margin:0">{{ s.b }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <aside style="border:2px solid var(--color-text);padding:26px;align-self:start;background:var(--color-bg)">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Applicant</p>
+      <p style="font-size:19px;font-family:var(--font-heading);font-weight:800;margin:0 0 4px">Tafara N. Mutasa</p>
+      <p style="font-size:14px;color:var(--color-neutral-700);margin:0 0 18px">Form 1 entry · January 2027<br>Boarding requested · Nyanga preference</p>
+      <div style="border-top:2px solid var(--color-divider);padding-top:16px">
+        <p style="font-size:13px;margin:0 0 8px"><strong>Status:</strong> Assessment scheduled</p>
+        <p style="font-size:13px;margin:0 0 8px"><strong>Next action:</strong> Attend 23 October, 08:00</p>
+        <p style="font-size:13px;margin:0"><strong>Admissions officer:</strong> Mrs. P. Chinamasa</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_fees }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <h2 style="font-size:28px;margin:0 0 18px">Termly fees · 2027</h2>
+  <div style="overflow-x:auto"><table class="table" style="width:100%;min-width:560px;font-size:14.5px">
+    <thead><tr><th style="text-align:left">Year group</th><th style="text-align:left">Day</th><th style="text-align:left">Weekly boarding</th><th style="text-align:left">Full boarding</th></tr></thead>
+    <tbody>
+      <sc-for list="{{ feeRows }}" as="r" hint-placeholder-count="4">
+        <tr><td>{{ r.g }}</td><td>{{ r.d }}</td><td>{{ r.w }}</td><td style="font-weight:800">{{ r.f }}</td></tr>
+      </sc-for>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--color-neutral-700);margin-top:14px">All figures in United States dollars per term. Three terms a year. Includes tuition, meals, laundry, prep supervision, house activities, internal examinations and campus medical care.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-top:44px">
+    <div style="background:#fff;padding:30px">
+      <h3 style="font-size:22px;margin:0 0 14px">Charged separately</h3>
+      <sc-for list="{{ extras }}" as="e" hint-placeholder-count="6">
+        <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+          <span>{{ e.l }}</span><span style="margin-left:auto;font-weight:800">{{ e.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;padding:30px">
+      <h3 style="font-size:22px;margin:0 0 14px">Discounts and plans</h3>
+      <sc-for list="{{ plans }}" as="p" hint-placeholder-count="5">
+        <div style="padding:12px 0;border-bottom:1px solid var(--color-divider)">
+          <p style="font-size:14.5px;font-weight:800;margin:0 0 3px">{{ p.t }}</p>
+          <p style="font-size:13.5px;line-height:1.5;color:var(--color-neutral-700);margin:0">{{ p.b }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <h3 style="font-size:24px;margin:48px 0 18px">How you can pay</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ methods }}" as="m" hint-placeholder-count="6">
+      <div style="background:#fff;padding:22px 20px">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:16px;margin:0 0 6px;color:var(--blue)">{{ m.t }}</p>
+        <p style="font-size:13px;line-height:1.55;color:var(--color-neutral-700);margin:0">{{ m.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <button class="btn btn-primary" onClick="{{ goPay }}" style="margin-top:28px;padding:16px 24px;text-transform:uppercase;letter-spacing:.07em">Pay an invoice now</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_scholarships }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ awards }}" as="a" hint-placeholder-count="5">
+      <div style="background:#fff;padding:30px 26px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 10px">{{ a.value }}</p>
+        <h3 style="font-size:21px;margin:0 0 10px">{{ a.t }}</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 12px">{{ a.b }}</p>
+        <p style="font-size:12.5px;color:var(--color-neutral-700);margin:0"><strong>Closes:</strong> {{ a.close }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:44px;background:var(--blue);color:#fff;padding:38px 34px;border:2px solid var(--color-text)">
+    <h3 style="font-size:26px;margin:0 0 12px;color:#fff">A quarter of the founding intake will hold an award</h3>
+    <p style="font-size:16.5px;line-height:1.65;color:#dbe6f0;max-width:74ch;margin:0 0 20px">Bursaries are means-tested and assessed independently of the academic decision — the admissions panel does not see a family's financial file. Scholarships are competitive and awarded on the entrance assessment, an audition, a trial or a portfolio. Both are renewed annually subject to conduct and effort, not to results alone.</p>
+    <button class="btn" onClick="{{ goApply }}" style="background:#fff;color:var(--blue);padding:14px 20px;text-transform:uppercase;letter-spacing:.07em">Apply and tick the award box</button>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_termdates }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ terms }}" as="t" hint-placeholder-count="6">
+      <div style="background:#fff;padding:28px 26px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 8px">{{ t.year }}</p>
+        <h3 style="font-size:22px;margin:0 0 14px">{{ t.name }}</h3>
+        <sc-for list="{{ t.rows }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+            <span>{{ r.l }}</span><span style="margin-left:auto;font-weight:800">{{ r.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <p style="font-size:14px;color:var(--color-neutral-700);margin-top:20px">Boarders arrive the afternoon before term begins. Exeat weekends are the third weekend of each half; half-term breaks are one week. Public examinations may extend the Upper Sixth term.</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_uniform }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+  <div>
+    <sc-for list="{{ kit }}" as="k" hint-placeholder-count="4">
+      <div style="margin-bottom:34px">
+        <h3 style="font-size:22px;margin:0 0 12px;border-bottom:2px solid var(--color-text);padding-bottom:8px">{{ k.t }}</h3>
+        <sc-for list="{{ k.items }}" as="i" hint-placeholder-count="6">
+          <div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:14.5px">
+            <span>{{ i.l }}</span><span style="margin-left:auto;color:var(--color-neutral-700)">{{ i.q }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <aside style="align-self:start">
+    <div style="position:relative;height:280px;border:2px solid var(--color-text);margin-bottom:22px">
+      <image-slot id="mh-uniform" shape="rect" placeholder="Drop a uniform photograph"></image-slot>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:26px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Where to buy</p>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 14px">Crested items are supplied only by the school shop, on campus and by delivery within Zimbabwe. Everything else — grey trousers, white shirts, black shoes, sportswear base layers — can be bought anywhere to the specification listed.</p>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">A second-hand rail operates at the start of every term, run by the Parents' Association. Bursary holders receive a full first-year kit at no cost.</p>
+    </div>
+  </aside>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_boarding }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-bottom:52px">
+    <div>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">Boarding is not an add-on here; it is how most of the school lives. Four houses of 120 sleep in bays of six, each bay mixed by year group so that a Form 1 pupil always has a Form 4 pupil two beds away. Every house has resident house parents with their own family in the flat, a matron, and a tutor for every twelve pupils.</p>
+      <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800)">Weekly boarding is available for Harare families who want their children home on Saturdays. Full boarders have an exeat weekend in the middle of each half term, plus the half-term week itself.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:26px;background:var(--color-bg)">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">At a glance</p>
+      <sc-for list="{{ boardFacts }}" as="b" hint-placeholder-count="5">
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+          <span>{{ b.l }}</span><span style="margin-left:auto;font-weight:800">{{ b.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <h2 style="font-size:28px;margin:0 0 20px">A weekday, hour by hour</h2>
+  <div style="border:2px solid var(--color-text)">
+    <sc-for list="{{ routine }}" as="r" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:22px;padding:13px 24px;border-bottom:1px solid var(--color-divider)">
+        <span style="font-family:var(--font-heading);font-weight:800;font-size:14px;color:var(--color-accent)">{{ r.t }}</span>
+        <span style="font-size:14.5px">{{ r.w }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:48px">
+    <div style="position:relative;height:240px;border:2px solid var(--color-text)"><image-slot id="mh-bd-1" shape="rect" placeholder="Dormitory bay"></image-slot></div>
+    <div style="position:relative;height:240px;border:2px solid var(--color-text)"><image-slot id="mh-bd-2" shape="rect" placeholder="Common room"></image-slot></div>
+    <div style="position:relative;height:240px;border:2px solid var(--color-text)"><image-slot id="mh-bd-3" shape="rect" placeholder="Prep room"></image-slot></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_houses }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ houses }}" as="h" hint-placeholder-count="4">
+      <div style="background:#fff">
+        <div style="background:{{ h.colour }};color:#fff;padding:24px 24px 20px">
+          <h3 style="font-size:26px;margin:0 0 4px;color:#fff">{{ h.name }}</h3>
+          <p style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;opacity:.9">{{ h.motto }}</p>
+        </div>
+        <div style="padding:22px 24px">
+          <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 14px">{{ h.b }}</p>
+          <p style="font-size:13px;margin:0 0 4px"><strong>House parents:</strong> {{ h.hp }}</p>
+          <p style="font-size:13px;margin:0"><strong>Beds:</strong> {{ h.beds }} · <strong>Colour:</strong> {{ h.cname }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="font-size:28px;margin:48px 0 18px">The house competition</h2>
+  <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800);max-width:76ch">Points run all year across eleven categories — academic effort, sport, music, drama, debate, service, the inter-house quiz, cross-country, swimming, the dormitory inspection and the summer play. The Heights Cup is awarded on the last day of Term 3. Standings update live once the school opens.</p>
+  <div style="overflow-x:auto;margin-top:20px"><table class="table" style="width:100%;min-width:560px;font-size:14.5px">
+    <thead><tr><th style="text-align:left">House</th><th style="text-align:left">Academic</th><th style="text-align:left">Sport</th><th style="text-align:left">Arts</th><th style="text-align:left">Service</th><th style="text-align:left">Total</th></tr></thead>
+    <tbody>
+      <sc-for list="{{ standings }}" as="s" hint-placeholder-count="4">
+        <tr><td style="font-weight:800">{{ s.h }}</td><td>{{ s.a }}</td><td>{{ s.s }}</td><td>{{ s.r }}</td><td>{{ s.v }}</td><td style="font-weight:800;color:var(--color-accent)">{{ s.t }}</td></tr>
+      </sc-for>
+    </tbody>
+  </table></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_dining }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:flex;gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:0;overflow:auto">
+    <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+      <button onClick="{{ d.go }}" style="flex:1;min-width:104px;border:0;background:{{ d.bg }};color:{{ d.fg }};padding:16px 10px;cursor:pointer;font-family:var(--font-heading);font-weight:800;font-size:14px;letter-spacing:.04em">
+        <span style="display:block;font-size:10px;letter-spacing:.14em;opacity:.75">{{ d.date }}</span>{{ d.name }}
+      </button>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);border-top:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <sc-for list="{{ meals }}" as="m" hint-placeholder-count="4">
+      <div style="padding:28px 26px;border-right:1px solid var(--color-divider)">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 4px">{{ m.name }}</p>
+        <p style="font-size:12px;color:var(--color-neutral-700);margin:0 0 16px">{{ m.time }}</p>
+        <sc-for list="{{ m.items }}" as="i" hint-placeholder-count="4">
+          <div style="padding:9px 0;border-bottom:1px solid var(--color-divider)">
+            <p style="font-size:15px;margin:0 0 2px">{{ i.n }}</p>
+            <p style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0;font-weight:800">{{ i.tags }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px;margin-top:44px">
+    <div>
+      <h3 style="font-size:20px;margin:0 0 10px">How the menu is made</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">A four-week rotation set with a dietitian, published every Friday for the week ahead. Maize meal, vegetables and eggs come from the school farm; meat and dairy from suppliers within the province.</p>
+    </div>
+    <div>
+      <h3 style="font-size:20px;margin:0 0 10px">Allergies and diets</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Every dish is marked V (vegetarian), H (halaal), GF (gluten free) or N (contains nuts). Pupils with declared allergies are flagged at the serving line and a named alternative is prepared, not improvised.</p>
+    </div>
+    <div>
+      <h3 style="font-size:20px;margin:0 0 10px">Feedback that changes things</h3>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">A pupil food committee with two representatives per house meets the catering manager fortnightly. Parents can see the menu and rate meals in the portal; anything below three stars twice is dropped from the rotation.</p>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_wellbeing }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:48px">
+    <sc-for list="{{ health }}" as="h" hint-placeholder-count="4">
+      <div style="background:#fff;padding:28px 24px">
+        <h3 style="font-size:19px;margin:0 0 10px">{{ h.t }}</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ h.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+    <div>
+      <h2 style="font-size:26px;margin:0 0 14px">Mental health is timetabled, not improvised</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Two full-time counsellors hold open hours every day and pupils may self-refer without going through a teacher. A wellbeing curriculum runs in tutor time across all year groups, covering sleep, anxiety, relationships, substance use and online life, and it is taught by trained staff rather than handed to whoever is free.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Parents are informed of any counselling referral within 48 hours unless doing so would put the pupil at risk, in which case the safeguarding lead takes over and the reasons are recorded.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:28px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">Sanatorium</p>
+      <sc-for list="{{ sana }}" as="s" hint-placeholder-count="5">
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--color-divider);font-size:14px">
+          <span>{{ s.l }}</span><span style="margin-left:auto;font-weight:800">{{ s.v }}</span>
+        </div>
+      </sc-for>
+      <p style="font-size:13px;color:var(--color-neutral-700);line-height:1.55;margin:16px 0 0">Medical aid details are collected at enrolment. Emergency transfers go to Bindura Provincial Hospital or, for serious cases, to Harare by arrangement.</p>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_pastoral }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-bottom:48px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Four adults who know your child</h2>
+      <p style="font-size:16.5px;line-height:1.65;color:var(--color-neutral-800)">A tutor who sees them every day. A house parent who lives alongside them. A head of year who tracks them across subjects. A named safeguarding lead who is not any of the above. Parents get all four names and contact details in the first week, and any of them will take a call.</p>
+      <p style="font-size:16.5px;line-height:1.65;color:var(--color-neutral-800)">Our safeguarding policy is published in full and reviewed annually by an external consultant. All staff, including grounds and kitchen staff, are police-cleared and trained before pupils arrive, and refresher training is recorded.</p>
+    </div>
+    <div style="background:var(--color-accent);color:#fff;padding:30px;border:2px solid var(--color-text)">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin:0 0 12px;color:#ffd7cf">Report a concern</p>
+      <p style="font-size:15px;line-height:1.6;margin:0 0 16px;color:#ffe4de">Any pupil, parent or member of staff can raise a safeguarding concern directly with the Designated Safeguarding Lead. Concerns can be raised anonymously and are acknowledged within 24 hours.</p>
+      <p style="font-size:15px;margin:0;font-weight:800">safeguarding@mazoweheights.ac.zw<br>+263 77 000 0911</p>
+    </div>
+  </div>
+  <sc-for list="{{ pastoralRows }}" as="p" hint-placeholder-count="5">
+    <div style="display:grid;grid-template-columns:minmax(130px,200px) minmax(0,1fr);gap:28px;padding:22px 0;border-top:2px solid var(--color-divider)">
+      <h4 style="font-size:18px;margin:0">{{ p.t }}</h4>
+      <p style="font-size:15px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ p.b }}</p>
+    </div>
+  </sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_transport }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:36px">
+    <div style="border:2px solid var(--color-text)">
+      <div style="background:var(--blue);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px">
+        <span style="font-family:var(--font-heading);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase">Live routes</span>
+        <span style="margin-left:auto;font-size:12px;color:#ff9783;font-weight:800">● Updated 14 seconds ago</span>
+      </div>
+      <sc-for list="{{ routes }}" as="r" hint-placeholder-count="9">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:16px 22px;border-bottom:1px solid var(--color-divider)">
+          <span style="background:var(--color-accent);color:#fff;font-family:var(--font-heading);font-weight:800;font-size:14px;padding:6px 0;width:56px;flex-shrink:0;text-align:center">{{ r.code }}</span>
+          <div style="flex:1 1 180px;min-width:0">
+            <p style="font-size:15px;font-weight:800;margin:0 0 2px">{{ r.name }}</p>
+            <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ r.stops }}</p>
+          </div>
+          <div style="text-align:right;margin-left:auto">
+            <p style="font-size:13px;font-weight:800;margin:0;color:{{ r.colour }}">{{ r.status }}</p>
+            <p style="font-size:12px;color:var(--color-neutral-700);margin:0">{{ r.eta }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <aside>
+      <div style="border:2px solid var(--color-text);padding:26px;margin-bottom:22px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">How tracking works</p>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0 0 12px">Every bus carries a GPS unit. Parents on a route see its position in the app, get a push notification ten minutes before arrival at their stop, and a second when their child boards or alights — scanned on the door by the bus monitor.</p>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">Boarding pupils' exeat and end-of-term transport is booked through the same screen.</p>
+      </div>
+      <div style="border:2px solid var(--color-text);padding:26px;background:var(--color-bg)">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Termly cost by band</p>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span>Band A · Mazowe, Glendale</span><span style="margin-left:auto;font-weight:800">$120</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span>Band B · Bindura, Concession</span><span style="margin-left:auto;font-weight:800">$160</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span>Band C · Northern Harare</span><span style="margin-left:auto;font-weight:800">$210</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;font-size:14px"><span>Band D · Southern Harare, Chinhoyi</span><span style="margin-left:auto;font-weight:800">$240</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_sport }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="position:relative;height:340px;border:2px solid var(--color-text);margin-bottom:44px">
+    <image-slot id="mh-sport" shape="rect" placeholder="Drop a sport photograph"></image-slot>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-bottom:44px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Everyone plays something</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Sport is compulsory through Form 4 and strongly expected in the Sixth Form, but it is not compulsory to be good at it. Fourteen sports run across two seasons, every one with a development squad below the teams, and the fixture list is built so that a fourth team plays as often as a first.</p>
+    </div>
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Coaching</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Five PE specialists plus external coaches in swimming, tennis, athletics and cricket. Strength and conditioning is age-appropriate and supervised; no pupil under Form 3 lifts unsupervised, and injury rehabilitation runs through the sanatorium.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ sports }}" as="s" hint-placeholder-count="14">
+      <div style="background:#fff;padding:20px">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin:0 0 4px">{{ s.n }}</p>
+        <p style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);font-weight:800;margin:0 0 6px">{{ s.season }}</p>
+        <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ s.teams }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_fixtures }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="border:2px solid var(--color-text)">
+    <div style="background:var(--blue);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <span style="font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase">Pre-season friendlies · Term 1 2027</span>
+      <span style="margin-left:auto;font-size:12px;color:#ff9783;font-weight:800">Results posted from the touchline</span>
+    </div>
+    <sc-for list="{{ fixtures }}" as="f" hint-placeholder-count="8">
+      <div style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:16px 24px;border-bottom:1px solid var(--color-divider)">
+        <div>
+          <p style="font-size:13px;font-weight:800;margin:0;color:var(--color-accent)">{{ f.date }}</p>
+          <p style="font-size:12px;color:var(--color-neutral-700);margin:0">{{ f.time }}</p>
+        </div>
+        <div style="flex:1 1 200px;min-width:0">
+          <p style="font-size:15.5px;font-weight:800;margin:0 0 2px">{{ f.opponent }}</p>
+          <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ f.sport }} · {{ f.team }}</p>
+        </div>
+        <p style="font-size:13px;color:var(--color-neutral-700);margin:0;flex:0 1 140px">{{ f.venue }}</p>
+        <p style="font-size:14px;font-weight:800;margin:0 0 0 auto;text-align:right;color:{{ f.colour }}">{{ f.result }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <p style="font-size:14px;color:var(--color-neutral-700);margin-top:18px">Parents on a team's list receive a push notification when a fixture is confirmed, when transport departs, and when the result is posted. Fixture changes due to weather are sent by SMS.</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_clubs }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-800);max-width:76ch;margin:0 0 36px">Every society here was proposed by a pupil and is run by a pupil, with a member of staff attached as a safety net rather than a director. Two sessions a week are timetabled for societies; anything else runs in free time. A society needs six members to start and keeps its slot as long as it keeps them.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ clubs }}" as="c" hint-placeholder-count="20">
+      <div style="background:#fff;padding:18px 20px">
+        <p style="font-size:15.5px;font-weight:800;font-family:var(--font-heading);margin:0 0 4px">{{ c.n }}</p>
+        <p style="font-size:12.5px;color:var(--color-neutral-700);margin:0">{{ c.d }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_arts }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:48px">
+    <div style="position:relative;height:260px;border:2px solid var(--color-text)"><image-slot id="mh-art-1" shape="rect" placeholder="Studio"></image-slot></div>
+    <div style="position:relative;height:260px;border:2px solid var(--color-text)"><image-slot id="mh-art-2" shape="rect" placeholder="Marimba ensemble"></image-slot></div>
+    <div style="position:relative;height:260px;border:2px solid var(--color-text)"><image-slot id="mh-art-3" shape="rect" placeholder="Drama"></image-slot></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ arts }}" as="a" hint-placeholder-count="6">
+      <div style="background:#fff;padding:28px 24px">
+        <h3 style="font-size:20px;margin:0 0 10px">{{ a.t }}</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ a.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:44px;background:var(--blue);color:#fff;padding:34px;border:2px solid var(--color-text)">
+    <h3 style="font-size:24px;margin:0 0 10px;color:#fff">Individual music tuition</h3>
+    <p style="font-size:16px;line-height:1.6;color:#dbe6f0;max-width:74ch;margin:0">Piano, guitar, violin, marimba, mbira, drums, trumpet and voice, taught in eight practice rooms by visiting teachers. Thirty-minute lessons, $140 a term, invoiced with the school fee. Scholarship holders and one bursary place per instrument are taught free.</p>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_events }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <sc-for list="{{ eventList }}" as="e" hint-placeholder-count="8">
+    <div style="display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;padding:24px 0;border-top:2px solid var(--color-divider)">
+      <div style="background:{{ e.bg }};color:{{ e.fg }};padding:14px 10px;width:110px;flex-shrink:0;text-align:center;border:2px solid var(--color-text)">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:30px;line-height:1;margin:0">{{ e.d }}</p>
+        <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:4px 0 0">{{ e.m }}</p>
+      </div>
+      <div style="flex:1 1 260px;min-width:0">
+        <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 6px">{{ e.cat }} · {{ e.time }}</p>
+        <h3 style="font-size:22px;margin:0 0 6px">{{ e.title }}</h3>
+        <p style="font-size:14.5px;line-height:1.55;color:var(--color-neutral-800);margin:0">{{ e.b }}</p>
+      </div>
+      <div style="text-align:right;flex:0 1 200px;margin-left:auto">
+        <p style="font-size:15px;font-weight:800;margin:0 0 10px">{{ e.price }}</p>
+        <button class="btn btn-primary" style="text-transform:uppercase;letter-spacing:.06em">{{ e.cta }}</button>
+        <p style="font-size:12px;color:var(--color-neutral-700);margin:8px 0 0">{{ e.seats }}</p>
+      </div>
+    </div>
+  </sc-for>
+  <div style="margin-top:44px;border:2px solid var(--color-text);padding:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px">
+    <div><h4 style="font-size:17px;margin:0 0 8px">Tickets</h4><p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">Booked online and delivered as a QR code by SMS and email. Scanned at the gate. Refundable up to 48 hours before.</p></div>
+    <div><h4 style="font-size:17px;margin:0 0 8px">Add to your calendar</h4><p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">Every parent account has a personal calendar feed covering their child's year group, teams and house. Subscribe once and it stays current.</p></div>
+    <div><h4 style="font-size:17px;margin:0 0 8px">Live stream</h4><p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">Concerts, prize-giving and first-team home fixtures are streamed for diaspora families, with a recording available for two weeks.</p></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_library }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:flex;gap:10px;align-items:flex-end;border:2px solid var(--color-text);padding:22px;margin-bottom:34px;flex-wrap:wrap">
+    <div class="field" style="flex:1;min-width:240px">
+      <label>Search the catalogue</label>
+      <input class="input" placeholder="Title, author, subject or ISBN" style="width:100%;padding:12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:15px">
+    </div>
+    <button class="btn btn-primary" style="padding:13px 22px;text-transform:uppercase;letter-spacing:.07em">Search</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px">
+    <div style="border:2px solid var(--color-text)">
+      <sc-for list="{{ books }}" as="b" hint-placeholder-count="7">
+        <div style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:16px 22px;border-bottom:1px solid var(--color-divider)">
+          <div style="flex:1 1 200px;min-width:0">
+            <p style="font-size:15.5px;font-weight:800;margin:0 0 2px">{{ b.t }}</p>
+            <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ b.a }} · {{ b.cls }}</p>
+          </div>
+          <p style="font-size:13px;font-weight:800;text-align:right;margin:0 0 0 auto;color:{{ b.colour }}">{{ b.status }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <aside>
+      <div style="border:2px solid var(--color-text);padding:24px;margin-bottom:20px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Opening hours</p>
+        <div style="display:flex;padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span>Weekdays</span><span style="margin-left:auto;font-weight:800">07:00 – 21:00</span></div>
+        <div style="display:flex;padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span>Saturday</span><span style="margin-left:auto;font-weight:800">08:00 – 17:00</span></div>
+        <div style="display:flex;padding:8px 0;font-size:14px"><span>Sunday</span><span style="margin-left:auto;font-weight:800">14:00 – 20:00</span></div>
+      </div>
+      <div style="border:2px solid var(--color-text);padding:24px;background:var(--color-bg)">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Borrowing</p>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">Four items for two weeks, renewable twice online. Reference and set texts are library-use only. E-books and past papers are issued through the portal and expire automatically — no fines, no chasing.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_blog }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px">
+    <sc-for list="{{ blogCats }}" as="c" hint-placeholder-count="6">
+      <span class="tag" style="border:1px solid var(--color-divider);padding:7px 13px;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ c }}</span>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:36px">
+    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="9">
+      <article style="display:flex;flex-direction:column;gap:11px">
+        <div style="position:relative;height:186px;border:2px solid var(--color-text)">
+          <image-slot id="{{ p.slot }}" shape="rect" placeholder="Drop an image"></image-slot>
+        </div>
+        <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0">{{ p.cat }} · {{ p.date }}</p>
+        <h3 style="font-size:21px;margin:0;line-height:1.15">{{ p.title }}</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ p.dek }}</p>
+        <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ p.author }} · {{ p.read }}</p>
+        <a href="#" onClick="{{ p.go }}" style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--color-accent)">Read →</a>
+      </article>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_post }}" hint-placeholder-val="{{ false }}">
+<article style="max-width:780px;margin:0 auto;padding:64px 28px">
+  <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 14px">Curriculum · 2 September 2026 · 6 min read</p>
+  <h1 style="font-size:clamp(32px,4vw,46px);line-height:1.05;margin:0 0 18px">Why we are teaching both Cambridge and ZIMSEC</h1>
+  <p style="font-size:15px;color:var(--color-neutral-700);margin:0 0 30px;padding-bottom:22px;border-bottom:2px solid var(--color-text)">Dr. Tendai Mukombachoto, Head of College</p>
+  <div style="position:relative;height:330px;border:2px solid var(--color-text);margin-bottom:32px">
+    <image-slot id="mh-post-hero" shape="rect" placeholder="Drop the article image"></image-slot>
+  </div>
+  <p style="font-size:19px;line-height:1.6;margin:0 0 22px">The question we are asked most often by prospective parents is which curriculum the school is really about. The assumption behind it is fair: most schools that offer two are, in practice, offering one properly.</p>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">I have taught in schools where the international stream got the new laboratory and the local stream got the timetable leftovers. I have also seen the reverse — an international programme bolted on for marketing, taught by whoever had a free period, quietly withering after three years. Both outcomes come from the same mistake: treating the pathway as a product tier rather than as an academic route.</p>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">Our position is that the examination a pupil sits should follow their plan. A child who will read medicine at the University of Zimbabwe is better served by ZIMSEC A Level, which the admissions office knows intimately and which is taught by teachers who have marked it. A child whose family is in Johannesburg or Birmingham is better served by Cambridge, whose grades need no translation. Neither of these is a judgement about the child.</p>
+  <h2 style="font-size:27px;margin:38px 0 14px">What resourcing both actually requires</h2>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">Three things, and they are expensive. First, teachers qualified on both syllabuses, which means recruiting people who have examined for Cambridge and people who have marked for ZIMSEC, and paying for the training that keeps both current. Second, a timetable built so that the option blocks are identical, which constrains everything else we can do with the week. Third, laboratory provision for the full practical requirement of both — Cambridge's coursework components and ZIMSEC's practical papers do not overlap as neatly as the brochures suggest.</p>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">We have budgeted for all three from the founding year rather than promising them for later. That is why the science block has eight laboratories for 420 pupils, which looks extravagant until you count the practicals both boards require in a single week of Term 2.</p>
+  <h2 style="font-size:27px;margin:38px 0 14px">The part we will be judged on</h2>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">Our first O Level and IGCSE cohort sits in November 2030. When those results arrive we will publish them in full — both boards, subject by subject, with the grade distribution and the value added against entry data. If one pathway has been quietly under-served, the numbers will say so, and we would rather you heard it from us.</p>
+  <p style="font-size:17px;line-height:1.75;color:var(--color-neutral-800)">Until then, all we can offer is the structure and the reasoning. Both are on this website, and I am happy to argue about either at an open day.</p>
+  <div style="border-top:2px solid var(--color-text);margin-top:40px;padding-top:26px;display:flex;gap:14px;flex-wrap:wrap">
+    <button class="btn btn-secondary" onClick="{{ goBlogBtn }}">← All writing</button>
+    <button class="btn btn-primary" onClick="{{ goApply }}" style="margin-left:auto;text-transform:uppercase;letter-spacing:.07em">Start an application</button>
+  </div>
+</article>
+</sc-if>
+
+<sc-if value="{{ p_notices }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:980px;margin:0 auto;padding:64px 28px">
+  <sc-for list="{{ notices }}" as="n" hint-placeholder-count="7">
+    <div style="display:grid;grid-template-columns:118px minmax(0,1fr);gap:26px;padding:22px 0;border-top:2px solid var(--color-divider)">
+      <div>
+        <p style="font-size:13px;font-weight:800;color:var(--color-accent);margin:0 0 6px">{{ n.date }}</p>
+        <span style="display:inline-block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;background:{{ n.bg }};color:#fff;padding:3px 8px">{{ n.tag }}</span>
+      </div>
+      <div>
+        <h3 style="font-size:20px;margin:0 0 8px">{{ n.t }}</h3>
+        <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0">{{ n.b }}</p>
+      </div>
+    </div>
+  </sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_alumni }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="background:var(--blue);color:#fff;padding:40px 36px;border:2px solid var(--color-text);margin-bottom:48px">
+    <h2 style="font-size:30px;margin:0 0 12px;color:#fff">The Heights Association begins before the first leaver</h2>
+    <p style="font-size:17px;line-height:1.65;color:#dbe6f0;max-width:74ch;margin:0">Our first pupils leave in December 2032, so for now the Association is being built by the people who will receive them: founding parents, staff, trustees and Zimbabwean professionals who want to mentor, host work experience, or fund a bursary. Join now and you help design what the network becomes.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:44px">
+    <sc-for list="{{ alumniOffer }}" as="a" hint-placeholder-count="4">
+      <div style="background:#fff;padding:28px 24px">
+        <h3 style="font-size:19px;margin:0 0 10px">{{ a.t }}</h3>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ a.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);padding:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;align-items:end">
+    <div class="field"><label>Full name</label><input class="input" placeholder="Your name" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+    <div class="field"><label>Email</label><input class="input" placeholder="you@example.co.zw" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+    <div class="field"><label>How you would like to help</label><input class="input" placeholder="Mentoring, work experience, giving" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+    <button class="btn btn-primary" style="padding:13px 20px;text-transform:uppercase;letter-spacing:.07em">Join the network</button>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_giving }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">Three funds, and what each one buys</h2>
+      <sc-for list="{{ funds }}" as="f" hint-placeholder-count="3">
+        <div style="border:2px solid var(--color-text);padding:26px;margin-bottom:20px">
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
+            <h3 style="font-size:21px;margin:0">{{ f.t }}</h3>
+            <span style="margin-left:auto;font-size:13px;font-weight:800;color:var(--color-accent)">{{ f.raised }}</span>
+          </div>
+          <div style="height:10px;background:var(--color-neutral-200);margin-bottom:12px"><span style="display:block;height:100%;width:{{ f.pct }};background:var(--color-accent)"></span></div>
+          <p style="font-size:14.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ f.b }}</p>
+        </div>
+      </sc-for>
+      <p style="font-size:14px;color:var(--color-neutral-700);margin:0">The Mazowe Heights Educational Trust is a registered not-for-profit. Donations above US$5,000 are acknowledged in the annual report unless you ask otherwise, and every fund publishes what it spent at the end of each year.</p>
+    </div>
+    <aside style="border:2px solid var(--color-text);padding:30px;align-self:start">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 16px">Give now</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
+        <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="6">
+          <button style="border:2px solid var(--color-text);background:#fff;padding:12px 4px;font-family:var(--font-heading);font-weight:800;font-size:15px;cursor:pointer">{{ a }}</button>
+        </sc-for>
+      </div>
+      <div class="field" style="margin-bottom:14px"><label>Other amount (USD)</label><input class="input" placeholder="250" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+      <div class="field" style="margin-bottom:18px"><label>Direct it to</label><input class="input" placeholder="Bursary Fund" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+      <button class="btn btn-primary btn-block" style="padding:15px 18px;text-transform:uppercase;letter-spacing:.07em">Continue to payment</button>
+      <p style="font-size:12.5px;color:var(--color-neutral-700);line-height:1.5;margin:14px 0 0">EcoCash, ZIPIT, card and PayPal accepted. Monthly giving available from US$10.</p>
+    </aside>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_jobs }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-bottom:44px">
+    <div>
+      <h2 style="font-size:28px;margin:0 0 14px">We are hiring the people who will set the standard</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Twenty-two teaching and support posts are open for a January 2027 start. Founding staff shape the departments, the schemes of work and the culture — there is no inherited way of doing things here, which is either the appeal or the reason to wait a few years.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:26px;background:var(--color-bg)">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">What we offer</p>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-800);margin:0">Salaries benchmarked above the independent-school median, on-campus housing for boarding staff, 40% fee remission for staff children, a funded professional development budget and a genuine 24-place class cap.</p>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text)">
+    <sc-for list="{{ vacancies }}" as="v" hint-placeholder-count="8">
+      <div style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:17px 24px;border-bottom:1px solid var(--color-divider)">
+        <div style="flex:1 1 220px;min-width:0">
+          <p style="font-size:16px;font-weight:800;margin:0 0 2px">{{ v.t }}</p>
+          <p style="font-size:13px;color:var(--color-neutral-700);margin:0">{{ v.dept }}</p>
+        </div>
+        <p style="font-size:13.5px;margin:0;flex:0 0 110px">{{ v.type }}</p>
+        <p style="font-size:13.5px;margin:0;color:var(--color-neutral-700);flex:0 0 120px">Closes {{ v.close }}</p>
+        <button class="btn btn-secondary" style="font-size:12px">Apply</button>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_contact }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:44px">
+    <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="5">
+      <div style="background:#fff;padding:26px 24px">
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 10px">{{ c.dept }}</p>
+        <p style="font-size:15.5px;font-weight:800;margin:0 0 4px">{{ c.who }}</p>
+        <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ c.email }}<br>{{ c.phone }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px">
+    <div>
+      <h2 style="font-size:26px;margin:0 0 14px">Visiting</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">The campus is on the Chiweshe Road, 14km north of Mazowe centre and about an hour from northern Harare. Campus visits run Tuesdays at 10:00 and Saturdays at 09:00 by appointment, and include a tour with a member of the senior team.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Reception is open 07:30–16:30 on weekdays and 08:00–12:00 on Saturdays during term. All visitors sign in at the gate and are escorted on site.</p>
+      <div style="position:relative;height:280px;border:2px solid var(--color-text);margin-top:24px">
+        <image-slot id="mh-map" shape="rect" placeholder="Drop a map or aerial of the approach"></image-slot>
+      </div>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:30px">
+      <h3 style="font-size:22px;margin:0 0 18px">Send us a message</h3>
+      <div style="display:grid;gap:16px">
+        <div class="field"><label>Your name</label><input class="input" placeholder="Full name" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+        <div class="field"><label>Email or WhatsApp number</label><input class="input" placeholder="you@example.co.zw" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+        <div class="field"><label>What is this about?</label><input class="input" placeholder="Admissions" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></div>
+        <div class="field"><label>Message</label><textarea class="input" rows="5" placeholder="How can we help?" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:14px"></textarea></div>
+        <button class="btn btn-primary" style="padding:14px 20px;text-transform:uppercase;letter-spacing:.07em">Send message</button>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_pay }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1080px;margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:40px">
+  <div>
+    <div style="border:2px solid var(--color-text);margin-bottom:28px">
+      <div style="background:var(--color-bg);padding:18px 24px;border-bottom:2px solid var(--color-text);display:flex;align-items:baseline;gap:12px">
+        <span style="font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase">Invoice MH-INV-27-0431</span>
+        <span style="margin-left:auto;font-size:12px;font-weight:800;color:var(--color-accent);letter-spacing:.08em;text-transform:uppercase">Due 13 Jan 2027</span>
+      </div>
+      <div style="padding:24px">
+        <sc-for list="{{ invoice }}" as="i" hint-placeholder-count="5">
+          <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--color-divider);font-size:14.5px">
+            <span>{{ i.l }}</span><span style="margin-left:auto;font-weight:800">{{ i.v }}</span>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:14px;padding:16px 0 0;font-size:19px;font-family:var(--font-heading);font-weight:800">
+          <span>Total due</span><span style="margin-left:auto;color:var(--color-accent)">US$ 2,704.00</span>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:22px;margin:0 0 14px">Choose a payment method</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+      <sc-for list="{{ payOpts }}" as="m" hint-placeholder-count="6">
+        <button onClick="{{ m.go }}" style="border:0;background:{{ m.bg }};color:{{ m.fg }};padding:20px 16px;text-align:left;cursor:pointer;font-family:var(--font-body)">
+          <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:15px;margin-bottom:4px">{{ m.t }}</span>
+          <span style="display:block;font-size:12px;opacity:.8">{{ m.b }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  <aside style="align-self:start">
+    <div style="border:2px solid var(--color-text);padding:28px;margin-bottom:22px">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 14px">Paying by {{ payMethod }}</p>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 18px">{{ payHow }}</p>
+      <div class="field" style="margin-bottom:14px"><label>Amount (USD)</label><input class="input" value="2704.00" style="width:100%;padding:11px 12px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:15px"></div>
+      <button class="btn btn-primary btn-block" style="padding:15px 18px;text-transform:uppercase;letter-spacing:.07em">Pay US$ 2,704.00</button>
+      <p style="font-size:12.5px;color:var(--color-neutral-700);line-height:1.5;margin:14px 0 0">A receipt is issued to the portal and by SMS within seconds of confirmation. Partial payments are accepted against an agreed instalment plan.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:24px;background:var(--color-bg)">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 12px">Statement</p>
+      <sc-for list="{{ statement }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--color-divider);font-size:13.5px">
+          <span>{{ s.d }}</span><span style="margin-left:auto;font-weight:800;color:{{ s.colour }}">{{ s.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </aside>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_parent }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:64px 28px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:44px">
+    <sc-for list="{{ portalCards }}" as="c" hint-placeholder-count="8">
+      <div style="background:#fff;padding:26px 24px">
+        <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--color-accent);margin:0 0 8px">{{ c.k }}</p>
+        <h3 style="font-size:18px;margin:0 0 8px">{{ c.t }}</h3>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-800);margin:0">{{ c.b }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px;align-items:start">
+    <div>
+      <h2 style="font-size:26px;margin:0 0 14px">One account, every child, on any device</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Parents get a single login covering all their children at the school, on the web and in the mobile app. The app adds push notifications for attendance, fixtures, bus arrivals, invoices and anything the school flags as urgent. A second guardian can be granted their own login with the same or reduced permissions.</p>
+      <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800)">Everything a teacher records is visible to you within 24 hours — attendance marks, effort grades, merits and demerits, prep set and prep submitted. There is no separate version of the truth kept in the staff room.</p>
+    </div>
+    <div style="border:2px solid var(--color-text);padding:28px;background:var(--blue);color:#fff">
+      <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#ff9783;margin:0 0 14px">Sign in</p>
+      <div class="field" style="margin-bottom:14px"><label style="color:#dbe6f0">Email or parent ID</label><input class="input" placeholder="you@example.co.zw" style="width:100%;padding:11px 12px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font-body);font-size:14px"></div>
+      <div class="field" style="margin-bottom:18px"><label style="color:#dbe6f0">Password</label><input class="input" type="password" placeholder="••••••••" style="width:100%;padding:11px 12px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font-body);font-size:14px"></div>
+      <button class="btn" style="background:#fff;color:var(--blue);width:100%;justify-content:flex-start;padding:14px 18px;text-transform:uppercase;letter-spacing:.07em">Sign in</button>
+      <p style="font-size:12.5px;color:#b9cadb;margin:14px 0 0">Accounts are created at enrolment. The mobile app is available for Android and iOS from January 2027.</p>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ p_results }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1080px;margin:0 auto;padding:64px 28px">
+  <div style="border:2px solid var(--color-text);margin-bottom:34px">
+    <div style="background:var(--blue);color:#fff;padding:20px 26px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <span style="font-family:var(--font-heading);font-weight:800;font-size:19px">Tafara N. Mutasa</span>
+      <span style="font-size:13px;color:#b9cadb">Form 1 Blue · Nyanga House · Term 1 2027</span>
+      <span style="margin-left:auto;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#ff9783">Specimen report</span>
+    </div>
+    <div style="overflow-x:auto"><table class="table" style="width:100%;min-width:560px;font-size:14.5px">
+      <thead><tr><th style="text-align:left">Subject</th><th style="text-align:left">Assessment</th><th style="text-align:left">Grade</th><th style="text-align:left">Effort</th><th style="text-align:left">Set average</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ reportRows }}" as="r" hint-placeholder-count="9">
+          <tr><td style="font-weight:800">{{ r.s }}</td><td>{{ r.mark }}</td><td>{{ r.g }}</td><td>{{ r.e }}</td><td>{{ r.avg }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <div style="background:#fff;padding:26px">
+      <h4 style="font-size:17px;margin:0 0 10px">Tutor's comment</h4>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-800);margin:0">Tafara has settled quickly into Nyanga and into the routine of prep. His written work in History is genuinely strong; Mathematics is where the effort needs to go, and the Saturday clinic would suit him. A good first term.</p>
+    </div>
+    <div style="background:#fff;padding:26px">
+      <h4 style="font-size:17px;margin:0 0 10px">Attendance &amp; conduct</h4>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-800);margin:0">Attendance 98.4%. Punctuality 100%. Merits 14, demerits 1. Two house points for the inter-house quiz. No safeguarding or disciplinary entries this term.</p>
+    </div>
+    <div style="background:#fff;padding:26px">
+      <h4 style="font-size:17px;margin:0 0 10px">How reports work</h4>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-800);margin:0">Effort grades every three weeks, an attainment report each half term, and a full written report with a parent evening each term. Everything is published to the portal and the app, and stays available for the whole of a pupil's time here.</p>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!--PAGES-END-->
+
+<footer style="background:var(--blue-700);color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:56px 28px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:40px">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span style="display:flex;width:38px;height:44px;background:linear-gradient(135deg,#fff 0 50%,var(--color-accent) 50% 100%);color:var(--blue);font-family:var(--font-heading);font-weight:800;font-size:15px;align-items:center;justify-content:center">MH</span>
+        <span style="font-family:var(--font-heading);font-weight:800;font-size:18px">Mazowe Heights College</span>
+      </div>
+      <p style="font-size:14px;line-height:1.6;color:#b9cadb;margin:0 0 6px">Chiweshe Road, Mazowe Valley<br>Mashonaland Central, Zimbabwe</p>
+      <p style="font-size:14px;color:#b9cadb;margin:0">+263 242 000 000<br>admissions@mazoweheights.ac.zw</p>
+    </div>
+    <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+      <div>
+        <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#ff9783;margin:0 0 14px">{{ col.title }}</p>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ col.items }}" as="i" hint-placeholder-count="5">
+            <a href="#" onClick="{{ i.go }}" style="font-size:14px;color:#dbe6f0">{{ i.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border-top:2px solid rgba(255,255,255,.22)">
+    <div style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#9fb5c9">
+      <span>© 2026 Mazowe Heights College. Registered with the Ministry of Primary and Secondary Education.</span>
+      <span style="margin-left:auto">Surgite — Arise</span>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showAssistant }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ toggleAI }}" style="position:fixed;right:22px;bottom:22px;z-index:70;background:var(--color-accent);color:#fff;border:2px solid var(--color-text);padding:14px 18px;font-family:var(--font-heading);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Ask Mazowe</button>
+</sc-if>
+
+<sc-if value="{{ aiOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;right:22px;bottom:78px;z-index:70;width:360px;max-width:calc(100vw - 44px);background:#fff;border:2px solid var(--color-text);box-shadow:var(--shadow-lg);display:flex;flex-direction:column">
+    <div style="background:var(--blue);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px">
+      <span style="font-family:var(--font-heading);font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase">Ask Mazowe</span>
+      <span style="font-size:11px;color:#9fb5c9">Admissions assistant</span>
+      <button onClick="{{ toggleAI }}" style="margin-left:auto;background:none;border:0;color:#fff;font-size:18px;cursor:pointer;line-height:1">×</button>
+    </div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px;max-height:320px;overflow:auto">
+      <sc-for list="{{ aiMsgs }}" as="m" hint-placeholder-count="2">
+        <div style="align-self:{{ m.side }};max-width:86%;background:{{ m.bg }};color:{{ m.fg }};padding:10px 12px;font-size:14px;line-height:1.5">{{ m.text }}</div>
+      </sc-for>
+    </div>
+    <div style="border-top:2px solid var(--color-divider);padding:12px 16px;display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ aiSuggest }}" as="s" hint-placeholder-count="3">
+        <button onClick="{{ s.go }}" style="text-align:left;background:var(--blue-100);border:1px solid var(--color-divider);padding:8px 10px;font-size:13px;cursor:pointer;font-family:var(--font-body)">{{ s.q }}</button>
+      </sc-for>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;bannerText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Opening January 2027 — Founding intake now enrolling&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Site&quot;},&quot;showAssistant&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Site&quot;}}">
+const GROUPS = [
+  ['about','About',[['story','Our Story'],['head',"Head's Welcome"],['values','Vision & Values'],['leadership','Leadership & Governance'],['campus','Campus & Facilities'],['tour','Virtual Campus Tour']]],
+  ['academics','Academics',[['academics','Academic Overview'],['cambridge','Cambridge Pathway'],['zimsec','ZIMSEC Pathway'],['lower','Lower School · Form 1–4'],['sixth','Sixth Form · AS & A Level'],['departments','Subject Departments'],['careers-guidance','Careers & University Guidance']]],
+  ['admissions','Admissions',[['admissions','How to Apply'],['apply','Online Application'],['tracker','Application Tracker'],['fees','Fees & Payment Plans'],['scholarships','Scholarships & Bursaries'],['termdates','Term Dates'],['uniform','Uniform & Kit List']]],
+  ['boarding','Boarding',[['boarding','Boarding Life'],['houses','The Four Houses'],['dining','Dining & Weekly Menu'],['wellbeing','Health & Wellbeing'],['pastoral','Pastoral Care & Safeguarding'],['transport','Bus & Transport Tracking']]],
+  ['life','School Life',[['sport','Sport'],['fixtures','Fixtures & Results'],['clubs','Clubs & Societies'],['arts','Arts & Culture'],['events','Events Calendar'],['library','Library Catalogue']]],
+  ['news','News',[['blog','Blog & News'],['post','Featured Post'],['notices','Notices to Parents']]],
+  ['community','Community',[['alumni','Alumni Network'],['giving','Giving & Development'],['jobs','Work at Mazowe Heights'],['contact','Contact & Visit Us']]]
+];
+
+const META = {
+  story:['About','Our Story','A school conceived in 2023, built on 140 hectares of the Mazowe Valley, and opening its gates to a founding intake of 420 pupils in January 2027.'],
+  head:['About',"Head's Welcome",'Dr. Tendai Mukombachoto on what a new school owes the families who trust it first.'],
+  values:['About','Vision, Mission & Values','Five commitments we will be measured against, published so that you can hold us to them.'],
+  leadership:['About','Leadership & Governance','The senior team, the board of trustees, and how decisions are made and disclosed.'],
+  campus:['About','Campus & Facilities','Twenty-eight teaching spaces, eight laboratories, a 400-seat hall, four boarding houses and a valley to run in.'],
+  tour:['About','Virtual Campus Tour','Walk the site before you visit it. Twelve stops, from the gate to the top field.'],
+  academics:['Academics','Academic Overview','Small classes, specialist teachers, and two examination pathways resourced without preference.'],
+  cambridge:['Academics','Cambridge Pathway','IGCSE from Form 3 and Cambridge International AS & A Level in the Sixth Form.'],
+  zimsec:['Academics','ZIMSEC Pathway','Ordinary Level and Advanced Level, taught to the same standard and in the same rooms.'],
+  lower:['Academics','Lower School · Form 1 to Form 4','A broad common curriculum in Forms 1 and 2, then option blocks that keep doors open.'],
+  sixth:['Academics','Sixth Form · AS & A Level','Sixteen subjects, a tutor for every eight pupils, and a university plan from day one.'],
+  departments:['Academics','Subject Departments','Twelve departments, each with its own laboratory, studio or workshop.'],
+  'careers-guidance':['Academics','Careers & University Guidance','UZ, NUST, South Africa, the UK, or a trade. We plan the route from Form 3.'],
+  admissions:['Admissions','How to Apply','Five steps, one online form, and a decision within fourteen days of assessment.'],
+  apply:['Admissions','Online Application','Start, save and submit your application. No paperwork, no queue at the gate.'],
+  tracker:['Admissions','Application Tracker','Enter your reference to see exactly where your application stands.'],
+  fees:['Admissions','Fees & Payment Plans','Published in full for 2027, with sibling discounts, instalments and every payment method we accept.'],
+  scholarships:['Admissions','Scholarships & Bursaries','Twenty-five percent of our founding intake will be on some form of award.'],
+  termdates:['Admissions','Term Dates & School Calendar','Three terms, published two years ahead so families can plan travel.'],
+  uniform:['Admissions','Uniform & Kit List','What to buy, where to buy it, and what the school issues.'],
+  boarding:['Boarding','Boarding Life','Four houses, 480 beds, resident house parents and a week that has shape.'],
+  houses:['Boarding','The Four Houses','Nyanga, Zambezi, Matopo and Chimanimani — named for the country they serve.'],
+  dining:['Boarding','Dining & Weekly Menu','Three cooked meals a day, published a week ahead, with allergen and halaal marking.'],
+  wellbeing:['Boarding','Health & Wellbeing','A sanatorium staffed around the clock, two counsellors, and a doctor on call.'],
+  pastoral:['Boarding','Pastoral Care & Safeguarding','Every pupil has a tutor, a house parent and a named safeguarding lead.'],
+  transport:['Boarding','Bus & Transport Tracking','Nine routes across Harare, Bindura and Chinhoyi, tracked live for parents.'],
+  sport:['School Life','Sport','Fourteen sports, two full seasons and a policy that everyone plays something.'],
+  fixtures:['School Life','Fixtures & Results','Every team, every weekend, updated from the touchline.'],
+  clubs:['School Life','Clubs & Societies','Thirty-one societies, all pupil-proposed, all pupil-led.'],
+  arts:['School Life','Arts & Culture','Music, drama, mbira, choir, design and a gallery that changes each term.'],
+  events:['School Life','Events Calendar','Open days, fixtures, concerts, parent evenings and exeat weekends.'],
+  library:['School Life','Library & Catalogue','Twenty-two thousand volumes, a digital lending desk and a quiet floor.'],
+  blog:['News','Blog & News','Writing from the staff room, the houses and the building site.'],
+  post:['News','Featured Post','From the blog.'],
+  notices:['News','Notices to Parents','Time-sensitive announcements, newest first.'],
+  alumni:['Community','Alumni Network','The Heights Association — for a founding cohort that has not yet left.'],
+  giving:['Community','Giving & Development','The Foundation Fund: bursaries, the library and the science block.'],
+  jobs:['Community','Work at Mazowe Heights','We are hiring the founding staff. Twenty-two posts open.'],
+  contact:['Community','Contact & Visit Us','Where we are, who to ask for, and how to book a visit.'],
+  pay:['Portals','Pay School Fees','Settle an invoice in EcoCash, ZIPIT, InnBucks, card, PayPal or cash at the bursary.'],
+  parent:['Portals','Parent Portal','A preview of what parents see once a pupil is enrolled.'],
+  results:['Portals','Results & Report Cards','Termly reports, continuous assessment and examination results.'],
+  search:['','Search','']
+};
+
+const TOUR = [
+  ['The Gate and Avenue', 'A 600-metre jacaranda avenue from the Chiweshe Road gate to the quadrangle. Security is manned around the clock and every arrival is logged against the parent record.'],
+  ['Main Quadrangle', 'The administrative heart: reception, the Head\u2019s study, the bursary and the parent meeting rooms open onto a colonnaded square.'],
+  ['Teaching Blocks A & B', 'Twenty-eight rooms across two storeys, each capped at twenty-four places, arranged by faculty rather than by year group.'],
+  ['Science Block', 'Eight laboratories with a shared prep room and two fume cupboards. Every practical on both syllabuses is performed, not demonstrated on a screen.'],
+  ['The Library', 'Twenty-two thousand volumes over two floors, with a silent study level, sixteen study carrels and the digital lending desk.'],
+  ['Assembly Hall', 'Four hundred seats, a sprung stage and a lighting rig. Assemblies, examinations, drama and the termly concert all live here.'],
+  ['Dining Hall', 'Seats 300 in two sittings. Three cooked meals a day, allergen and halaal marked, with the week\u2019s menu on the wall and on the parent app.'],
+  ['Nyanga & Zambezi Houses', 'The first two boarding houses: 120 beds each in bays of six, a common room, prep room and a resident house-parent flat.'],
+  ['Matopo & Chimanimani Houses', 'Completing November 2026, to the same plan, on the eastern slope with the valley view.'],
+  ['Sanatorium', 'Six inpatient beds, a treatment room and an isolation bay. A nurse on site around the clock and a doctor on call from Bindura.'],
+  ['Sports Precinct', 'Eleven surfaces, a six-lane 25m pool, a gymnasium and the athletics oval on the lower terrace.'],
+  ['Top Field and the Valley', 'The cross-country start, the school farm beyond it, and the reason we built here rather than in a suburb.']
+];
+
+const M = (name, time, items) => ({ name, time, items: items.map(([n, tags]) => ({ n, tags })) });
+const D = (name, date, b, l, s, t) => ({ name, date, meals: [M('Breakfast', '06:45', b), M('Break & tea', '10:30 / 16:30', t), M('Lunch', '13:00', l), M('Supper', '19:15', s)] });
+const WEEK = [
+  D('Monday', '19 Oct', [['Bota with peanut butter', 'V · GF'], ['Scrambled eggs', 'V · H'], ['Brown bread, margarine, jam', 'V'], ['Tea, milk, seasonal fruit', 'V']],
+    [['Sadza', 'V · GF · H'], ['Beef stew', 'H'], ['Sugar beans', 'V · GF'], ['Muriwo ne dovi', 'V · N']],
+    [['Rice', 'V · GF · H'], ['Roast chicken', 'H'], ['Mixed vegetables', 'V · GF'], ['Custard and jelly', 'V']],
+    [['Buns and tea', 'V'], ['Bananas', 'V · GF']]),
+  D('Tuesday', '20 Oct', [['Maize porridge', 'V · GF'], ['Boiled eggs', 'V · H'], ['Brown bread and peanut butter', 'V · N'], ['Tea and milk', 'V']],
+    [['Sadza', 'V · GF · H'], ['Kapenta with tomato', 'GF · H'], ['Covo and onion', 'V · GF'], ['Fresh fruit', 'V · GF']],
+    [['Macaroni cheese', 'V'], ['Beef mince', 'H'], ['Green salad', 'V · GF'], ['Yoghurt', 'V · GF']],
+    [['Scones', 'V'], ['Oranges', 'V · GF']]),
+  D('Wednesday', '21 Oct', [['Bota with milk', 'V · GF'], ['Fried eggs and tomato', 'V · H'], ['Toast and margarine', 'V'], ['Tea, milk, fruit', 'V']],
+    [['Rice and sadza', 'V · GF · H'], ['Chicken stew', 'H'], ['Butternut', 'V · GF'], ['Coleslaw', 'V · GF']],
+    [['Samp and beans', 'V · GF'], ['Boerewors', 'H'], ['Steamed cabbage', 'V · GF'], ['Fruit salad', 'V · GF']],
+    [['Bread and jam', 'V'], ['Roasted groundnuts', 'V · GF · N']]),
+  D('Thursday', '22 Oct', [['Maize porridge with sugar', 'V · GF'], ['Sausages', 'H'], ['Bread and margarine', 'V'], ['Tea and milk', 'V']],
+    [['Sadza', 'V · GF · H'], ['Beef and vegetable stew', 'H'], ['Pumpkin leaves', 'V · GF'], ['Seasonal fruit', 'V · GF']],
+    [['Spaghetti bolognese', 'H'], ['Vegetarian lentil sauce', 'V'], ['Garden salad', 'V · GF'], ['Ice cream', 'V']],
+    [['Fat cooks', 'V'], ['Tea and squash', 'V']]),
+  D('Friday', '23 Oct', [['Bota with peanut butter', 'V · GF · N'], ['Scrambled eggs', 'V · H'], ['Brown bread and jam', 'V'], ['Tea, milk, fruit', 'V']],
+    [['Rice', 'V · GF · H'], ['Fried bream', 'H'], ['Chomolia', 'V · GF'], ['Potato salad', 'V · GF']],
+    [['Chips and grilled chicken', 'H'], ['Vegetable burger', 'V'], ['Salad bar', 'V · GF'], ['Doughnuts', 'V']],
+    [['Popcorn', 'V · GF'], ['Maheu', 'V']]),
+  D('Saturday', '24 Oct', [['Cooked breakfast: eggs, beans, toast', 'V · H'], ['Porridge', 'V · GF'], ['Tea, milk, fruit', 'V']],
+    [['Braai: beef and chicken', 'H'], ['Sadza and rice', 'V · GF · H'], ['Salads', 'V · GF'], ['Watermelon', 'V · GF']],
+    [['Soup and rolls', 'V'], ['Chicken pie', 'H'], ['Mixed vegetables', 'V · GF'], ['Fruit crumble', 'V']],
+    [['Biscuits and tea', 'V'], ['Freezits', 'V · GF']]),
+  D('Sunday', '25 Oct', [['Pancakes and syrup', 'V'], ['Boiled eggs', 'V · H'], ['Bread, butter, jam', 'V'], ['Tea, milk, fruit', 'V']],
+    [['Sunday roast: beef or chicken', 'H'], ['Roast potatoes and sadza', 'V · GF · H'], ['Three vegetables', 'V · GF'], ['Trifle', 'V']],
+    [['Toasted sandwiches', 'V · H'], ['Soup', 'V'], ['Fruit and yoghurt', 'V · GF']],
+    [['Cake from the bakery', 'V'], ['Tea and squash', 'V']])
+];
+const PAYS = [
+  ['EcoCash', 'Instant · merchant 220147', 'Dial *151*2*2# or use the EcoCash app. Merchant code 220147, reference the invoice number MH-INV-27-0431. The receipt reaches the portal within seconds of the confirmation SMS.'],
+  ['ZIPIT', 'Bank transfer · same day', 'Transfer to CBZ account 021-1234567-012 or Stanbic 9140001234567, branch Bindura. Use the invoice number as the reference or the payment cannot be matched automatically.'],
+  ['Card', 'Visa & Mastercard · 3-D Secure', 'Local and international Visa or Mastercard, charged in USD. You will be redirected to the bank\u2019s 3-D Secure page to confirm.'],
+  ['InnBucks', 'Scan the invoice QR', 'Open InnBucks, scan the QR code printed on the invoice, and confirm. Settlement is instant and the receipt is issued automatically.'],
+  ['Cash', 'At the bursary · 08:00–15:30', 'USD notes at the bursary window, weekdays 08:00 to 15:30. A numbered receipt is issued on the spot and posted to the portal the same day.'],
+  ['PayPal', 'Diaspora · 3.4% fee', 'For families paying from outside Zimbabwe. A 3.4% processor fee is added at checkout and shown before you confirm.']
+];
+const F = (l, p, span) => ({ l, p, span: span || 1 });
+const APPLY = [
+  ['Pupil details', 'As they appear on the birth certificate.', [F('First name', 'Tafara'), F('Surname', 'Mutasa'), F('Date of birth', 'DD / MM / YYYY'), F('Gender', 'Select'), F('Nationality', 'Zimbabwean'), F('National ID or birth entry number', '63-1234567-A-42')]],
+  ['Entry and pathway', 'You can change the pathway later — it is confirmed at the end of Form 2.', [F('Entry year group', 'Form 1'), F('Entry term', 'Term 1, January 2027'), F('Day or boarding', 'Full boarding'), F('House preference', 'Nyanga'), F('Preferred pathway', 'Undecided'), F('Bus route required', 'None — boarding')]],
+  ['Parents and guardians', 'The first contact listed receives the portal login and all invoices.', [F('Parent / guardian 1 full name', 'Rudo Mutasa'), F('Relationship', 'Mother'), F('Mobile number', '+263 77 000 0000'), F('Email address', 'rudo@example.co.zw'), F('Parent / guardian 2 full name', 'Optional'), F('Residential address', 'Street, suburb, city', 2)]],
+  ['Current school & documents', 'Photographs of documents are fine. No scanner required.', [F('Current school', 'Chiweshe Primary'), F('Last year group completed', 'Grade 7'), F('Upload latest report', 'Choose file', 2), F('Upload birth certificate', 'Choose file', 2), F('Upload passport photograph', 'Choose file', 2), F('Any learning support or medical needs we should know about', 'Tell us here — it will not affect the decision', 2)]],
+  ['Review and submit', 'Nothing is charged at this stage. You will receive a reference within a minute of submitting.', [F('Applying for a scholarship or bursary?', 'Yes — means-tested bursary'), F('How did you hear about us?', 'Open day'), F('Anything else you want the panel to know', 'Optional', 2)]]
+];
+
+class Component extends DCLogic {
+  state = { page: 'home', stop: 0, menu: null, aiOpen: false, aiMsgs: [
+    {who:'bot', text:'Hello — I can answer questions about fees, boarding, the Cambridge and ZIMSEC pathways, or help you start an application.'}
+  ], day: 0, applyStep: 0, trackRef: '', payMethod: 'EcoCash', term: 'Term 1' };
+
+  go = (id) => { this.setState({ page: id, menu: null }); window.scrollTo(0, 0); };
+
+  renderVals() {
+    const page = this.state.page;
+    const P = {};
+    Object.keys(META).forEach(k => { P['p_' + k] = page === k; });
+    P.p_home = page === 'home';
+    P.p_guidance = page === 'careers-guidance';
+
+    const mkItems = (items) => items.map(([iid, ilabel]) => ({ label: ilabel, mark: page === iid ? 'var(--color-accent)' : 'transparent', go: (e) => { e.preventDefault(); this.go(iid); } }));
+    const open = (id) => { clearTimeout(this._t); this.setState({ menu: id }); };
+    const close = () => { clearTimeout(this._t); this._t = setTimeout(() => this.setState({ menu: null }), 220); };
+    const nav = GROUPS.map(([id, label, items]) => ({
+      label, open: this.state.menu === id,
+      bg: this.state.menu === id ? 'var(--blue-100)' : 'transparent',
+      fg: (META[page] && META[page][0] === label) ? 'var(--color-accent)' : 'var(--color-text)',
+      enter: () => open(id),
+      leave: close,
+      items: mkItems(items)
+    }));
+    const activeGroup = GROUPS.find(g => g[0] === this.state.menu);
+
+    const link = (id, label) => ({ label, go: (e) => { e.preventDefault(); this.go(id); } });
+    const m = META[page] || ['', '', ''];
+
+    return {
+      ...P, nav,
+      menuOpen: !!activeGroup,
+      menuLabel: activeGroup ? activeGroup[1] : '',
+      menuItems: activeGroup ? mkItems(activeGroup[2]) : [],
+      holdMenu: () => open(this.state.menu),
+      closeMenu: close,
+      indexGroups: [
+        { label: 'Home', items: [['home', 'Home']] },
+        ...GROUPS.map(([id, label, items]) => ({ label, items })),
+        { label: 'Portals', items: [['pay', 'Pay School Fees'], ['parent', 'Parent Portal'], ['results', 'Results & Report Cards']] }
+      ].map(g => ({ label: g.label, items: g.items.map(([iid, ilabel]) => ({ label: ilabel, mark: page === iid ? 'var(--color-accent)' : 'transparent', go: (e) => { e.preventDefault(); this.go(iid); } })) })),
+      showHero: page !== 'home',
+      heroKicker: m[0], heroTitle: m[1], heroLead: m[2],
+      utility: [link('pay', 'Pay fees'), link('parent', 'Parent portal'), link('results', 'Results'), link('contact', 'Contact')],
+      footerCols: [
+        { title: 'Admissions', items: [link('admissions', 'How to apply'), link('apply', 'Online application'), link('fees', 'Fees & plans'), link('scholarships', 'Scholarships'), link('termdates', 'Term dates')] },
+        { title: 'School life', items: [link('boarding', 'Boarding'), link('dining', 'Weekly menu'), link('sport', 'Sport'), link('events', 'Events'), link('library', 'Library')] },
+        { title: 'Community', items: [link('alumni', 'Alumni'), link('giving', 'Giving'), link('jobs', 'Vacancies'), link('notices', 'Notices'), link('contact', 'Contact')] }
+      ],
+      goHome: (e) => { e.preventDefault(); this.go('home'); },
+      goApply: () => this.go('apply'), goTour: () => this.go('tour'), goEvents: (e) => { e.preventDefault(); this.go('events'); },
+      goBoarding: () => this.go('boarding'), goDining: () => this.go('dining'), goPay: () => this.go('pay'),
+      goFees: () => this.go('fees'), goBlog: (e) => { e.preventDefault(); this.go('blog'); },
+      stats: [
+        { n: '420', l: 'Pupils in the founding intake, Form 1 to Lower Sixth' },
+        { n: '1:12', l: 'Teacher to pupil ratio, capped in every class' },
+        { n: '480', l: 'Boarding beds across four houses' },
+        { n: '140ha', l: 'Of the Mazowe Valley, with eleven playing surfaces' }
+      ],
+      pillars: [
+        { k: 'Academics', t: 'Cambridge & ZIMSEC', b: 'Both pathways from Form 3, both taught by specialists, both with full laboratory and library provision.', cta: 'See the pathways', go: (e) => { e.preventDefault(); this.go('academics'); } },
+        { k: 'Boarding', t: 'A week with shape', b: 'Structured prep, compulsory sport, Sunday chapel or reflection, and an exeat every half term.', cta: 'Boarding life', go: (e) => { e.preventDefault(); this.go('boarding'); } },
+        { k: 'Beyond', t: 'Thirty-one societies', b: 'Robotics, debate, mbira, agriculture, entrepreneurship and a school newspaper that we do not edit.', cta: 'Clubs & societies', go: (e) => { e.preventDefault(); this.go('clubs'); } }
+      ],
+      homeEvents: [
+        { date: 'Sat 10 Oct 2026', title: 'Founding Open Day', where: 'Main Quadrangle · 09:00', tag: 'Booking open' },
+        { date: 'Fri 23 Oct 2026', title: 'Entrance Assessment — Round 2', where: 'Assessment Hall · 08:00', tag: 'Applicants only' },
+        { date: 'Thu 5 Nov 2026', title: 'Parent Information Evening', where: 'Online · 18:00', tag: 'Free' },
+        { date: 'Sat 21 Nov 2026', title: 'Valley Run & Family Picnic', where: 'Top Field · 07:30', tag: 'Tickets $5' }
+      ],
+      homePosts: [
+        { slot: 'mh-post-1', cat: 'Curriculum', date: '2 Sep 2026', title: 'Why we are teaching both Cambridge and ZIMSEC', dek: 'The pathway a child sits should follow their plan, not the school\u2019s marketing.', go: (e) => { e.preventDefault(); this.go('post'); } },
+        { slot: 'mh-post-2', cat: 'Building', date: '19 Aug 2026', title: 'The science block, eleven months in', dek: 'Eight laboratories, a prep room and the first fume cupboards installed.', go: (e) => { e.preventDefault(); this.go('post'); } },
+        { slot: 'mh-post-3', cat: 'Boarding', date: '4 Aug 2026', title: 'What our house parents are reading this term', dek: 'Preparing adults to look after other people\u2019s children, deliberately.', go: (e) => { e.preventDefault(); this.go('post'); } }
+      ],
+      milestones: [
+        { y: '2023', t: 'Founding group of eleven convenes in Harare' },
+        { y: '2024', t: '140 hectares acquired in the Mazowe Valley' },
+        { y: '2025', t: 'Ministry registration granted; construction begins' },
+        { y: '2026', t: 'Cambridge International centre approval; staff appointed' },
+        { y: '2027', t: 'Gates open — 420 pupils, Form 1 to Lower Sixth' },
+        { y: '2032', t: 'Planned steady state of 900 pupils' }
+      ],
+      values: [
+        { n: '01', t: 'Small classes, kept small', b: 'Twenty-four pupils is a hard cap, not a target. If a year group over-subscribes we open another section or we hold a waiting list. We do not add desks.' },
+        { n: '02', t: 'Two pathways, no second class', b: 'The ZIMSEC set and the Cambridge set share the same laboratories, the same teachers and the same timetable priority. Neither is the school\u2019s flagship.' },
+        { n: '03', t: 'Published fees, no surprise levies', b: 'One termly figure covering tuition, boarding, meals, laundry, prep, house activities and internal examinations. Trips and external examination entries are quoted separately and in advance.' },
+        { n: '04', t: 'Care that has a name attached', b: 'Every pupil has a tutor, a house parent and a named safeguarding lead, and every parent has their direct contact details from day one.' },
+        { n: '05', t: 'We report honestly', b: 'Results, incidents, inspection findings and audited accounts are published to parents whether or not they flatter us.' }
+      ],
+      leaders: [
+        { slot: 'mh-l1', name: 'Dr. Tendai Mukombachoto', role: 'Head of College', bio: 'Twenty-two years in Zimbabwean and South African schools; previously Deputy Head at a Harare independent school.' },
+        { slot: 'mh-l2', name: 'Mrs. Nyasha Chirwa', role: 'Deputy Head · Academic', bio: 'Cambridge examiner in Mathematics; led the IGCSE conversion of two Zimbabwean schools.' },
+        { slot: 'mh-l3', name: 'Mr. Simbarashe Ndlovu', role: 'Deputy Head · Pastoral', bio: 'Former Housemaster and national schools rugby coach; safeguarding lead.' },
+        { slot: 'mh-l4', name: 'Ms. Rutendo Mapfumo', role: 'Director of Boarding', bio: 'Fifteen years of boarding leadership; designed the house-parent training programme.' },
+        { slot: 'mh-l5', name: 'Mr. Farai Gwatidzo', role: 'Bursar', bio: 'Chartered accountant; responsible for fees, payroll, procurement and the published accounts.' },
+        { slot: 'mh-l6', name: 'Dr. Anesu Kadzere', role: 'Director of Studies · Sixth Form', bio: 'University guidance across UZ, NUST, South African and UK admissions.' }
+      ],
+      docs: [
+        { n: 'Trust deed and constitution', f: 'PDF' }, { n: 'Safeguarding policy 2026', f: 'PDF' },
+        { n: 'Admissions policy', f: 'PDF' }, { n: 'Fees policy and refund terms', f: 'PDF' },
+        { n: 'Anti-bullying policy', f: 'PDF' }, { n: 'Complaints procedure', f: 'PDF' }
+      ],
+      facilities: [
+        { n: '28', t: 'Teaching rooms', b: 'All capped at 24 places, all with projection and reliable power.' },
+        { n: '08', t: 'Laboratories', b: 'Three biology, three chemistry, two physics, plus a shared prep room.' },
+        { n: '04', t: 'Boarding houses', b: '120 beds each, small dormitory bays, resident house parents.' },
+        { n: '400', t: 'Seat assembly hall', b: 'Also the theatre, examination hall and concert venue.' },
+        { n: '22k', t: 'Library volumes', b: 'Two floors, a silent study level and a digital lending desk.' },
+        { n: '11', t: 'Playing surfaces', b: 'Rugby, football, hockey, cricket ovals, netball and eight tennis courts.' },
+        { n: '25m', t: 'Swimming pool', b: 'Six lanes, solar heated, used for galas and lifesaving.' },
+        { n: '12ha', t: 'School farm', b: 'Maize, horticulture and a poultry unit run with the agriculture department.' }
+      ],
+      stops: TOUR.map((s, i) => ({ n: String(i + 1).padStart(2, '0'), t: s[0], bg: this.state.stop === i ? 'var(--blue)' : '#fff', fg: this.state.stop === i ? '#fff' : 'var(--color-text)', go: () => this.setState({ stop: i }) })),
+      stopN: String(this.state.stop + 1).padStart(2, '0'),
+      stopTitle: TOUR[this.state.stop][0], stopBody: TOUR[this.state.stop][1], stopSlot: 'mh-tour-' + this.state.stop,
+      stopPrev: () => this.setState({ stop: (this.state.stop + 11) % 12 }),
+      stopNext: () => this.setState({ stop: (this.state.stop + 1) % 12 }),
+      goContactLink: (e) => { e.preventDefault(); this.go('contact'); },
+      goCambridge: () => this.go('cambridge'), goZimsec: () => this.go('zimsec'), goDepts: () => this.go('departments'),
+      igcse: ['English Language','English Literature','Shona','Ndebele','Mathematics','Additional Mathematics','Biology','Chemistry','Physics','Combined Science','History','Geography','Computer Science','Business Studies','Economics','Accounting','Art & Design','Music','Design & Technology','Agriculture','Physical Education'],
+      olevel: ['English Language','Literature in English','Shona','Ndebele','Mathematics','Biology','Chemistry','Physics','Combined Science','History','Geography','Heritage Studies','Computer Science','Commerce','Principles of Accounts','Agriculture','Art','Music','Food & Nutrition','Building Studies','Physical Education'],
+      alevel: ['Mathematics','Further Mathematics','Physics','Chemistry','Biology','Computer Science','Economics','Business Studies','Accounting','History','Geography','Literature in English','Shona','Divinity','Art & Design','Sociology'],
+      camFees: [{l:'IGCSE, per subject',v:'US$ 68'},{l:'AS Level, per subject',v:'US$ 92'},{l:'A Level, per subject',v:'US$ 114'},{l:'Late entry surcharge',v:'US$ 40'}],
+      choose: [
+        { q: 'Planning a Zimbabwean university?', a: 'ZIMSEC is the direct route and is well understood by every local admissions office. Cambridge is accepted but adds an equivalence step.' },
+        { q: 'Planning South Africa or the UK?', a: 'Cambridge IGCSE and A Level map straight onto those systems. ZIMSEC A Level is accepted at most South African universities but needs a SAQA evaluation.' },
+        { q: 'Not sure yet?', a: 'Choose at the end of Form 2 and review it every year. Roughly one pupil in six changes pathway and the option blocks are built so that it costs them nothing.' },
+        { q: 'Does it affect the fee?', a: 'No. Tuition is identical. Only the external examination entry fees differ, and those are charged at cost.' }
+      ],
+      blocks: [
+        { t: 'Block A · Sciences', subjects: ['Biology','Chemistry','Physics','Combined Science','Agriculture'] },
+        { t: 'Block B · Humanities', subjects: ['History','Geography','Heritage Studies','Divinity','Sociology'] },
+        { t: 'Block C · Commerce & computing', subjects: ['Business Studies','Economics','Accounting','Computer Science','Commerce'] },
+        { t: 'Block D · Creative & practical', subjects: ['Art & Design','Music','Design & Technology','Food & Nutrition','Physical Education'] }
+      ],
+      depts: [
+        { t: 'Mathematics', staff: 6, hod: 'Mrs. N. Chirwa', b: 'Setted from Form 1, with Additional Mathematics from Form 3 and Further Mathematics in the Sixth Form.' },
+        { t: 'English', staff: 6, hod: 'Mr. P. Sibanda', b: 'Language and Literature taught separately from Form 3; the school newspaper and debating society sit here.' },
+        { t: 'Sciences', staff: 9, hod: 'Dr. L. Moyo', b: 'Eight laboratories and a technician. Every syllabus practical is performed rather than demonstrated.' },
+        { t: 'Humanities', staff: 5, hod: 'Mr. T. Chigumba', b: 'History, Geography and Heritage Studies, with fieldwork in the Mazowe catchment and at Great Zimbabwe.' },
+        { t: 'Languages', staff: 4, hod: 'Mrs. R. Dube', b: 'Shona and Ndebele to A Level, plus beginner French in the Sixth Form as an enrichment option.' },
+        { t: 'Commerce', staff: 4, hod: 'Mr. K. Marufu', b: 'Business Studies, Economics and Accounting, with the entrepreneurship society running a real trading company each year.' },
+        { t: 'Computer Science', staff: 3, hod: 'Ms. C. Nyoni', b: 'Two laboratories of 24 machines, a robotics workshop and a Form 1 computational-thinking course for everyone.' },
+        { t: 'Creative Arts', staff: 4, hod: 'Mr. B. Zvobgo', b: 'Studio art, printmaking and ceramics; the gallery on the quadrangle changes exhibition each term.' },
+        { t: 'Music', staff: 3, hod: 'Mrs. S. Chikwava', b: 'Choir, marimba and mbira ensembles, a concert band and eight practice rooms. Individual lessons are charged separately.' },
+        { t: 'Design & Technology', staff: 3, hod: 'Mr. E. Tapera', b: 'A full workshop with machine tools, plus CAD and a 3D-printing bay shared with robotics.' },
+        { t: 'Physical Education', staff: 5, hod: 'Mr. S. Ndlovu', b: 'Curricular PE for all year groups and the coaching backbone of the fourteen school sports.' },
+        { t: 'Agriculture', staff: 3, hod: 'Mrs. G. Hove', b: 'Twelve hectares of working farm — maize, horticulture and poultry — used for teaching and for the dining hall.' }
+      ],
+      guidance: [
+        { when: 'Form 3', what: 'First career conversation; option choices mapped against three possible destinations.' },
+        { when: 'Form 4', what: 'Aptitude and interest profiling; A Level subject planning with parents present.' },
+        { when: 'Lower Sixth', what: 'University shortlisting, entrance test registration, and the first draft of a personal statement.' },
+        { when: 'Upper Sixth', what: 'Applications submitted, interview practice, scholarship and funding applications.' },
+        { when: 'After results', what: 'Placement support, appeals, clearing and gap-year planning — the office stays open to leavers for two years.' }
+      ],
+      goTracker: () => this.go('tracker'),
+      steps: [
+        { n: '01', t: 'Enquire', b: 'Register interest online or come to an open day. No obligation and no fee.' },
+        { n: '02', t: 'Apply', b: 'Complete the online form, upload a report and a birth certificate, choose day or boarding.' },
+        { n: '03', t: 'Assess', b: 'A Saturday morning entrance assessment, sat on campus or remotely under invigilation.' },
+        { n: '04', t: 'Decide', b: 'An offer, a waiting-list place or a decline, with feedback, within fourteen days.' },
+        { n: '05', t: 'Enrol', b: 'Accept with a deposit, complete the medical and boarding forms, collect uniform.' }
+      ],
+      admitDates: [
+        { d: '10 Oct 2026', t: 'Founding Open Day' }, { d: '23 Oct 2026', t: 'Entrance assessment, round 2' },
+        { d: '6 Nov 2026', t: 'Round 2 decisions released' }, { d: '27 Nov 2026', t: 'Final assessment round' },
+        { d: '11 Dec 2026', t: 'Deposits due; places confirmed' }, { d: '12 Jan 2027', t: 'Boarders arrive' }
+      ],
+      applySteps: APPLY.map((a, i) => ({ n: String(i + 1), t: a[0], bg: this.state.applyStep === i ? 'var(--blue)' : '#fff', fg: this.state.applyStep === i ? '#fff' : 'var(--color-text)' })),
+      applyTitle: APPLY[this.state.applyStep][0],
+      applyNote: APPLY[this.state.applyStep][1],
+      applyFields: APPLY[this.state.applyStep][2],
+      applyCta: this.state.applyStep === APPLY.length - 1 ? 'Submit application' : 'Continue →',
+      applyNext: () => this.setState({ applyStep: Math.min(this.state.applyStep + 1, APPLY.length - 1) }),
+      applyBack: () => this.setState({ applyStep: Math.max(this.state.applyStep - 1, 0) }),
+      trackRef: this.state.trackRef,
+      setRef: (e) => this.setState({ trackRef: e.target.value }),
+      doTrack: () => this.setState({ trackRef: this.state.trackRef || 'MH-2027-04918' }),
+      trackStages: [
+        { t: 'Application received', when: '14 September 2026, 21:04', b: 'Reference MH-2027-04918 issued and confirmation emailed.', dot: 'var(--color-accent)' },
+        { t: 'Documents verified', when: '16 September 2026', b: 'Grade 7 statement, birth certificate and passport photograph accepted.', dot: 'var(--color-accent)' },
+        { t: 'Assessment scheduled', when: '23 October 2026, 08:00', b: 'Assessment Hall, main campus. Bring the reference and a pen. Allow two and a half hours.', dot: 'var(--blue)' },
+        { t: 'Panel decision', when: 'Expected by 6 November 2026', b: 'Released to the portal and by SMS to the registered parent number.', dot: '#fff' },
+        { t: 'Offer and deposit', when: 'Within 21 days of an offer', b: 'One third of the first term\u2019s fee secures the place.', dot: '#fff' },
+        { t: 'Enrolment complete', when: '—', b: 'Medical form, boarding form and uniform collection.', dot: '#fff' }
+      ],
+      feeRows: [
+        { g: 'Form 1 – Form 2', d: '$1,180', w: '$2,050', f: '$2,450' },
+        { g: 'Form 3 – Form 4', d: '$1,280', w: '$2,180', f: '$2,560' },
+        { g: 'Lower Sixth', d: '$1,420', w: '$2,320', f: '$2,690' },
+        { g: 'Upper Sixth', d: '$1,420', w: '$2,320', f: '$2,690' }
+      ],
+      extras: [
+        { l: 'Application', v: 'Free' }, { l: 'Enrolment deposit (once)', v: '1/3 of term 1' },
+        { l: 'External examination entries', v: 'At cost' }, { l: 'Individual music lessons', v: '$140 / term' },
+        { l: 'School bus, per route band', v: '$120–$240 / term' }, { l: 'Optional trips and tours', v: 'Quoted in advance' }
+      ],
+      plans: [
+        { t: 'Sibling discount', b: '10% off the second child, 15% off the third and subsequent children.' },
+        { t: 'Annual settlement', b: '5% discount when the full year is paid before the first day of Term 1.' },
+        { t: 'Three-instalment plan', b: 'Interest free: 50% before term, 25% in week 4, 25% in week 8.' },
+        { t: 'Staff and clergy', b: '40% remission for children of full-time staff and of ordained clergy in the district.' },
+        { t: 'Founding family rate', b: 'Fees held flat in real terms for three years for the January 2027 intake.' }
+      ],
+      methods: [
+        { t: 'EcoCash', b: 'Merchant code 220147. Instant receipt to the portal and by SMS.' },
+        { t: 'ZIPIT / bank transfer', b: 'CBZ and Stanbic accounts. Quote the pupil invoice number as reference.' },
+        { t: 'Visa / Mastercard', b: 'Local and international cards, 3-D Secure, in USD or ZWG.' },
+        { t: 'InnBucks', b: 'Scan the invoice QR code in the InnBucks app.' },
+        { t: 'Cash at the bursary', b: 'USD notes, 08:00–15:30 weekdays. Receipt issued on the spot.' },
+        { t: 'PayPal', b: 'For diaspora families, in USD. A 3.4% processor fee applies.' }
+      ],
+      awards: [
+        { value: 'Up to 100%', t: 'Founders\u2019 Scholarship', b: 'Four awards a year at Form 1 and two at Lower Sixth, on the entrance assessment and interview. Covers tuition and boarding.', close: '30 September 2026' },
+        { value: 'Up to 75%', t: 'Means-tested bursary', b: 'For families whose circumstances would otherwise put the school out of reach. Assessed by an independent panel.', close: 'Rolling' },
+        { value: 'Up to 50%', t: 'Sport Scholarship', b: 'Awarded on a trial across the fourteen school sports, with a coaching plan attached.', close: '15 October 2026' },
+        { value: 'Up to 50%', t: 'Music & Arts Scholarship', b: 'Audition or portfolio. Includes free individual tuition on one instrument.', close: '15 October 2026' },
+        { value: 'Up to 40%', t: 'Mazowe District Award', b: 'Reserved for pupils from primary schools within the Mazowe and Bindura districts.', close: '30 October 2026' }
+      ],
+      terms: [
+        { year: '2027', name: 'Term 1', rows: [{ l: 'Boarders arrive', v: '12 Jan' }, { l: 'Term begins', v: '13 Jan' }, { l: 'Half term', v: '20–24 Feb' }, { l: 'Term ends', v: '9 Apr' }] },
+        { year: '2027', name: 'Term 2', rows: [{ l: 'Boarders arrive', v: '10 May' }, { l: 'Term begins', v: '11 May' }, { l: 'Half term', v: '21–25 Jun' }, { l: 'Term ends', v: '6 Aug' }] },
+        { year: '2027', name: 'Term 3', rows: [{ l: 'Boarders arrive', v: '6 Sep' }, { l: 'Term begins', v: '7 Sep' }, { l: 'Half term', v: '18–22 Oct' }, { l: 'Term ends', v: '3 Dec' }] },
+        { year: '2028', name: 'Term 1', rows: [{ l: 'Boarders arrive', v: '11 Jan' }, { l: 'Term begins', v: '12 Jan' }, { l: 'Half term', v: '19–23 Feb' }, { l: 'Term ends', v: '7 Apr' }] },
+        { year: '2028', name: 'Term 2', rows: [{ l: 'Boarders arrive', v: '8 May' }, { l: 'Term begins', v: '9 May' }, { l: 'Half term', v: '19–23 Jun' }, { l: 'Term ends', v: '4 Aug' }] },
+        { year: '2028', name: 'Term 3', rows: [{ l: 'Boarders arrive', v: '4 Sep' }, { l: 'Term begins', v: '5 Sep' }, { l: 'Half term', v: '16–20 Oct' }, { l: 'Term ends', v: '1 Dec' }] }
+      ],
+      kit: [
+        { t: 'Everyday uniform', items: [{ l: 'College blazer, navy with red trim (crested)', q: '1' }, { l: 'White short-sleeve shirt / blouse', q: '5' }, { l: 'Grey trousers / College skirt', q: '3' }, { l: 'House tie', q: '2' }, { l: 'Grey socks / navy tights', q: '5 pairs' }, { l: 'Black leather lace-up shoes', q: '1 pair' }] },
+        { t: 'Sport and PE', items: [{ l: 'College sports shirt (crested)', q: '2' }, { l: 'Navy shorts / skort', q: '2' }, { l: 'Tracksuit, navy (crested)', q: '1' }, { l: 'Astro or running trainers', q: '1 pair' }, { l: 'Boots for rugby, football or hockey', q: 'As chosen' }, { l: 'Swimming costume and cap, navy', q: '1' }] },
+        { t: 'Boarders — additional', items: [{ l: 'Single duvet, cover and two sheets', q: '2 sets' }, { l: 'Towels, bath and swimming', q: '3' }, { l: 'Laundry bag, name-marked', q: '2' }, { l: 'Dressing gown and slippers', q: '1' }, { l: 'Padlock for locker', q: '1' }, { l: 'Casual clothes for weekends', q: 'Reasonable' }] },
+        { t: 'Stationery and equipment', items: [{ l: 'Scientific calculator (Casio fx-991 or equivalent)', q: '1' }, { l: 'Geometry set and 30cm ruler', q: '1' }, { l: 'A4 files and refill pads', q: '4' }, { l: 'Laptop or tablet (Form 3 upward, optional)', q: '1' }, { l: 'Bible or Quran, as applicable', q: '1' }, { l: 'Named school bag', q: '1' }] }
+      ],
+      boardFacts: [
+        { l: 'Beds', v: '480' }, { l: 'Pupils per bay', v: '6' }, { l: 'Tutor to pupil', v: '1 : 12' },
+        { l: 'Resident staff', v: '18' }, { l: 'Exeats per term', v: '2' }, { l: 'Laundry', v: 'Included, twice weekly' }
+      ],
+      routine: [
+        { t: '06:00', w: 'Wake, dormitory tidy and inspection' },
+        { t: '06:45', w: 'Breakfast in the dining hall, by house' },
+        { t: '07:30', w: 'House assembly and tutor time' },
+        { t: '07:50', w: 'Periods 1–4' },
+        { t: '10:30', w: 'Break, with fruit and bread from the farm' },
+        { t: '10:50', w: 'Periods 5–8' },
+        { t: '13:00', w: 'Lunch' },
+        { t: '14:00', w: 'Sport, societies or service' },
+        { t: '16:30', w: 'Tea and free time in house' },
+        { t: '17:30', w: 'Supervised prep, by year group' },
+        { t: '19:15', w: 'Supper' },
+        { t: '20:00', w: 'Second prep for Form 3 upward; juniors in common room' },
+        { t: '21:00', w: 'House meeting, then lights out by year group from 21:15' }
+      ],
+      houses: [
+        { name: 'Nyanga', motto: 'Height and endurance', colour: '#0b3d6b', cname: 'Navy', hp: 'Mr. & Mrs. Chigumba', beds: 120, b: 'Named for the eastern highlands. Traditionally the cross-country and debating house, and the first to be occupied.' },
+        { name: 'Zambezi', motto: 'Force and flow', colour: '#ec3013', cname: 'Red', hp: 'Dr. & Mr. Moyo', beds: 120, b: 'Named for the great river. Takes the northern wing with the best view of the valley and the loudest common room.' },
+        { name: 'Matopo', motto: 'Rooted in stone', colour: '#1d1f20', cname: 'Granite', hp: 'Mr. & Mrs. Tapera', beds: 120, b: 'Named for the granite hills of the south. Completing November 2026, with the art studio annexe attached.' },
+        { name: 'Chimanimani', motto: 'Beyond the ridge', colour: '#7c1405', cname: 'Maroon', hp: 'Mrs. & Mr. Hove', beds: 120, b: 'Named for the mountains on the eastern border. The music practice rooms sit beneath it.' }
+      ],
+      standings: [
+        { h: 'Nyanga', a: '—', s: '—', r: '—', v: '—', t: 'From Jan 2027' },
+        { h: 'Zambezi', a: '—', s: '—', r: '—', v: '—', t: 'From Jan 2027' },
+        { h: 'Matopo', a: '—', s: '—', r: '—', v: '—', t: 'From Jan 2027' },
+        { h: 'Chimanimani', a: '—', s: '—', r: '—', v: '—', t: 'From Jan 2027' }
+      ],
+      days: WEEK.map((d, i) => ({ name: d.name, date: d.date, bg: this.state.day === i ? 'var(--blue)' : '#fff', fg: this.state.day === i ? '#fff' : 'var(--color-text)', go: () => this.setState({ day: i }) })),
+      meals: WEEK[this.state.day].meals,
+      health: [
+        { t: 'Sanatorium, staffed 24/7', b: 'Six inpatient beds, a treatment room and an isolation bay, with a registered nurse on duty at all hours.' },
+        { t: 'Doctor on call', b: 'A general practitioner visits twice weekly and is on call from Bindura for emergencies.' },
+        { t: 'Two counsellors', b: 'Full-time, with open hours daily and a self-referral route that does not go through a teacher.' },
+        { t: 'Nutrition and fitness', b: 'A dietitian sets the menu rotation; PE staff run conditioning and injury rehabilitation.' }
+      ],
+      sana: [
+        { l: 'Inpatient beds', v: '6' }, { l: 'Nurse cover', v: '24 / 7' }, { l: 'Doctor visits', v: 'Twice weekly' },
+        { l: 'Isolation bay', v: 'Yes' }, { l: 'Ambulance on site', v: 'Yes' }, { l: 'Parent notification', v: 'Same day' }
+      ],
+      pastoralRows: [
+        { t: 'The tutor', b: 'Twelve tutees, seen every morning and evening. Holds the academic record, the effort grades and the first conversation when something changes.' },
+        { t: 'The house parent', b: 'Lives in the house with their own family. Responsible for the bay, the routine, the weekend and the phone call home.' },
+        { t: 'Head of year', b: 'Tracks the whole cohort across subjects and houses, and chairs the fortnightly concerns meeting.' },
+        { t: 'Safeguarding lead', b: 'Deliberately outside the teaching line. Receives concerns directly, including anonymously, and reports to the board.' },
+        { t: 'Discipline', b: 'Restorative first: repair, apology and a recorded conversation. Suspension and exclusion are last resorts and always involve the board.' },
+        { t: 'Devices and online life', b: 'Phones are handed in overnight for Forms 1–4. The school network is filtered and monitored, and pupils are taught why rather than simply blocked.' }
+      ],
+      routes: [
+        { code: 'A1', name: 'Mazowe – Glendale', stops: 'Mazowe Centre · Jumbo · Glendale', status: 'On route', eta: 'Arrives 07:12', colour: 'var(--blue)' },
+        { code: 'A2', name: 'Concession loop', stops: 'Concession · Mvurwi turn', status: 'On route', eta: 'Arrives 07:20', colour: 'var(--blue)' },
+        { code: 'B1', name: 'Bindura town', stops: 'Chipadze · Bindura CBD · Trojan', status: 'Delayed 8 min', eta: 'Arrives 07:34', colour: 'var(--color-accent)' },
+        { code: 'B2', name: 'Shamva', stops: 'Shamva · Madziwa turn', status: 'On route', eta: 'Arrives 07:28', colour: 'var(--blue)' },
+        { code: 'C1', name: 'Borrowdale – Gletwin', stops: 'Borrowdale · Gletwin · Chisipite', status: 'At stop', eta: 'Departing 06:15', colour: 'var(--blue)' },
+        { code: 'C2', name: 'Mount Pleasant – Avondale', stops: 'Mt Pleasant · Avondale · Emerald Hill', status: 'On route', eta: 'Arrives 07:05', colour: 'var(--blue)' },
+        { code: 'C3', name: 'Greendale – Highlands', stops: 'Greendale · Highlands · Newlands', status: 'On route', eta: 'Arrives 07:09', colour: 'var(--blue)' },
+        { code: 'D1', name: 'Southerton – Waterfalls', stops: 'Southerton · Waterfalls · Hatfield', status: 'Boarding', eta: 'Departs 05:50', colour: 'var(--blue)' },
+        { code: 'D2', name: 'Chinhoyi express', stops: 'Chinhoyi · Banket · Trelawney', status: 'Friday & Sunday only', eta: 'Exeat service', colour: 'var(--color-neutral-700)' }
+      ],
+      sports: [
+        { n: 'Rugby', season: 'Terms 1 & 2', teams: '1st XV to U14 B' }, { n: 'Football', season: 'Terms 1 & 2', teams: '1st XI to U14 B' },
+        { n: 'Hockey', season: 'Terms 2 & 3', teams: 'Girls and boys, 1st to U14' }, { n: 'Netball', season: 'Terms 1 & 2', teams: '1st VII to U14 B' },
+        { n: 'Cricket', season: 'Terms 1 & 3', teams: '1st XI to U14' }, { n: 'Basketball', season: 'Term 2', teams: 'Open and U16' },
+        { n: 'Swimming', season: 'Terms 1 & 3', teams: 'Squad and house galas' }, { n: 'Athletics', season: 'Term 1', teams: 'Track and field, all ages' },
+        { n: 'Cross country', season: 'Term 2', teams: 'Valley course, all ages' }, { n: 'Tennis', season: 'Terms 1 & 3', teams: 'Eight courts, coached' },
+        { n: 'Volleyball', season: 'Term 2', teams: 'Open, mixed' }, { n: 'Table tennis', season: 'All year', teams: 'House league' },
+        { n: 'Chess', season: 'All year', teams: 'Team and individual' }, { n: 'Golf', season: 'Term 3', teams: 'Off-site, coached' }
+      ],
+      fixtures: [
+        { date: 'Sat 16 Jan', time: '09:00', opponent: 'Bindura High School', sport: 'Football', team: '1st XI', venue: 'Home · Top Field', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 16 Jan', time: '11:00', opponent: 'Bindura High School', sport: 'Netball', team: '1st VII', venue: 'Home · Court 1', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 23 Jan', time: '10:00', opponent: 'Chiweshe Secondary', sport: 'Rugby', team: 'U15 A', venue: 'Away', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Wed 27 Jan', time: '14:30', opponent: 'Mvurwi High', sport: 'Cricket', team: '1st XI', venue: 'Home · Oval', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 30 Jan', time: '08:30', opponent: 'Provincial Gala', sport: 'Swimming', team: 'Squad', venue: 'Bindura Aquatic', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 6 Feb', time: '09:00', opponent: 'Glendale Secondary', sport: 'Football', team: '2nd XI', venue: 'Home · Field 2', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 13 Feb', time: '07:30', opponent: 'Valley Invitational', sport: 'Cross country', team: 'All ages', venue: 'Home · Valley course', result: 'Upcoming', colour: 'var(--blue)' },
+        { date: 'Sat 20 Feb', time: '10:00', opponent: 'St Faith\u2019s Rusape', sport: 'Hockey', team: '1st XI', venue: 'Away', result: 'Upcoming', colour: 'var(--blue)' }
+      ],
+      clubs: [
+        { n: 'Robotics', d: 'Builds for the national schools challenge' }, { n: 'Debating', d: 'Inter-house league and provincial rounds' },
+        { n: 'Mbira ensemble', d: 'Traditional repertoire, plays at assembly' }, { n: 'Marimba band', d: 'Two bands, junior and senior' },
+        { n: 'The Ridge (newspaper)', d: 'Pupil-edited, unedited by staff' }, { n: 'Model United Nations', d: 'Harare and Johannesburg conferences' },
+        { n: 'Entrepreneurship', d: 'Runs a real trading company each year' }, { n: 'Chess', d: 'League and rapid tournaments' },
+        { n: 'Environmental club', d: 'Catchment monitoring and tree planting' }, { n: 'Astronomy', d: 'Two telescopes, dark valley skies' },
+        { n: 'Photography', d: 'Darkroom and digital, termly exhibition' }, { n: 'Drama', d: 'Two productions a year' },
+        { n: 'Choir', d: 'Auditioned, plus an open junior choir' }, { n: 'Agriculture society', d: 'Runs the poultry unit' },
+        { n: 'Coding club', d: 'Python, web and game development' }, { n: 'First aid', d: 'Certified through the Red Cross' },
+        { n: 'Interact', d: 'Service partnership with Rotary Mazowe' }, { n: 'Book club', d: 'Zimbabwean and African fiction' },
+        { n: 'Film society', d: 'Friday screenings and a review blog' }, { n: 'Scripture Union', d: 'Weekly, open to all faiths' },
+        { n: 'Islamic society', d: 'Prayer space and Friday arrangements' }, { n: 'Hiking and camping', d: 'Valley and eastern highlands trips' },
+        { n: 'Cookery', d: 'Runs the Saturday tuck bake' }, { n: 'Fashion and textiles', d: 'Annual show with the art department' },
+        { n: 'Quiz club', d: 'Inter-house and national schools quiz' }, { n: 'Young engineers', d: 'Bridge building, solar projects' },
+        { n: 'Sign language', d: 'Taught by a visiting instructor' }, { n: 'Investment club', d: 'Paper portfolio on the ZSE' },
+        { n: 'Public speaking', d: 'Toastmasters format, termly showcase' }, { n: 'Art club', d: 'Open studio, Wednesday evenings' },
+        { n: 'Peer mentoring', d: 'Sixth formers paired with Form 1s' }
+      ],
+      arts: [
+        { t: 'Music', b: 'Two choirs, a concert band, marimba and mbira ensembles, and eight practice rooms. A termly concert in the hall and a carol service at the end of Term 3.' },
+        { t: 'Drama', b: 'A senior production in Term 2 and a junior play in Term 3, on a sprung stage with a full lighting rig. Pupils run sound, lights and set.' },
+        { t: 'Visual art', b: 'Painting, drawing, printmaking and ceramics in a north-lit studio. The quadrangle gallery changes exhibition each term.' },
+        { t: 'Design & technology', b: 'A workshop with machine tools, CAD stations and a 3D-printing bay shared with robotics.' },
+        { t: 'Dance', b: 'Traditional Zimbabwean dance and contemporary, taught by a visiting company, performed at prize-giving and open days.' },
+        { t: 'Writing', b: 'The Ridge newspaper, a literary magazine and an annual writing prize judged by a Zimbabwean author.' }
+      ],
+      eventList: [
+        { d: '10', m: 'Oct', bg: 'var(--color-accent)', fg: '#fff', cat: 'Admissions', time: '09:00 – 13:00', title: 'Founding Open Day', b: 'Tour the campus, meet the Head and the house parents, and sit down with the bursary about fees and bursaries.', price: 'Free', cta: 'Book a place', seats: '112 of 300 remaining' },
+        { d: '23', m: 'Oct', bg: 'var(--blue)', fg: '#fff', cat: 'Admissions', time: '08:00', title: 'Entrance Assessment — Round 2', b: 'Two and a half hours. Applicants only; remote invigilation available for families outside Harare.', price: 'Free', cta: 'Register', seats: 'By invitation' },
+        { d: '05', m: 'Nov', bg: 'var(--blue)', fg: '#fff', cat: 'Parents', time: '18:00 – 19:30', title: 'Parent Information Evening (online)', b: 'Curriculum pathways, boarding routine, the fee structure and a live question session with the senior team.', price: 'Free', cta: 'Get the link', seats: 'Unlimited' },
+        { d: '21', m: 'Nov', bg: 'var(--color-accent)', fg: '#fff', cat: 'Community', time: '07:30', title: 'Valley Run & Family Picnic', b: 'A 5km and 10km run on the cross-country course, followed by a braai on the top field. Open to everyone.', price: '$5', cta: 'Buy tickets', seats: '340 places' },
+        { d: '05', m: 'Dec', bg: 'var(--blue)', fg: '#fff', cat: 'Admissions', time: '09:00', title: 'Final Assessment Round', b: 'The last assessment before January. Places remaining are limited to Form 1 and Lower Sixth.', price: 'Free', cta: 'Register', seats: 'Limited' },
+        { d: '12', m: 'Jan', bg: 'var(--color-accent)', fg: '#fff', cat: 'School', time: 'From 14:00', title: 'Boarders Arrive — Founding Day', b: 'Houses open, kit issue, house meetings and the first supper. Parents welcome until 18:00.', price: '—', cta: 'Arrival guide', seats: 'Enrolled pupils' },
+        { d: '13', m: 'Jan', bg: 'var(--blue)', fg: '#fff', cat: 'School', time: '08:00', title: 'First Assembly', b: 'The founding cohort\u2019s first assembly and the naming of the first house captains.', price: '—', cta: 'Details', seats: 'Invited guests' },
+        { d: '14', m: 'Feb', bg: 'var(--blue)', fg: '#fff', cat: 'Arts', time: '18:30', title: 'Inaugural Concert', b: 'Choir, marimba and the concert band in the assembly hall. Streamed for families abroad.', price: '$3', cta: 'Buy tickets', seats: '400 seats' }
+      ],
+      books: [
+        { t: 'Nervous Conditions', a: 'Tsitsi Dangarembga', cls: 'ZIM FIC 823.9', status: 'Available ×6', colour: 'var(--blue)' },
+        { t: 'House of Hunger', a: 'Dambudzo Marechera', cls: 'ZIM FIC 823.9', status: 'Available ×4', colour: 'var(--blue)' },
+        { t: 'Cambridge IGCSE Mathematics Core & Extended', a: 'Pemberton', cls: 'REF 510', status: 'Reference only', colour: 'var(--color-neutral-700)' },
+        { t: 'Biology for ZIMSEC O Level', a: 'Mudhomeni', cls: '570 MUD', status: 'On loan · due 2 Oct', colour: 'var(--color-accent)' },
+        { t: 'A History of Zimbabwe', a: 'Mlambo', cls: '968.91 MLA', status: 'Available ×3', colour: 'var(--blue)' },
+        { t: 'Things Fall Apart', a: 'Chinua Achebe', cls: 'AFR FIC 823', status: 'Available ×8', colour: 'var(--blue)' },
+        { t: 'Cambridge A Level Physics past papers 2018–2025', a: 'CAIE', cls: 'DIGITAL', status: 'E-issue', colour: 'var(--blue)' }
+      ],
+      goBlogBtn: () => this.go('blog'),
+      blogCats: ['All', 'Curriculum', 'Boarding', 'Building', 'Sport', 'Staff room', 'Community'],
+      posts: [
+        { slot: 'mh-b1', cat: 'Curriculum', date: '2 Sep 2026', title: 'Why we are teaching both Cambridge and ZIMSEC', dek: 'The pathway a child sits should follow their plan, not the school\u2019s marketing.', author: 'Dr. T. Mukombachoto', read: '6 min' },
+        { slot: 'mh-b2', cat: 'Building', date: '19 Aug 2026', title: 'The science block, eleven months in', dek: 'Eight laboratories, a prep room and the first fume cupboards installed.', author: 'Mr. F. Gwatidzo', read: '4 min' },
+        { slot: 'mh-b3', cat: 'Boarding', date: '4 Aug 2026', title: 'What our house parents are reading this term', dek: 'Preparing adults to look after other people\u2019s children, deliberately.', author: 'Ms. R. Mapfumo', read: '5 min' },
+        { slot: 'mh-b4', cat: 'Staff room', date: '22 Jul 2026', title: 'Hiring for a school that does not exist yet', dek: 'What we look for when there is no timetable to slot someone into.', author: 'Dr. T. Mukombachoto', read: '7 min' },
+        { slot: 'mh-b5', cat: 'Community', date: '9 Jul 2026', title: 'Twelve hectares, one poultry unit and a plan', dek: 'The school farm will feed the dining hall and teach the agriculture syllabus.', author: 'Mrs. G. Hove', read: '4 min' },
+        { slot: 'mh-b6', cat: 'Curriculum', date: '28 Jun 2026', title: 'Why we cap classes at twenty-four and will not move', dek: 'The arithmetic of a class cap, and what it costs to keep one.', author: 'Mrs. N. Chirwa', read: '6 min' },
+        { slot: 'mh-b7', cat: 'Sport', date: '11 Jun 2026', title: 'Building a fixture list from nothing', dek: 'Nine schools said yes, two said come back when you have a first team.', author: 'Mr. S. Ndlovu', read: '3 min' },
+        { slot: 'mh-b8', cat: 'Boarding', date: '30 May 2026', title: 'Designing a dormitory bay for six', dek: 'Why we chose bays of six over rooms of two, and what changed after the mock-up.', author: 'Ms. R. Mapfumo', read: '5 min' },
+        { slot: 'mh-b9', cat: 'Building', date: '14 May 2026', title: 'Solar, boreholes and the end of load-shedding excuses', dek: '480 kW, batteries and 1.2 million litres. What it cost and why.', author: 'Mr. F. Gwatidzo', read: '6 min' }
+      ].map(p => ({ ...p, go: (e) => { e.preventDefault(); this.go('post'); } })),
+      notices: [
+        { date: '15 Sep 2026', tag: 'Admissions', bg: 'var(--color-accent)', t: 'Round 2 assessment venue confirmed', b: 'The 23 October assessment will be held in the new Assembly Hall, not the temporary block. Gates open at 07:15; candidates should be seated by 07:50.' },
+        { date: '8 Sep 2026', tag: 'Fees', bg: 'var(--blue)', t: '2027 fee schedule published and held', b: 'Fees for the founding year are now published in full and will be held in real terms for three years for the January 2027 intake.' },
+        { date: '1 Sep 2026', tag: 'Boarding', bg: 'var(--blue)', t: 'House allocation opens', b: 'Enrolled families can state a house preference in the portal until 30 October. Siblings are placed in the same house by default.' },
+        { date: '21 Aug 2026', tag: 'Uniform', bg: 'var(--blue)', t: 'School shop opens for fittings', b: 'Crested uniform fittings run Saturdays from 3 October at the temporary shop on the Chiweshe Road. Book a slot in the portal.' },
+        { date: '12 Aug 2026', tag: 'Transport', bg: 'var(--blue)', t: 'Bus routes confirmed for Term 1', b: 'Nine routes will run from January. Route C3 has been extended to Newlands following demand from thirty-one families.' },
+        { date: '30 Jul 2026', tag: 'Urgent', bg: 'var(--color-accent)', t: 'Beware of fraudulent fee accounts', b: 'The school has one CBZ and one Stanbic account, both listed on the Fees page. We will never ask for a deposit into a personal account. Verify with the bursary before paying.' },
+        { date: '18 Jul 2026', tag: 'Medical', bg: 'var(--blue)', t: 'Medical forms and immunisation records', b: 'Enrolment medical forms must be returned by 30 November, with immunisation records. The sanatorium will contact families directly about any gaps.' }
+      ],
+      alumniOffer: [
+        { t: 'Mentoring', b: 'Be matched with a sixth former in your field for four conversations a year. Fifteen minutes each, structured, and genuinely useful.' },
+        { t: 'Work experience', b: 'Host one pupil for a week in July. We handle the safeguarding paperwork and the travel.' },
+        { t: 'Careers evenings', b: 'Three a year, in person or online, with a panel of eight speakers from different routes.' },
+        { t: 'Fund a place', b: 'A full bursary is US$7,350 a year. Partial support from US$500 is pooled and awarded by the bursary panel.' }
+      ],
+      funds: [
+        { t: 'The Bursary Fund', raised: '$412k of $1.2m', pct: '34%', b: 'Endows means-tested places in perpetuity. Our target is one fully funded pupil in every ten by 2032. Every dollar is spent on fees, not administration.' },
+        { t: 'The Library Fund', raised: '$188k of $250k', pct: '75%', b: 'Completes the second floor, the digital lending system and the Zimbabwean literature collection, including first editions where we can find them.' },
+        { t: 'The Science Block', raised: '$1.6m of $1.8m', pct: '89%', b: 'The final two laboratories and the shared prep room. On schedule to open in October 2026.' }
+      ],
+      amounts: ['$25', '$100', '$250', '$500', '$1,000', '$5,000'],
+      vacancies: [
+        { t: 'Head of Mathematics', dept: 'Mathematics · Forms 1–6', type: 'Full time', close: '10 Oct' },
+        { t: 'Teacher of Physics', dept: 'Sciences · both boards', type: 'Full time', close: '10 Oct' },
+        { t: 'Teacher of English', dept: 'English · Language & Literature', type: 'Full time', close: '17 Oct' },
+        { t: 'Teacher of Shona', dept: 'Languages · to A Level', type: 'Full time', close: '17 Oct' },
+        { t: 'House Parent couple ×2', dept: 'Boarding · residential', type: 'Residential', close: '3 Oct' },
+        { t: 'Registered Nurse', dept: 'Sanatorium · shift work', type: 'Full time', close: '24 Oct' },
+        { t: 'School Counsellor', dept: 'Pastoral', type: 'Full time', close: '24 Oct' },
+        { t: 'Catering Manager', dept: 'Dining services', type: 'Full time', close: '10 Oct' },
+        { t: 'ICT Systems Administrator', dept: 'Operations', type: 'Full time', close: '31 Oct' },
+        { t: 'Laboratory Technician', dept: 'Sciences', type: 'Full time', close: '31 Oct' }
+      ],
+      contacts: [
+        { dept: 'Admissions', who: 'Mrs. P. Chinamasa', email: 'admissions@mazoweheights.ac.zw', phone: '+263 77 000 0101' },
+        { dept: 'Bursary & fees', who: 'Mr. F. Gwatidzo', email: 'fees@mazoweheights.ac.zw', phone: '+263 77 000 0102' },
+        { dept: 'Boarding', who: 'Ms. R. Mapfumo', email: 'boarding@mazoweheights.ac.zw', phone: '+263 77 000 0103' },
+        { dept: 'Safeguarding', who: 'Mr. S. Ndlovu', email: 'safeguarding@mazoweheights.ac.zw', phone: '+263 77 000 0911' },
+        { dept: 'Recruitment', who: 'Human Resources', email: 'jobs@mazoweheights.ac.zw', phone: '+263 77 000 0105' },
+        { dept: 'General enquiries', who: 'Reception', email: 'hello@mazoweheights.ac.zw', phone: '+263 242 000 000' }
+      ],
+      invoice: [
+        { l: 'Tuition — Form 1, Term 1 2027', v: '$1,180.00' },
+        { l: 'Full boarding — Term 1 2027', v: '$1,270.00' },
+        { l: 'Individual music tuition — piano', v: '$140.00' },
+        { l: 'Sibling discount (10%)', v: '−$254.00' },
+        { l: 'Brought forward', v: '$368.00' }
+      ],
+      payOpts: PAYS.map(p => ({ t: p[0], b: p[1], bg: this.state.payMethod === p[0] ? 'var(--blue)' : '#fff', fg: this.state.payMethod === p[0] ? '#fff' : 'var(--color-text)', go: () => this.setState({ payMethod: p[0] }) })),
+      payMethod: this.state.payMethod,
+      payHow: (PAYS.find(p => p[0] === this.state.payMethod) || PAYS[0])[2],
+      statement: [
+        { d: '12 Sep 2026 · Deposit', v: '−$393.00', colour: 'var(--blue)' },
+        { d: '02 Aug 2026 · EcoCash payment', v: '−$500.00', colour: 'var(--blue)' },
+        { d: '13 Jul 2026 · Invoice raised', v: '+$1,261.00', colour: 'var(--color-accent)' },
+        { d: 'Balance brought forward', v: '$368.00', colour: 'var(--color-text)' }
+      ],
+      portalCards: [
+        { k: 'Daily', t: 'Attendance and punctuality', b: 'Marked every period. A push notification the moment a lesson mark is missed.' },
+        { k: 'Weekly', t: 'Prep set and submitted', b: 'What was set, when it is due, and whether it came in.' },
+        { k: 'Three-weekly', t: 'Effort grades', b: 'Per subject, with the teacher\u2019s one-line note.' },
+        { k: 'Termly', t: 'Reports and parent evening', b: 'A full written report and a bookable face-to-face slot.' },
+        { k: 'Anytime', t: 'Fees and statements', b: 'Invoices, receipts, instalment plans and one-tap payment.' },
+        { k: 'Anytime', t: 'Boarding and exeat', b: 'Request an exeat, book transport, see the weekly menu and the tuck balance.' },
+        { k: 'Anytime', t: 'Messages', b: 'Direct line to the tutor, house parent and bursary. Replies within one working day.' },
+        { k: 'Live', t: 'Bus tracking', b: 'Where the bus is, when it will arrive, and confirmation your child boarded.' }
+      ],
+      reportRows: [
+        { s: 'English Language', mark: '74%', g: 'B+', e: '1 — Excellent', avg: '68%' },
+        { s: 'Mathematics', mark: '58%', g: 'C', e: '3 — Satisfactory', avg: '64%' },
+        { s: 'Shona', mark: '81%', g: 'A', e: '1 — Excellent', avg: '71%' },
+        { s: 'Biology', mark: '70%', g: 'B', e: '2 — Good', avg: '66%' },
+        { s: 'Chemistry', mark: '66%', g: 'B−', e: '2 — Good', avg: '63%' },
+        { s: 'Physics', mark: '62%', g: 'C+', e: '2 — Good', avg: '61%' },
+        { s: 'History', mark: '86%', g: 'A', e: '1 — Excellent', avg: '69%' },
+        { s: 'Geography', mark: '73%', g: 'B', e: '2 — Good', avg: '67%' },
+        { s: 'Computer Science', mark: '79%', g: 'A−', e: '1 — Excellent', avg: '70%' }
+      ],
+      bannerText: this.props.bannerText ?? 'Opening January 2027 — Founding intake now enrolling',
+      showAssistant: this.props.showAssistant ?? true,
+      aiOpen: this.state.aiOpen && (this.props.showAssistant ?? true),
+      toggleAI: () => this.setState({ aiOpen: !this.state.aiOpen }),
+      aiMsgs: this.state.aiMsgs.map(x => ({
+        text: x.text, side: x.who === 'bot' ? 'flex-start' : 'flex-end',
+        bg: x.who === 'bot' ? 'var(--blue-100)' : 'var(--color-accent)',
+        fg: x.who === 'bot' ? 'var(--color-text)' : '#fff'
+      })),
+      aiSuggest: [
+        { q: 'What are the boarding fees for 2027?', go: () => this.ask('What are the boarding fees for 2027?', 'Full boarding is US$2,450 per term for Forms 1–4 and US$2,690 for the Sixth Form, including all meals, laundry and prep supervision. A 10% sibling discount applies from the second child.') },
+        { q: 'Can my child switch from ZIMSEC to Cambridge?', go: () => this.ask('Can my child switch from ZIMSEC to Cambridge?', 'Yes — pathway choice is made at the end of Form 2 and reviewed each year. Switching after Form 3 is possible in most subjects with a bridging plan agreed with the Deputy Head (Academic).') },
+        { q: 'When is the next open day?', go: () => this.ask('When is the next open day?', 'The Founding Open Day is Saturday 10 October 2026 at 09:00 in the Main Quadrangle. You can book a place on the Events page.') }
+      ]
+    };
+  }
+
+  ask(q, a) {
+    this.setState({ aiMsgs: [...this.state.aiMsgs, { who: 'me', text: q }, { who: 'bot', text: a }] });
+  }
+}
+
+</script>
+</body>
+</html>

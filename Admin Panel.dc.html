@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-4eb47bc6-b92f-45a0-b484-41802f8a5b0c/styles.css">
+<script src="_ds/modernist-4eb47bc6-b92f-45a0-b484-41802f8a5b0c/_ds_bundle.js"></script>
+<style>
+:root{--blue:#0b3d6b;--blue-700:#08294a;--blue-100:#e7eef5}
+body{margin:0;background:#fff}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--color-accent)}
+</style>
+</helmet>
+
+<div style="font-family:var(--font-body);color:var(--color-text);display:flex;min-height:100vh;background:var(--color-bg)">
+
+  <aside style="width:230px;flex-shrink:0;background:var(--blue-700);color:#fff;display:flex;flex-direction:column">
+    <div style="padding:18px 20px;border-bottom:2px solid rgba(255,255,255,.18);display:flex;align-items:center;gap:10px">
+      <span style="display:flex;width:30px;height:36px;background:linear-gradient(135deg,#fff 0 50%,var(--color-accent) 50% 100%);color:var(--blue);font-family:var(--font-heading);font-weight:800;font-size:12px;align-items:center;justify-content:center">MH</span>
+      <span style="line-height:1.1">
+        <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:14px">Mazowe Heights</span>
+        <span style="display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#ff9783">School Manager</span>
+      </span>
+    </div>
+    <div style="flex:1;overflow:auto;padding:12px 0">
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+        <div style="margin-bottom:12px">
+          <p style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#7f9ab4;margin:0 0 6px;padding:0 20px">{{ s.title }}</p>
+          <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="4">
+            <button onClick="{{ i.go }}" style="display:block;width:100%;text-align:left;border:0;background:{{ i.bg }};color:{{ i.fg }};padding:8px 20px;font-family:var(--font-body);font-size:13px;cursor:pointer;border-left:3px solid {{ i.mark }}">{{ i.label }}</button>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:14px 20px;border-top:2px solid rgba(255,255,255,.18);font-size:12px;color:#b9cadb">
+      <p style="margin:0 0 2px;font-weight:800;color:#fff">P. Chinamasa</p>
+      <p style="margin:0">Admissions Officer</p>
+    </div>
+  </aside>
+
+  <main style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <header style="background:#fff;border-bottom:2px solid var(--color-text);padding:10px 26px;display:flex;align-items:center;gap:16px;min-height:62px;flex-wrap:wrap">
+      <div>
+        <p style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 2px">{{ crumb }}</p>
+        <h1 style="font-size:20px;margin:0">{{ title }}</h1>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:12px;color:var(--color-neutral-700);border:1px solid var(--color-divider);padding:6px 10px">Term 1 · 2027</span>
+        <button class="btn btn-primary" style="font-size:12px;text-transform:uppercase;letter-spacing:.06em">{{ action }}</button>
+      </div>
+    </header>
+
+    <div style="flex:1;padding:24px 26px;min-width:0">
+
+      <sc-if value="{{ v_dash }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text);margin-bottom:24px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="5">
+            <div style="background:#fff;padding:18px">
+              <p style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 8px">{{ k.l }}</p>
+              <p style="font-family:var(--font-heading);font-weight:800;font-size:28px;line-height:1;margin:0 0 6px">{{ k.v }}</p>
+              <p style="font-size:12px;margin:0;color:{{ k.colour }}">{{ k.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+          <div style="border:2px solid var(--color-text);background:#fff">
+            <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Needs attention</p>
+            <sc-for list="{{ queue }}" as="q" hint-placeholder-count="5">
+              <div style="display:flex;gap:11px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+                <span style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:{{ q.bg }};color:#fff;padding:3px 7px">{{ q.tag }}</span>
+                <span style="font-size:13px;flex:1 1 150px;min-width:0">{{ q.t }}</span>
+                <span style="font-size:13px;font-weight:800;margin-left:auto">{{ q.n }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border:2px solid var(--color-text);background:#fff">
+            <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Recent activity</p>
+            <sc-for list="{{ activity }}" as="a" hint-placeholder-count="6">
+              <div style="padding:11px 18px;border-bottom:1px solid var(--color-divider)">
+                <p style="font-size:13px;margin:0 0 2px">{{ a.t }}</p>
+                <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0">{{ a.who }} · {{ a.when }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ v_pages }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Website pages · 40</span>
+      <input class="input" placeholder="Filter" style="margin-left:auto;padding:7px 10px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:12.5px;width:120px">
+    </div>
+    <div style="max-height:520px;overflow:auto">
+      <sc-for list="{{ cmsPages }}" as="p" hint-placeholder-count="10">
+        <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+          <span style="font-size:13.5px;font-weight:800;flex:1 1 150px;min-width:0">{{ p.t }}</span>
+          <span style="font-size:11.5px;color:var(--color-neutral-700)">/{{ p.slug }}</span>
+          <span style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:{{ p.bg }};color:#fff;padding:3px 7px;margin-left:auto">{{ p.status }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Editing · Boarding Life</p>
+    <div style="padding:18px">
+      <div class="field" style="margin-bottom:14px"><label>Page title</label><input class="input" value="Boarding Life" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px"></div>
+      <div class="field" style="margin-bottom:14px"><label>Hero lead</label><textarea class="input" rows="3" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px">Four houses, 480 beds, resident house parents and a week that has shape.</textarea></div>
+      <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:18px 0 10px">Content blocks</p>
+      <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="5">
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--color-divider);margin-bottom:8px">
+          <span style="font-size:11px;color:var(--color-neutral-700);cursor:grab">⠿</span>
+          <span style="font-size:13px;flex:1 1 auto;min-width:0">{{ b.t }}</span>
+          <span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--blue)">{{ b.kind }}</span>
+        </div>
+      </sc-for>
+      <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn btn-secondary" style="font-size:12px">Add block</button>
+        <button class="btn btn-secondary" style="font-size:12px">Preview</button>
+        <button class="btn btn-primary" style="font-size:12px;margin-left:auto;text-transform:uppercase;letter-spacing:.06em">Publish to web + app</button>
+      </div>
+      <p style="font-size:11.5px;color:var(--color-neutral-700);line-height:1.5;margin:14px 0 0">Publishing pushes to the public website and to the matching screen in the parent and student apps. Changes are versioned and can be rolled back.</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_appContent }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Compose push notification</p>
+    <div style="padding:18px">
+      <div class="field" style="margin-bottom:14px"><label>Audience</label><input class="input" value="Parents · Form 1 · Nyanga House" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px"></div>
+      <div class="field" style="margin-bottom:14px"><label>Title</label><input class="input" value="Exeat weekend transport" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px"></div>
+      <div class="field" style="margin-bottom:14px"><label>Message</label><textarea class="input" rows="3" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px">Buses depart Friday at 15:30. Confirm your child's seat in the app by Thursday 12:00.</textarea></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-secondary" style="font-size:12px">Also send SMS</button>
+        <button class="btn btn-primary" style="font-size:12px;margin-left:auto;text-transform:uppercase;letter-spacing:.06em">Send to 611 devices</button>
+      </div>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">App screens controlled here</p>
+    <sc-for list="{{ appScreens }}" as="a" hint-placeholder-count="7">
+      <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="font-size:13.5px;flex:1 1 150px;min-width:0">{{ a.t }}</span>
+        <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">{{ a.src }}</span>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_menu }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Week of 19–25 October · Cycle 2</span>
+    <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:var(--color-accent);color:#fff;padding:3px 7px">Draft</span>
+    <button class="btn btn-primary" style="font-size:12px;margin-left:auto;text-transform:uppercase;letter-spacing:.06em">Publish week</button>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:680px;font-size:13px">
+      <thead><tr><th style="text-align:left">Day</th><th style="text-align:left">Breakfast</th><th style="text-align:left">Lunch</th><th style="text-align:left">Supper</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ menuRows }}" as="r" hint-placeholder-count="7">
+          <tr><td style="font-weight:800">{{ r.d }}</td><td>{{ r.b }}</td><td>{{ r.l }}</td><td>{{ r.s }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0;padding:13px 18px;border-top:2px solid var(--color-divider)">Publishing writes to the website Dining page and the Menu tab of the parent and student apps at the same time. Allergen flags are inherited from the item library.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_applications }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="display:flex;gap:8px;padding:13px 18px;border-bottom:2px solid var(--color-divider);flex-wrap:wrap">
+    <sc-for list="{{ appTabs }}" as="t" hint-placeholder-count="5">
+      <span style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border:1px solid var(--color-divider);background:{{ t.bg }};color:{{ t.fg }}">{{ t.l }}</span>
+    </sc-for>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:700px;font-size:13px">
+      <thead><tr><th style="text-align:left">Reference</th><th style="text-align:left">Applicant</th><th style="text-align:left">Entry</th><th style="text-align:left">Stage</th><th style="text-align:left">Received</th><th style="text-align:left">Owner</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ apps }}" as="a" hint-placeholder-count="7">
+          <tr><td>{{ a.ref }}</td><td style="font-weight:800">{{ a.n }}</td><td>{{ a.entry }}</td><td style="color:{{ a.colour }};font-weight:800">{{ a.stage }}</td><td>{{ a.when }}</td><td>{{ a.owner }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_invoices }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Payments awaiting reconciliation</p>
+    <sc-for list="{{ payRows }}" as="p" hint-placeholder-count="6">
+      <div style="display:flex;gap:10px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:var(--blue);color:#fff;padding:3px 7px">{{ p.method }}</span>
+        <span style="font-size:13px;flex:1 1 140px;min-width:0">{{ p.ref }}</span>
+        <span style="font-size:13px;font-weight:800;margin-left:auto">{{ p.amt }}</span>
+        <button class="btn btn-secondary" style="font-size:11.5px">Match</button>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Collection · Term 1 2027</p>
+    <div style="padding:18px">
+      <sc-for list="{{ collect }}" as="c" hint-placeholder-count="4">
+        <div style="margin-bottom:16px">
+          <div style="display:flex;font-size:13px;margin-bottom:6px"><span>{{ c.l }}</span><span style="margin-left:auto;font-weight:800">{{ c.v }}</span></div>
+          <div style="height:10px;background:var(--color-neutral-200)"><span style="display:block;height:100%;width:{{ c.pct }};background:{{ c.colour }}"></span></div>
+        </div>
+      </sc-for>
+      <p style="font-size:11.5px;color:var(--color-neutral-700);line-height:1.5;margin:0">Aged debt over 30 days triggers an automatic reminder in the parent app and an SMS to the first contact.</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_students }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="display:flex;gap:10px;padding:13px 18px;border-bottom:2px solid var(--color-divider);flex-wrap:wrap">
+    <input class="input" placeholder="Search name, ID or guardian" style="flex:1 1 200px;padding:8px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13px">
+    <select class="input" style="padding:8px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13px"><option>All year groups</option><option>Form 1</option><option>Lower Sixth</option></select>
+    <select class="input" style="padding:8px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13px"><option>All houses</option><option>Nyanga</option><option>Zambezi</option></select>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:660px;font-size:13px">
+      <thead><tr><th style="text-align:left">Pupil</th><th style="text-align:left">Year</th><th style="text-align:left">House</th><th style="text-align:left">Pathway</th><th style="text-align:left">Fees</th><th style="text-align:left">Att.</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ pupils }}" as="p" hint-placeholder-count="8">
+          <tr><td style="font-weight:800">{{ p.n }}</td><td>{{ p.y }}</td><td>{{ p.h }}</td><td>{{ p.path }}</td><td style="color:{{ p.feeColour }};font-weight:800">{{ p.fee }}</td><td>{{ p.att }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_timetable }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Form 1 Blue · Week A</span>
+    <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:var(--blue);color:#fff;padding:3px 7px">No clashes</span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:720px;font-size:12.5px">
+      <thead><tr><th style="text-align:left">Period</th><th style="text-align:left">Mon</th><th style="text-align:left">Tue</th><th style="text-align:left">Wed</th><th style="text-align:left">Thu</th><th style="text-align:left">Fri</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ ttRows }}" as="r" hint-placeholder-count="8">
+          <tr><td style="font-weight:800">{{ r.p }}</td><td>{{ r.mo }}</td><td>{{ r.tu }}</td><td>{{ r.we }}</td><td>{{ r.th }}</td><td>{{ r.fr }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_attendance }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Form 1 Blue · Period 1 · Mathematics</span>
+      <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">24 pupils</span>
+    </div>
+    <sc-for list="{{ register }}" as="r" hint-placeholder-count="7">
+      <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="font-size:13.5px;flex:1 1 150px;min-width:0">{{ r.n }}</span>
+        <span style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:{{ r.colour }};margin-left:auto">{{ r.s }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Follow-up queue</p>
+    <sc-for list="{{ followUp }}" as="f" hint-placeholder-count="5">
+      <div style="padding:12px 18px;border-bottom:1px solid var(--color-divider)">
+        <p style="font-size:13.5px;font-weight:800;margin:0 0 2px">{{ f.n }}</p>
+        <p style="font-size:12px;color:var(--color-neutral-700);margin:0">{{ f.b }}</p>
+      </div>
+    </sc-for>
+    <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0;padding:13px 18px">Unexplained absences trigger an automatic app notification and SMS to the first contact at 09:00.</p>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_assessment }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Term 1 2027 · report generation</span>
+    <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">418 pupils · 7 of 12 departments complete</span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:680px;font-size:13px">
+      <thead><tr><th style="text-align:left">Department</th><th style="text-align:left">Marks entered</th><th style="text-align:left">Comments</th><th style="text-align:left">Status</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ deptRows }}" as="d" hint-placeholder-count="8">
+          <tr><td style="font-weight:800">{{ d.t }}</td><td>{{ d.marks }}</td><td>{{ d.comments }}</td><td style="font-weight:800;color:{{ d.colour }}">{{ d.status }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0;padding:13px 18px;border-top:2px solid var(--color-divider)">Generating locks the marks, renders a PDF per pupil, and publishes to the parent and student apps at a time you schedule.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_beds }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+  <sc-for list="{{ houseCols }}" as="h" hint-placeholder-count="4">
+    <div style="background:#fff">
+      <div style="background:{{ h.colour }};color:#fff;padding:14px 16px">
+        <p style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin:0">{{ h.name }}</p>
+        <p style="font-size:11.5px;margin:2px 0 0;opacity:.9">{{ h.filled }} of 120 beds · {{ h.free }} free</p>
+      </div>
+      <sc-for list="{{ h.bays }}" as="b" hint-placeholder-count="4">
+        <div style="padding:10px 16px;border-bottom:1px solid var(--color-divider);display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12.5px;font-weight:800">{{ b.n }}</span>
+          <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">{{ b.occ }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-for>
+</div>
+<p style="font-size:11.5px;color:var(--color-neutral-700);margin:14px 0 0">Drag a pupil between bays to reallocate. Siblings are held in the same house by default; year-group mixing within a bay is enforced by the allocation rule.</p>
+</sc-if>
+
+<sc-if value="{{ v_posts }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="display:flex;gap:8px;padding:13px 18px;border-bottom:2px solid var(--color-divider);flex-wrap:wrap">
+    <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Posts · 9</span>
+    <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">Published posts appear on the website blog and in the app news feed</span>
+  </div>
+  <sc-for list="{{ postRows }}" as="p" hint-placeholder-count="7">
+    <div style="display:flex;gap:10px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+      <span style="font-size:13.5px;font-weight:800;flex:1 1 200px;min-width:0">{{ p.t }}</span>
+      <span style="font-size:11.5px;color:var(--color-neutral-700)">{{ p.cat }} · {{ p.author }}</span>
+      <span style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;background:{{ p.bg }};color:#fff;padding:3px 7px;margin-left:auto">{{ p.status }}</span>
+    </div>
+  </sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_eventsAdmin }}" hint-placeholder-val="{{ false }}">
+<div style="border:2px solid var(--color-text);background:#fff">
+  <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Events · Term 1 window</span>
+    <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">Tickets are QR codes delivered by SMS and in the app</span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="table" style="width:100%;min-width:700px;font-size:13px">
+      <thead><tr><th style="text-align:left">Event</th><th style="text-align:left">Date</th><th style="text-align:left">Price</th><th style="text-align:left">Sold</th><th style="text-align:left">Capacity</th><th style="text-align:left">Status</th></tr></thead>
+      <tbody>
+        <sc-for list="{{ eventRows }}" as="e" hint-placeholder-count="6">
+          <tr><td style="font-weight:800">{{ e.t }}</td><td>{{ e.d }}</td><td>{{ e.price }}</td><td>{{ e.sold }}</td><td>{{ e.cap }}</td><td style="font-weight:800;color:{{ e.colour }}">{{ e.status }}</td></tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_media }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-text)">
+    <sc-for list="{{ mediaItems }}" as="m" hint-placeholder-count="10">
+      <div style="background:#fff;padding:12px">
+        <div style="height:92px;background:var(--color-neutral-200);border:1px solid var(--color-divider);margin-bottom:8px"></div>
+        <p style="font-size:12px;font-weight:800;margin:0 0 2px">{{ m.n }}</p>
+        <p style="font-size:11px;color:var(--color-neutral-700);margin:0">{{ m.meta }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <p style="font-size:11.5px;color:var(--color-neutral-700);margin:14px 0 0">Every image is stored once and referenced by the website, the app and generated PDFs. Replacing a file updates it everywhere it is used.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_transport }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Live routes · 9</span>
+      <span style="font-size:11.5px;color:var(--color-accent);font-weight:800;margin-left:auto">● Updated 14 s ago</span>
+    </div>
+    <sc-for list="{{ routeRows }}" as="r" hint-placeholder-count="9">
+      <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="background:var(--color-accent);color:#fff;font-family:var(--font-heading);font-weight:800;font-size:12px;padding:4px 9px">{{ r.code }}</span>
+        <span style="font-size:13px;flex:1 1 130px;min-width:0">{{ r.name }}</span>
+        <span style="font-size:11.5px;color:var(--color-neutral-700)">{{ r.riders }} riders</span>
+        <span style="font-size:11.5px;font-weight:800;color:{{ r.colour }};margin-left:auto">{{ r.status }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Boarding scans · this morning</p>
+    <sc-for list="{{ scans }}" as="s" hint-placeholder-count="6">
+      <div style="padding:11px 18px;border-bottom:1px solid var(--color-divider)">
+        <p style="font-size:13px;font-weight:800;margin:0 0 2px">{{ s.n }}</p>
+        <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0">{{ s.b }}</p>
+      </div>
+    </sc-for>
+    <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0;padding:13px 18px">Each scan pushes a confirmation to the parent app. An unscanned rider at departure raises an alert to the transport manager.</p>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_library }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <div style="padding:13px 18px;border-bottom:2px solid var(--color-divider);display:flex;gap:10px;flex-wrap:wrap">
+      <input class="input" placeholder="Scan barcode or search catalogue" style="flex:1 1 200px;padding:8px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13px">
+      <button class="btn btn-secondary" style="font-size:12px">Return</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="table" style="width:100%;min-width:520px;font-size:13px">
+        <thead><tr><th style="text-align:left">Title</th><th style="text-align:left">Class</th><th style="text-align:left">Copies</th><th style="text-align:left">Out</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ libRows }}" as="l" hint-placeholder-count="7">
+            <tr><td style="font-weight:800">{{ l.t }}</td><td>{{ l.cls }}</td><td>{{ l.copies }}</td><td style="color:{{ l.colour }};font-weight:800">{{ l.out }}</td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Overdue · 11</p>
+    <sc-for list="{{ overdue }}" as="o" hint-placeholder-count="5">
+      <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="font-size:13px;flex:1 1 150px;min-width:0">{{ o.t }}</span>
+        <span style="font-size:11.5px;color:var(--color-neutral-700)">{{ o.who }}</span>
+        <span style="font-size:11.5px;font-weight:800;color:var(--color-accent);margin-left:auto">{{ o.days }}</span>
+      </div>
+    </sc-for>
+    <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0;padding:13px 18px">No fines. Overdue items appear in the pupil's app and, after fourteen days, in the tutor's weekly list.</p>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_comms }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">New broadcast</p>
+    <div style="padding:18px">
+      <div class="field" style="margin-bottom:14px"><label>Segment</label><input class="input" value="All parents · Forms 1–4" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px"></div>
+      <div class="field" style="margin-bottom:14px"><label>Subject</label><input class="input" value="Half-term arrangements" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px"></div>
+      <div class="field" style="margin-bottom:14px"><label>Message</label><textarea class="input" rows="4" style="width:100%;padding:9px 11px;border:1px solid var(--color-divider);font-family:var(--font-body);font-size:13.5px">Half term runs 20–24 February. Boarders may be collected from 15:30 on Friday 19 February; buses depart at 16:00.</textarea></div>
+      <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--blue);margin:0 0 10px">Channels</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+        <sc-for list="{{ channels }}" as="c" hint-placeholder-count="4">
+          <span style="font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--color-divider);background:{{ c.bg }};color:{{ c.fg }}">{{ c.l }}</span>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-secondary" style="font-size:12px">Schedule</button>
+        <button class="btn btn-primary" style="font-size:12px;margin-left:auto;text-transform:uppercase;letter-spacing:.06em">Send to 604 recipients</button>
+      </div>
+      <p style="font-size:11.5px;color:var(--color-neutral-700);line-height:1.5;margin:14px 0 0">Estimated SMS cost US$12.08. Push and in-app are free. Every send is logged with per-recipient delivery status.</p>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Recent broadcasts</p>
+    <sc-for list="{{ broadcasts }}" as="b" hint-placeholder-count="6">
+      <div style="padding:12px 18px;border-bottom:1px solid var(--color-divider)">
+        <p style="font-size:13.5px;font-weight:800;margin:0 0 2px">{{ b.t }}</p>
+        <p style="font-size:11.5px;color:var(--color-neutral-700);margin:0">{{ b.seg }} · {{ b.channel }} · {{ b.stat }}</p>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ v_analytics }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:20px">
+    <div style="border:2px solid var(--color-text);background:#fff">
+      <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Admissions funnel · 2027 entry</p>
+      <div style="padding:18px">
+        <sc-for list="{{ funnel }}" as="f" hint-placeholder-count="6">
+          <div style="margin-bottom:14px">
+            <div style="display:flex;font-size:13px;margin-bottom:5px"><span>{{ f.l }}</span><span style="margin-left:auto;font-weight:800">{{ f.v }}</span></div>
+            <div style="height:12px;background:var(--color-neutral-200)"><span style="display:block;height:100%;width:{{ f.pct }};background:{{ f.colour }}"></span></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="border:2px solid var(--color-text);background:#fff">
+      <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Attendance by year group · this term</p>
+      <div style="padding:18px">
+        <sc-for list="{{ attByYear }}" as="a" hint-placeholder-count="6">
+          <div style="margin-bottom:14px">
+            <div style="display:flex;font-size:13px;margin-bottom:5px"><span>{{ a.l }}</span><span style="margin-left:auto;font-weight:800">{{ a.v }}</span></div>
+            <div style="height:12px;background:var(--color-neutral-200)"><span style="display:block;height:100%;width:{{ a.pct }};background:{{ a.colour }}"></span></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <div style="border:2px solid var(--color-text);background:#fff">
+    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0;padding:13px 18px;border-bottom:2px solid var(--color-divider)">Saved reports</p>
+    <sc-for list="{{ reports }}" as="r" hint-placeholder-count="6">
+      <div style="display:flex;gap:10px;align-items:center;padding:11px 18px;border-bottom:1px solid var(--color-divider);flex-wrap:wrap">
+        <span style="font-size:13.5px;flex:1 1 200px;min-width:0">{{ r.t }}</span>
+        <span style="font-size:11.5px;color:var(--color-neutral-700);margin-left:auto">{{ r.when }}</span>
+        <button class="btn btn-secondary" style="font-size:11.5px">Run</button>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<!--VIEWS-END-->
+
+    </div>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+const NAV = [
+  ['School', [['dash', 'Dashboard'], ['students', 'Students'], ['timetable', 'Timetable']]],
+  ['Daily', [['attendance', 'Attendance'], ['assessment', 'Assessment & reports']]],
+  ['Admissions', [['applications', 'Applications']]],
+  ['Finance', [['invoices', 'Invoices & payments']]],
+  ['Boarding', [['beds', 'Bed allocation'], ['menu', 'Catering menu']]],
+  ['Operations', [['transport', 'Transport'], ['library', 'Library'], ['comms', 'Comms broadcast'], ['analytics', 'Analytics']]],
+  ['Website & App · CMS', [['pages', 'Pages & content'], ['posts', 'Blog & news'], ['eventsAdmin', 'Events & tickets'], ['appContent', 'App & push'], ['media', 'Media library']]]
+];
+const META = {
+  dash: ['Overview', 'Dashboard', 'New notice'],
+  students: ['School', 'Students', 'Add pupil'],
+  timetable: ['School', 'Timetable', 'Publish'],
+  attendance: ['Daily', 'Attendance register', 'Save register'],
+  assessment: ['Daily', 'Assessment & reports', 'Generate reports'],
+  applications: ['Admissions', 'Applications', 'Export'],
+  invoices: ['Finance', 'Invoices & payments', 'Run invoices'],
+  beds: ['Boarding', 'Bed allocation', 'Save plan'],
+  menu: ['Boarding', 'Catering menu', 'Publish week'],
+  transport: ['Operations', 'Transport', 'Add route'],
+  library: ['Operations', 'Library', 'Issue item'],
+  comms: ['Operations', 'Comms broadcast', 'New broadcast'],
+  analytics: ['Operations', 'Analytics', 'Export'],
+  pages: ['Website & App · CMS', 'Pages & content', 'New page'],
+  posts: ['Website & App · CMS', 'Blog & news', 'New post'],
+  eventsAdmin: ['Website & App · CMS', 'Events & tickets', 'New event'],
+  appContent: ['Website & App · CMS', 'App content & push', 'Send push'],
+  media: ['Website & App · CMS', 'Media library', 'Upload']
+};
+
+class Component extends DCLogic {
+  state = { view: 'dash' };
+  go = (v) => this.setState({ view: v });
+
+  renderVals() {
+    const v = this.state.view;
+    const V = {};
+    Object.keys(META).forEach(k => { V['v_' + k] = v === k; });
+    const m = META[v] || ['', '', ''];
+    return {
+      ...V,
+      crumb: m[0], title: m[1], action: m[2],
+      sections: NAV.map(([title, items]) => ({
+        title,
+        items: items.map(([id, label]) => ({
+          label,
+          bg: v === id ? 'rgba(255,255,255,.12)' : 'transparent',
+          fg: v === id ? '#fff' : '#dbe6f0',
+          mark: v === id ? 'var(--color-accent)' : 'transparent',
+          go: () => this.go(id)
+        }))
+      })),
+      routeRows: [
+        { code: 'A1', name: 'Mazowe – Glendale', riders: 18, status: 'On route', colour: 'var(--blue)' },
+        { code: 'A2', name: 'Concession loop', riders: 12, status: 'On route', colour: 'var(--blue)' },
+        { code: 'B1', name: 'Bindura town', riders: 26, status: 'Delayed 8 min', colour: 'var(--color-accent)' },
+        { code: 'B2', name: 'Shamva', riders: 9, status: 'On route', colour: 'var(--blue)' },
+        { code: 'C1', name: 'Borrowdale – Gletwin', riders: 31, status: 'At stop', colour: 'var(--blue)' },
+        { code: 'C2', name: 'Mt Pleasant – Avondale', riders: 28, status: 'On route', colour: 'var(--blue)' },
+        { code: 'C3', name: 'Greendale – Highlands', riders: 24, status: 'On route', colour: 'var(--blue)' },
+        { code: 'D1', name: 'Southerton – Waterfalls', riders: 16, status: 'Boarding', colour: 'var(--blue)' },
+        { code: 'D2', name: 'Chinhoyi express', riders: 11, status: 'Exeat only', colour: 'var(--color-neutral-700)' }
+      ],
+      scans: [
+        { n: 'C2 · 28 of 28 scanned', b: 'Departed Mount Pleasant 06:02' },
+        { n: 'C1 · 30 of 31 scanned', b: 'Kadzere, S. not scanned — parent notified' },
+        { n: 'B1 · 26 of 26 scanned', b: 'Departed Bindura CBD 06:18, delayed at Trojan' },
+        { n: 'A1 · 18 of 18 scanned', b: 'Departed Mazowe Centre 06:35' },
+        { n: 'D1 · 15 of 16 scanned', b: 'Moyo, N. absent — guardian confirmed' }
+      ],
+      libRows: [
+        { t: 'Nervous Conditions', cls: 'ZIM FIC 823.9', copies: 8, out: '2 out', colour: 'var(--blue)' },
+        { t: 'House of Hunger', cls: 'ZIM FIC 823.9', copies: 6, out: '2 out', colour: 'var(--blue)' },
+        { t: 'Things Fall Apart', cls: 'AFR FIC 823', copies: 10, out: '2 out', colour: 'var(--blue)' },
+        { t: 'Biology for ZIMSEC O Level', cls: '570 MUD', copies: 24, out: '24 out', colour: 'var(--color-accent)' },
+        { t: 'IGCSE Mathematics Core & Extended', cls: 'REF 510', copies: 12, out: 'Reference', colour: 'var(--color-neutral-700)' },
+        { t: 'A History of Zimbabwe', cls: '968.91 MLA', copies: 5, out: '2 out', colour: 'var(--blue)' },
+        { t: 'CAIE Physics past papers 2018–25', cls: 'DIGITAL', copies: '∞', out: '41 e-issues', colour: 'var(--blue)' }
+      ],
+      overdue: [
+        { t: 'Biology for ZIMSEC O Level', who: 'Marufu, K. · Form 3', days: '9 days' },
+        { t: 'A History of Zimbabwe', who: 'Dube, A. · Form 3', days: '6 days' },
+        { t: 'Nervous Conditions', who: 'Ncube, T. · L6', days: '4 days' },
+        { t: 'Things Fall Apart', who: 'Chikomba, R. · Form 1', days: '3 days' },
+        { t: 'House of Hunger', who: 'Moyo, N. · Form 4', days: '2 days' }
+      ],
+      channels: [
+        { l: 'Push', bg: 'var(--blue)', fg: '#fff' }, { l: 'In-app', bg: 'var(--blue)', fg: '#fff' },
+        { l: 'SMS', bg: 'var(--blue)', fg: '#fff' }, { l: 'Email', bg: '#fff', fg: 'var(--color-text)' }
+      ],
+      broadcasts: [
+        { t: 'Round 2 assessment venue confirmed', seg: 'Applicants', channel: 'Push + SMS', stat: '611 delivered, 3 failed' },
+        { t: 'Weekly menu published', seg: 'Boarding families', channel: 'Push', stat: '474 delivered' },
+        { t: 'Fee reminder — 30 days', seg: 'Accounts in arrears', channel: 'SMS + in-app', stat: '38 delivered' },
+        { t: 'Valley Run tickets on sale', seg: 'All parents', channel: 'Push + email', stat: '604 delivered' },
+        { t: 'Beware of fraudulent fee accounts', seg: 'All parents', channel: 'SMS + push + email', stat: '604 delivered' },
+        { t: 'Uniform fitting slots open', seg: 'Enrolled 2027', channel: 'In-app', stat: '418 delivered' }
+      ],
+      funnel: [
+        { l: 'Enquiries', v: '1,284', pct: '100%', colour: 'var(--blue)' },
+        { l: 'Applications started', v: '612', pct: '48%', colour: 'var(--blue)' },
+        { l: 'Applications submitted', v: '487', pct: '38%', colour: 'var(--blue)' },
+        { l: 'Assessed', v: '441', pct: '34%', colour: 'var(--blue)' },
+        { l: 'Offers issued', v: '462', pct: '36%', colour: 'var(--color-accent)' },
+        { l: 'Deposits paid · enrolled', v: '418', pct: '33%', colour: 'var(--color-accent)' }
+      ],
+      attByYear: [
+        { l: 'Form 1', v: '97.8%', pct: '97.8%', colour: 'var(--blue)' },
+        { l: 'Form 2', v: '97.1%', pct: '97.1%', colour: 'var(--blue)' },
+        { l: 'Form 3', v: '96.4%', pct: '96.4%', colour: 'var(--blue)' },
+        { l: 'Form 4', v: '95.2%', pct: '95.2%', colour: 'var(--color-accent)' },
+        { l: 'Lower Sixth', v: '96.9%', pct: '96.9%', colour: 'var(--blue)' },
+        { l: 'Upper Sixth', v: '94.6%', pct: '94.6%', colour: 'var(--color-accent)' }
+      ],
+      reports: [
+        { t: 'Aged debt by family · over 30 days', when: 'Run daily 06:00' },
+        { t: 'Grade distribution by department and pathway', when: 'Last run 12 Sep' },
+        { t: 'Bursary spend against budget', when: 'Run monthly' },
+        { t: 'House points standings', when: 'Live' },
+        { t: 'Boarding occupancy and bed forecast', when: 'Last run 15 Sep' },
+        { t: 'Staff contact-hours load', when: 'Run termly' }
+      ],
+      pupils: [
+        { n: 'Tafara N. Mutasa', y: 'Form 1', h: 'Nyanga', path: 'Undecided', fee: 'Paid', feeColour: 'var(--blue)', att: '98.4%' },
+        { n: 'Rufaro Chikomba', y: 'Form 1', h: 'Zambezi', path: 'Undecided', fee: '$368 due', feeColour: 'var(--color-accent)', att: '99.1%' },
+        { n: 'Anesu Dube', y: 'Form 3', h: 'Matopo', path: 'Cambridge', fee: 'Paid', feeColour: 'var(--blue)', att: '97.2%' },
+        { n: 'Kudzai Marufu', y: 'Form 3', h: 'Nyanga', path: 'ZIMSEC', fee: 'Plan · 2 of 3', feeColour: 'var(--color-neutral-700)', att: '95.8%' },
+        { n: 'Nyasha Moyo', y: 'Form 4', h: 'Chimanimani', path: 'Cambridge', fee: 'Paid', feeColour: 'var(--blue)', att: '99.6%' },
+        { n: 'Tinashe Gwatidzo', y: 'Form 4', h: 'Zambezi', path: 'ZIMSEC', fee: '$1,180 due', feeColour: 'var(--color-accent)', att: '92.3%' },
+        { n: 'Takudzwa Ncube', y: 'Lower Sixth', h: 'Matopo', path: 'Cambridge', fee: 'Bursary 75%', feeColour: 'var(--blue)', att: '98.9%' },
+        { n: 'Shamiso Kadzere', y: 'Lower Sixth', h: 'Chimanimani', path: 'ZIMSEC', fee: 'Paid', feeColour: 'var(--blue)', att: '97.7%' }
+      ],
+      ttRows: [
+        { p: '1 · 07:50', mo: 'Mathematics', tu: 'English', we: 'Biology', th: 'Shona', fr: 'Mathematics' },
+        { p: '2 · 08:35', mo: 'English', tu: 'Mathematics', we: 'Chemistry', th: 'History', fr: 'English' },
+        { p: '3 · 09:20', mo: 'Chemistry', tu: 'Geography', we: 'Mathematics', th: 'Physics', fr: 'Computer Sci.' },
+        { p: '4 · 10:05', mo: 'Shona', tu: 'Biology', we: 'English', th: 'Agriculture', fr: 'Biology' },
+        { p: '5 · 10:50', mo: 'History', tu: 'Computer Sci.', we: 'Geography', th: 'Mathematics', fr: 'Art' },
+        { p: '6 · 11:35', mo: 'Physics', tu: 'Shona', we: 'History', th: 'English', fr: 'Music' },
+        { p: '7 · 12:20', mo: 'Geography', tu: 'Physics', we: 'Agriculture', th: 'Chemistry', fr: 'PE' },
+        { p: '8 · 14:00', mo: 'Sport', tu: 'Societies', we: 'Sport', th: 'Societies', fr: 'Service' }
+      ],
+      register: [
+        { n: 'Mutasa, Tafara N.', s: 'Present', colour: 'var(--blue)' },
+        { n: 'Chikomba, Rufaro', s: 'Present', colour: 'var(--blue)' },
+        { n: 'Dube, Anesu', s: 'Late · 4 min', colour: 'var(--color-accent)' },
+        { n: 'Gwatidzo, Tinashe', s: 'Absent', colour: 'var(--color-accent)' },
+        { n: 'Hove, Chenai', s: 'Present', colour: 'var(--blue)' },
+        { n: 'Kadzere, Shamiso', s: 'Present', colour: 'var(--blue)' },
+        { n: 'Marufu, Kudzai', s: 'Sanatorium', colour: 'var(--color-neutral-700)' }
+      ],
+      followUp: [
+        { n: 'Gwatidzo, Tinashe · Form 4', b: 'Absent P1–P3, no reason. Guardian not reached on first attempt.' },
+        { n: 'Sibanda, Ruvimbo · Form 2', b: 'Third late arrival this week. Tutor notified.' },
+        { n: 'Mhaka, Chiedza · Form 3', b: 'Absent Friday, medical note outstanding.' },
+        { n: 'Zvobgo, Blessing · Form 1', b: 'Left site at break without sign-out. Escalated to house parent.' }
+      ],
+      deptRows: [
+        { t: 'Mathematics', marks: '24 / 24 sets', comments: '418 / 418', status: 'Complete', colour: 'var(--blue)' },
+        { t: 'English', marks: '24 / 24 sets', comments: '418 / 418', status: 'Complete', colour: 'var(--blue)' },
+        { t: 'Sciences', marks: '31 / 36 sets', comments: '340 / 418', status: 'In progress', colour: 'var(--color-accent)' },
+        { t: 'Humanities', marks: '18 / 18 sets', comments: '295 / 295', status: 'Complete', colour: 'var(--blue)' },
+        { t: 'Languages', marks: '14 / 16 sets', comments: '260 / 302', status: 'In progress', colour: 'var(--color-accent)' },
+        { t: 'Commerce', marks: '12 / 12 sets', comments: '188 / 188', status: 'Complete', colour: 'var(--blue)' },
+        { t: 'Computer Science', marks: '9 / 9 sets', comments: '143 / 143', status: 'Complete', colour: 'var(--blue)' },
+        { t: 'Creative Arts', marks: '6 / 11 sets', comments: '92 / 176', status: 'Not started', colour: 'var(--color-accent)' }
+      ],
+      houseCols: [
+        { name: 'Nyanga', colour: 'var(--blue)', filled: 118, free: 2, bays: [{ n: 'Bay 1', occ: '6 / 6' }, { n: 'Bay 2', occ: '6 / 6' }, { n: 'Bay 3', occ: '5 / 6' }, { n: 'Bay 4', occ: '6 / 6' }] },
+        { name: 'Zambezi', colour: 'var(--color-accent)', filled: 120, free: 0, bays: [{ n: 'Bay 1', occ: '6 / 6' }, { n: 'Bay 2', occ: '6 / 6' }, { n: 'Bay 3', occ: '6 / 6' }, { n: 'Bay 4', occ: '6 / 6' }] },
+        { name: 'Matopo', colour: '#1d1f20', filled: 114, free: 6, bays: [{ n: 'Bay 1', occ: '6 / 6' }, { n: 'Bay 2', occ: '4 / 6' }, { n: 'Bay 3', occ: '6 / 6' }, { n: 'Bay 4', occ: '5 / 6' }] },
+        { name: 'Chimanimani', colour: '#7c1405', filled: 122, free: 0, bays: [{ n: 'Bay 1', occ: '6 / 6' }, { n: 'Bay 2', occ: '6 / 6' }, { n: 'Bay 3', occ: '6 / 6' }, { n: 'Bay 4', occ: '6 / 6' }] }
+      ],
+      postRows: [
+        { t: 'Why we are teaching both Cambridge and ZIMSEC', cat: 'Curriculum', author: 'Dr. T. Mukombachoto', status: 'Live', bg: 'var(--blue)' },
+        { t: 'The science block, eleven months in', cat: 'Building', author: 'Mr. F. Gwatidzo', status: 'Live', bg: 'var(--blue)' },
+        { t: 'What our house parents are reading this term', cat: 'Boarding', author: 'Ms. R. Mapfumo', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Hiring for a school that does not exist yet', cat: 'Staff room', author: 'Dr. T. Mukombachoto', status: 'Live', bg: 'var(--blue)' },
+        { t: 'First term timetable: what changed after the trial', cat: 'Curriculum', author: 'Mrs. N. Chirwa', status: 'Awaiting approval', bg: 'var(--color-accent)' },
+        { t: 'Meet the founding sports staff', cat: 'Sport', author: 'Mr. S. Ndlovu', status: 'Draft', bg: 'var(--color-accent)' },
+        { t: 'Solar, boreholes and the end of load-shedding excuses', cat: 'Building', author: 'Mr. F. Gwatidzo', status: 'Live', bg: 'var(--blue)' }
+      ],
+      eventRows: [
+        { t: 'Founding Open Day', d: '10 Oct 2026', price: 'Free', sold: '188', cap: '300', status: 'On sale', colour: 'var(--blue)' },
+        { t: 'Entrance Assessment · Round 2', d: '23 Oct 2026', price: '—', sold: '73', cap: '120', status: 'Invite only', colour: 'var(--color-neutral-700)' },
+        { t: 'Parent Information Evening', d: '5 Nov 2026', price: 'Free', sold: '412', cap: 'Unlimited', status: 'On sale', colour: 'var(--blue)' },
+        { t: 'Valley Run & Family Picnic', d: '21 Nov 2026', price: '$5', sold: '206', cap: '340', status: 'On sale', colour: 'var(--blue)' },
+        { t: 'Inaugural Concert', d: '14 Feb 2027', price: '$3', sold: '0', cap: '400', status: 'Draft', colour: 'var(--color-accent)' }
+      ],
+      mediaItems: [
+        { n: 'campus-aerial.jpg', meta: '4.2 MB · used on 3 pages' },
+        { n: 'boarding-bay.jpg', meta: '2.8 MB · used on 2 pages' },
+        { n: 'science-block.jpg', meta: '3.1 MB · used on 4 pages' },
+        { n: 'head-portrait.jpg', meta: '1.6 MB · used on 2 pages' },
+        { n: 'marimba-ensemble.jpg', meta: '2.4 MB · used on 1 page' },
+        { n: 'valley-course.jpg', meta: '3.7 MB · used on 2 pages' },
+        { n: 'dining-hall.jpg', meta: '2.2 MB · used on 2 pages' },
+        { n: 'uniform-2027.jpg', meta: '1.9 MB · used on 1 page' },
+        { n: 'fee-schedule-2027.pdf', meta: '340 KB · linked 4 times' },
+        { n: 'safeguarding-policy.pdf', meta: '512 KB · linked 3 times' }
+      ],
+      cmsPages: [
+        { t: 'Home', slug: '', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Our Story', slug: 'about/story', status: 'Live', bg: 'var(--blue)' },
+        { t: "Head's Welcome", slug: 'about/head', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Campus & Facilities', slug: 'about/campus', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Virtual Campus Tour', slug: 'about/tour', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Cambridge Pathway', slug: 'academics/cambridge', status: 'Live', bg: 'var(--blue)' },
+        { t: 'ZIMSEC Pathway', slug: 'academics/zimsec', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Fees & Payment Plans', slug: 'admissions/fees', status: 'Draft', bg: 'var(--color-accent)' },
+        { t: 'Boarding Life', slug: 'boarding/life', status: 'Editing', bg: 'var(--color-accent)' },
+        { t: 'Dining & Weekly Menu', slug: 'boarding/dining', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Bus & Transport Tracking', slug: 'boarding/transport', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Events Calendar', slug: 'life/events', status: 'Live', bg: 'var(--blue)' },
+        { t: 'Work at Mazowe Heights', slug: 'community/jobs', status: 'Live', bg: 'var(--blue)' }
+      ],
+      blocks: [
+        { t: 'Hero — title, lead, photograph', kind: 'Hero' },
+        { t: 'Two-column introduction', kind: 'Text' },
+        { t: 'At a glance — 6 facts', kind: 'Stat list' },
+        { t: 'A weekday, hour by hour', kind: 'Timeline' },
+        { t: 'Three-photograph strip', kind: 'Gallery' },
+        { t: 'Call to action — Apply now', kind: 'CTA' }
+      ],
+      appScreens: [
+        { t: 'Home cards and quick actions', src: 'CMS · App home' },
+        { t: 'Weekly menu tab', src: 'Catering module' },
+        { t: 'Events and ticketing', src: 'Events module' },
+        { t: 'Notices feed', src: 'CMS · Notices' },
+        { t: 'Fees and statements', src: 'Finance module' },
+        { t: 'Bus tracking', src: 'Transport module' },
+        { t: 'News & blog feed', src: 'CMS · Posts' }
+      ],
+      menuRows: [
+        { d: 'Monday', b: 'Bota, scrambled eggs, bread', l: 'Sadza, beef stew, muriwo', s: 'Rice, roast chicken, custard' },
+        { d: 'Tuesday', b: 'Porridge, boiled eggs', l: 'Sadza, kapenta, covo', s: 'Macaroni cheese, mince' },
+        { d: 'Wednesday', b: 'Bota, fried eggs', l: 'Rice, chicken stew, butternut', s: 'Samp and beans, boerewors' },
+        { d: 'Thursday', b: 'Porridge, sausages', l: 'Sadza, beef stew, pumpkin leaves', s: 'Spaghetti bolognese' },
+        { d: 'Friday', b: 'Bota, scrambled eggs', l: 'Rice, fried bream, chomolia', s: 'Chips and grilled chicken' },
+        { d: 'Saturday', b: 'Cooked breakfast', l: 'Braai, sadza, salads', s: 'Soup, chicken pie' },
+        { d: 'Sunday', b: 'Pancakes, boiled eggs', l: 'Sunday roast, three vegetables', s: 'Toasted sandwiches, soup' }
+      ],
+      appTabs: [
+        { l: 'All · 73', bg: 'var(--blue)', fg: '#fff' }, { l: 'New · 18', bg: '#fff', fg: 'var(--color-text)' },
+        { l: 'Documents · 12', bg: '#fff', fg: 'var(--color-text)' }, { l: 'Assessed · 26', bg: '#fff', fg: 'var(--color-text)' },
+        { l: 'Offered · 17', bg: '#fff', fg: 'var(--color-text)' }
+      ],
+      apps: [
+        { ref: 'MH-2027-04918', n: 'Tafara N. Mutasa', entry: 'Form 1', stage: 'Assessment booked', colour: 'var(--blue)', when: '14 Sep', owner: 'P. Chinamasa' },
+        { ref: 'MH-2027-04919', n: 'Ruvimbo Sibanda', entry: 'Form 1', stage: 'Documents pending', colour: 'var(--color-accent)', when: '14 Sep', owner: 'P. Chinamasa' },
+        { ref: 'MH-2027-04921', n: 'Takudzwa Ncube', entry: 'Lower Sixth', stage: 'Offer issued', colour: 'var(--blue)', when: '13 Sep', owner: 'Registrar' },
+        { ref: 'MH-2027-04925', n: 'Chiedza Mhaka', entry: 'Form 3', stage: 'Panel review', colour: 'var(--color-accent)', when: '12 Sep', owner: 'Registrar' },
+        { ref: 'MH-2027-04930', n: 'Blessing Zvobgo', entry: 'Form 1', stage: 'Deposit paid', colour: 'var(--blue)', when: '11 Sep', owner: 'Bursary' },
+        { ref: 'MH-2027-04932', n: 'Farai Chimhini', entry: 'Form 2', stage: 'Documents pending', colour: 'var(--color-accent)', when: '10 Sep', owner: 'P. Chinamasa' },
+        { ref: 'MH-2027-04936', n: 'Shamiso Kadzere', entry: 'Lower Sixth', stage: 'Assessment booked', colour: 'var(--blue)', when: '9 Sep', owner: 'Registrar' }
+      ],
+      payRows: [
+        { method: 'ZIPIT', ref: 'CBZ ref 88412 · no invoice number', amt: '$2,450', },
+        { method: 'ZIPIT', ref: 'Stanbic ref 10298 · partial', amt: '$800' },
+        { method: 'EcoCash', ref: 'MP260914.1422.A19823', amt: '$1,270' },
+        { method: 'PayPal', ref: 'diaspora · R. Mutasa', amt: '$2,704' },
+        { method: 'Cash', ref: 'Bursary till · receipt 0412', amt: '$500' },
+        { method: 'InnBucks', ref: 'QR scan · MH-INV-27-0508', amt: '$1,180' }
+      ],
+      collect: [
+        { l: 'Tuition', v: '88%', pct: '88%', colour: 'var(--blue)' },
+        { l: 'Boarding', v: '81%', pct: '81%', colour: 'var(--blue)' },
+        { l: 'Transport', v: '74%', pct: '74%', colour: 'var(--color-accent)' },
+        { l: 'Extras (music, trips)', v: '62%', pct: '62%', colour: 'var(--color-accent)' }
+      ],
+      kpis: [
+        { l: 'Enrolled', v: '418', d: '+6 this week', colour: 'var(--blue)' },
+        { l: 'Applications', v: '73', d: '12 awaiting review', colour: 'var(--color-accent)' },
+        { l: 'Fees collected', v: '84%', d: '$2.1m of $2.5m', colour: 'var(--blue)' },
+        { l: 'Attendance', v: '96.8%', d: '13 unexplained', colour: 'var(--color-accent)' },
+        { l: 'Boarders in', v: '474', d: '6 on exeat', colour: 'var(--blue)' }
+      ],
+      queue: [
+        { tag: 'Admissions', bg: 'var(--color-accent)', t: 'Applications awaiting document verification', n: '12' },
+        { tag: 'Finance', bg: 'var(--blue)', t: 'Unmatched ZIPIT payments to reconcile', n: '7' },
+        { tag: 'Attendance', bg: 'var(--color-accent)', t: 'Unexplained absences needing a call home', n: '13' },
+        { tag: 'Boarding', bg: 'var(--blue)', t: 'Exeat requests pending approval', n: '9' },
+        { tag: 'CMS', bg: 'var(--blue)', t: 'Draft blog post awaiting the Head\u2019s approval', n: '2' }
+      ],
+      activity: [
+        { t: 'Published “Weekly menu · 19–25 Oct” to website and app', who: 'Catering Manager', when: '14 min ago' },
+        { t: 'Receipted EcoCash payment $2,704 — MH-INV-27-0431', who: 'Bursary', when: '38 min ago' },
+        { t: 'Offer issued to Tafara N. Mutasa (MH-2027-04918)', who: 'P. Chinamasa', when: '1 hr ago' },
+        { t: 'Edited homepage hero copy', who: 'Communications', when: '2 hrs ago' },
+        { t: 'Push sent: “Assessment venue confirmed” · 611 devices', who: 'P. Chinamasa', when: '3 hrs ago' },
+        { t: 'Form 3 Chemistry marks entered (24 pupils)', who: 'Dr. L. Moyo', when: 'Yesterday' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
