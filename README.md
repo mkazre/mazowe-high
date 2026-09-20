@@ -38,3 +38,8 @@ npx expo start
 ```
 
 See each app's own README for details, environment variables, and what's built vs. still scaffolded against `BUILD-PLAN.md`'s longer roadmap (finance, timetable, boarding operations, transport, library, etc.).
+
+## Deployment
+
+- `docs/DEPLOY-CPANEL-SUBDOMAIN.md` — putting this on a cPanel demo subdomain for client review.
+- `docs/MIGRATION-SUBDOMAIN-TO-PRODUCTION.md` — the plan for moving from that demo subdomain to the dedicated production domain once approved.
