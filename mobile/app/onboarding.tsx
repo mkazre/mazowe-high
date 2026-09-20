@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useRef, useState } from 'react';
 import {
-  Dimensions, FlatList, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, Text, View,
+  Dimensions, FlatList, Image, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, Text, View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { onboardingStore } from '../src/api/client';
@@ -10,12 +10,12 @@ import { colors, spacing } from '../src/theme/tokens';
 
 const { width } = Dimensions.get('window');
 
-type Slide = { key: string; title: string; body: string; emoji: string };
+type Slide = { key: string; title: string; body: string; emoji?: string; logo?: boolean };
 
 const SLIDES: Slide[] = [
   {
     key: 'welcome',
-    emoji: '🏫',
+    logo: true,
     title: 'Welcome to Mazowe Heights',
     body: 'One app for parents, pupils and teachers — everything about school life in one place, built for patchy connections and busy mornings.',
   },
@@ -85,7 +85,11 @@ export default function OnboardingScreen() {
         scrollEventThrottle={16}
         renderItem={({ item }) => (
           <View style={[styles.slide, { width }]}>
-            <Text style={styles.emoji}>{item.emoji}</Text>
+            {item.logo ? (
+              <Image source={require('../assets/logo-small.png')} style={styles.logo} resizeMode="contain" />
+            ) : (
+              <Text style={styles.emoji}>{item.emoji}</Text>
+            )}
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.body}>{item.body}</Text>
           </View>
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
   skipRow: { alignItems: 'flex-end', paddingHorizontal: spacing.lg, paddingTop: spacing.sm },
   slide: { alignItems: 'center', justifyContent: 'center', padding: spacing.xl },
   emoji: { fontSize: 64, marginBottom: spacing.lg },
+  logo: { width: 160, height: 160, marginBottom: spacing.lg },
   title: {
     fontSize: 24, fontWeight: '800', color: colors.ink, textAlign: 'center', marginBottom: spacing.md, letterSpacing: -0.5,
   },

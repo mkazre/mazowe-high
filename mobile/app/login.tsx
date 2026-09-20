@@ -27,12 +27,7 @@ export default function LoginScreen() {
     <Screen scroll={false}>
       <View style={{ flex: 1, justifyContent: 'center', padding: spacing.lg }}>
         <View style={{ alignItems: 'center', marginBottom: spacing.xl }}>
-          <View style={{
-            width: 56, height: 64, backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', marginBottom: spacing.md,
-          }}
-          >
-            <Text style={{ color: '#fff', fontWeight: '800', fontSize: 20 }}>MH</Text>
-          </View>
+          <Image source={require('../assets/logo-small.png')} style={{ width: 96, height: 96, marginBottom: spacing.md }} resizeMode="contain" />
           <Text style={{ fontSize: 22, fontWeight: '800', color: colors.ink }}>Mazowe Heights</Text>
           <Text style={{ fontSize: 12, letterSpacing: 2, textTransform: 'uppercase', color: colors.blue, marginTop: 4 }}>
             Parent · Student · Teacher
