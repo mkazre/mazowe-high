@@ -28,6 +28,12 @@ export async function submitContact(payload: { name: string; email?: string; pho
   return data;
 }
 
+export type PageBlock = { type: string; data: any };
+export async function fetchPage(group: string, slug: string) {
+  const { data } = await api.get(`/pages/${group}/${slug}`);
+  return data.data as { title: string; kicker: string; lead: string; blocks: PageBlock[] };
+}
+
 export async function submitApplication(payload: Record<string, unknown>) {
   const { data } = await api.post('/applications', payload);
 

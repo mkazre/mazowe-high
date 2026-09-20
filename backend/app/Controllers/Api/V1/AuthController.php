@@ -2,11 +2,10 @@
 
 namespace App\Controllers\Api\V1;
 
-use App\Controllers\BaseController;
 use App\Libraries\JwtService;
 use App\Models\UserModel;
 
-class AuthController extends BaseController
+class AuthController extends ApiBaseController
 {
     public function login()
     {
@@ -60,10 +59,21 @@ class AuthController extends BaseController
         }
 
         $role = $this->db->table('roles')->where('id', $user['role_id'])->get()->getRowArray();
+        $ctx  = $this->context();
+
+        $children = [];
+        if ($ctx['role'] === 'parent' && $ctx['student_ids']) {
+            $children = $this->db->table('students')->whereIn('id', $ctx['student_ids'])->get()->getResultArray();
+        }
 
         return $this->response->setJSON([
             'ok'   => true,
-            'user' => ['id' => $user['id'], 'name' => $user['name'], 'email' => $user['email'], 'role' => $role['slug'] ?? null],
+            'user' => [
+                'id' => $user['id'], 'name' => $user['name'], 'email' => $user['email'], 'role' => $role['slug'] ?? null,
+                'student_id' => $ctx['student_ids'][0] ?? null,
+                'staff_id'   => $ctx['staff_id'],
+                'children'   => $children,
+            ],
         ]);
     }
 }

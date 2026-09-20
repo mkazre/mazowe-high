@@ -23,10 +23,24 @@ export default function ParentHome() {
       </View>
 
       <Text style={{ fontWeight: '800', fontSize: 13, textTransform: 'uppercase', letterSpacing: 1, color: colors.blue, marginBottom: spacing.sm }}>
+        My children
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.md }}>
+        {user?.children?.map((c) => (
+          <Button
+            key={c.id}
+            label={`${c.first_name} ${c.last_name}`}
+            variant="secondary"
+            onPress={() => router.push(`/parent/children/${c.id}`)}
+          />
+        ))}
+        {!user?.children?.length && <Text style={{ color: colors.muted }}>No enrolled children linked to this account.</Text>}
+      </View>
+
+      <Text style={{ fontWeight: '800', fontSize: 13, textTransform: 'uppercase', letterSpacing: 1, color: colors.blue, marginBottom: spacing.sm }}>
         Quick links
       </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.lg }}>
-        <Button label="My children" variant="secondary" onPress={() => router.push('/parent/children/1')} />
         <Button label="Bus tracking" variant="secondary" onPress={() => router.push('/parent/bus')} />
         <Button label="Exeat requests" variant="secondary" onPress={() => router.push('/parent/exeat')} />
         <Button label="Events" variant="secondary" onPress={() => router.push('/parent/events')} />

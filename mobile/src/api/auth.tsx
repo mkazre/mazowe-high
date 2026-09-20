@@ -2,7 +2,11 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { api, tokenStore } from './client';
 
 export type Role = 'parent' | 'student' | 'teacher' | string;
-export type AuthUser = { id: number; name: string; email: string; role: Role };
+export type Child = { id: number; first_name: string; last_name: string; admission_number: string; class_id: number };
+export type AuthUser = {
+  id: number; name: string; email: string; role: Role;
+  student_id: number | null; staff_id: number | null; children: Child[];
+};
 
 type AuthState = {
   user: AuthUser | null;

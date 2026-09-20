@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
         $this->call('App\Database\Seeds\SiteSettingsSeeder');
         $this->call('App\Database\Seeds\PagesSeeder');
         $this->call('App\Database\Seeds\ContentSeeder');
+        $this->call('App\Database\Seeds\DemoDataSeeder');
     }
 }

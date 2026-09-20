@@ -34,11 +34,37 @@
       <p class="admin-nav-heading">Admissions</p>
       <a href="/admin/enquiries" class="<?= ($active ?? '') === 'enquiries' ? 'is-active' : '' ?>">Enquiries & applications</a>
 
+      <p class="admin-nav-heading">School setup</p>
+      <a href="/admin/setup/academic-years" class="<?= ($active ?? '') === 'setup' ? 'is-active' : '' ?>">Academic years & terms</a>
+      <a href="/admin/people/students" class="<?= ($active ?? '') === 'people' ? 'is-active' : '' ?>">Students & guardians</a>
+      <a href="/admin/people/staff" class="<?= ($active ?? '') === 'people' ? 'is-active' : '' ?>">Staff</a>
+      <a href="/admin/timetable" class="<?= ($active ?? '') === 'timetable' ? 'is-active' : '' ?>">Timetable</a>
+
+      <p class="admin-nav-heading">Daily operations</p>
+      <a href="/admin/attendance" class="<?= ($active ?? '') === 'attendance' ? 'is-active' : '' ?>">Attendance</a>
+      <a href="/admin/assessments" class="<?= ($active ?? '') === 'assessments' ? 'is-active' : '' ?>">Assessment & reports</a>
+
+      <p class="admin-nav-heading">Finance</p>
+      <a href="/admin/finance/fee-structures" class="<?= ($active ?? '') === 'finance' ? 'is-active' : '' ?>">Fee structures</a>
+      <a href="/admin/finance/invoices" class="<?= ($active ?? '') === 'finance' ? 'is-active' : '' ?>">Invoices & payments</a>
+
+      <p class="admin-nav-heading">Boarding & catering</p>
+      <a href="/admin/boarding/dormitories" class="<?= ($active ?? '') === 'boarding' ? 'is-active' : '' ?>">Bed allocation</a>
+      <a href="/admin/boarding/exeats" class="<?= ($active ?? '') === 'boarding' ? 'is-active' : '' ?>">Exeat requests</a>
+      <a href="/admin/boarding/sanatorium" class="<?= ($active ?? '') === 'boarding' ? 'is-active' : '' ?>">Sanatorium</a>
+      <a href="/admin/boarding/tuck" class="<?= ($active ?? '') === 'boarding' ? 'is-active' : '' ?>">Tuck accounts</a>
+      <a href="/admin/catering" class="<?= ($active ?? '') === 'catering' ? 'is-active' : '' ?>">Menu cycle</a>
+
+      <p class="admin-nav-heading">Transport & library</p>
+      <a href="/admin/transport" class="<?= ($active ?? '') === 'transport' ? 'is-active' : '' ?>">Routes & stops</a>
+      <a href="/admin/library/catalogue" class="<?= ($active ?? '') === 'library' ? 'is-active' : '' ?>">Catalogue & loans</a>
+
       <p class="admin-nav-heading">Communications</p>
       <a href="/admin/notices" class="<?= ($active ?? '') === 'notices' ? 'is-active' : '' ?>">Notices</a>
       <a href="/admin/events" class="<?= ($active ?? '') === 'events' ? 'is-active' : '' ?>">Events</a>
       <a href="/admin/posts" class="<?= ($active ?? '') === 'posts' ? 'is-active' : '' ?>">Blog posts</a>
       <a href="/admin/vacancies" class="<?= ($active ?? '') === 'vacancies' ? 'is-active' : '' ?>">Vacancies</a>
+      <a href="/admin/threads" class="<?= ($active ?? '') === 'threads' ? 'is-active' : '' ?>">Parent messages</a>
 
       <p class="admin-nav-heading">Administration</p>
       <a href="/admin/users" class="<?= ($active ?? '') === 'users' ? 'is-active' : '' ?>">Users & roles</a>
